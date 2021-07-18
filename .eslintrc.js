@@ -55,7 +55,10 @@ module.exports = {
       "warn",
       { prefer: "type-imports" },
     ],
-    "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { varsIgnorePattern: "^_", argsIgnorePattern: "^_" },
+    ],
     "@typescript-eslint/naming-convention": [
       "error",
       { selector: ["typeAlias", "typeParameter"], format: ["PascalCase"] },
@@ -65,10 +68,10 @@ module.exports = {
         types: ["boolean"],
         format: ["PascalCase"],
         prefix: ["no", "is", "has", "should"],
+        filter: { regex: "^_", match: false },
       },
     ],
     "jsx-a11y/no-autofocus": "off",
-    "jsx-a11y/alt-text": ["error", { img: [] }],
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
