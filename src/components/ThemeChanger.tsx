@@ -1,8 +1,6 @@
 import { useTheme } from "next-themes";
 import type {
-  ChangeEvent,
   DetailedHTMLProps,
-  FocusEvent,
   SelectHTMLAttributes,
   VFC,
 } from "react";
@@ -15,13 +13,13 @@ export const ThemeChanger: VFC = () => {
   const handleOnChange: DetailedHTMLProps<
     SelectHTMLAttributes<HTMLSelectElement>,
     HTMLSelectElement
-  >["onChange"] = (e: ChangeEvent<HTMLSelectElement>) => {
+  >["onChange"] = (e) => {
     setTheme(e.target.value);
   };
   const handleOnBlur: DetailedHTMLProps<
     SelectHTMLAttributes<HTMLSelectElement>,
     HTMLSelectElement
-  >["onBlur"] = (e: FocusEvent<HTMLSelectElement>) => {
+  >["onBlur"] = (e) => {
     setTheme(e.target.value);
   };
 
