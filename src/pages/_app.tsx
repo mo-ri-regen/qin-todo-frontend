@@ -1,12 +1,13 @@
 import '../styles/globals.css'
+
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from "next-themes";
 
-const MyApp = ({ Component, pageProps }: AppProps)  => {
+const MyApp = (props: AppProps) => {
   return (
     <ThemeProvider attribute='class'>
-      <Component {...pageProps} />
+      <props.Component {...props.pageProps} />
     </ThemeProvider>
   );
-}
+};
 export default MyApp
