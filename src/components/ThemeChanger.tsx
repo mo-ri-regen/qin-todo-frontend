@@ -1,8 +1,8 @@
 import { useTheme } from "next-themes";
-import type { ChangeEvent, FC } from "react";
+import type { ChangeEvent, VFC } from "react";
 import { useEffect, useState } from "react";
 
-export const ThemeChanger: FC = () => {
+export const ThemeChanger: VFC = () => {
   const [isMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
