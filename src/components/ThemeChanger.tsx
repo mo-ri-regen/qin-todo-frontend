@@ -6,7 +6,7 @@ import type {
 } from "react";
 import { useEffect, useState } from "react";
 
-export const ThemeChanger: VFC = () => {
+export const themeChanger: VFC = () => {
   const [isMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
