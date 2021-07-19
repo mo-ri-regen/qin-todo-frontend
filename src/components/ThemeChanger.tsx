@@ -2,20 +2,20 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 export const ThemeChanger = () => {
-  const [mounted, setMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
   const handleOnChange = () => {
-    (e) => {
+    (e:any) => {
       return setTheme(e.target.value);
     };
   };
   // When mounted on client, now we can show the UI
   useEffect(() => {
-    setMounted(true);
+    setIsMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  if (!isMounted) return null;
 
   return (
     <div className='mt-12'>
