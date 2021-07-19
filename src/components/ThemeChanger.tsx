@@ -1,11 +1,12 @@
 import { useTheme } from "next-themes";
+import type { ChangeEvent, FC } from "react";
 import { useEffect, useState } from "react";
 
-export const ThemeChanger = () => {
+export const ThemeChanger: FC = () => {
   const [isMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  const handleOnChange = (e: any) => {
+  const handleOnChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setTheme(e.target.value);
   };
 
