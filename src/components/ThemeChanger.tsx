@@ -1,19 +1,39 @@
-import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import type {
+  DetailedHTMLProps,
+  SelectHTMLAttributes,
+  VFC,
+} from "react";
+import { useEffect, useState } from "react";
 
-export const ThemeChanger = () => {
-  const [mounted, setMounted] = useState(false);
+export const ThemeChanger: VFC = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  // When mounted on client, now we can show the UI
-  useEffect(() => setMounted(true), []);
+  const handleOnChange: DetailedHTMLProps<
+    SelectHTMLAttributes<HTMLSelectElement>,
+    HTMLSelectElement
+  >["onChange"] = (e) => {
+    setTheme(e.target.value);
+  };
+  const handleOnBlur: DetailedHTMLProps<
+    SelectHTMLAttributes<HTMLSelectElement>,
+    HTMLSelectElement
+  >["onBlur"] = (e) => {
+    setTheme(e.target.value);
+  };
 
-  if (!mounted) return null;
+  // When mounted on client, now we can show the UI
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   return (
-    <div className="mt-12">
+    <div className='mt-12'>
       {theme !== undefined && (
-        <select value={theme} onChange={(e) => setTheme(e.target.value)}>
+        <select value={theme} onBlur={handleOnBlur} onChange={handleOnChange}>
           <option value='dark'>Dark</option>
           <option value='light'>Light</option>
           <option value='system'>System</option>
