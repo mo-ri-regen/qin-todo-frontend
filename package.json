@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "run-p -l -c --aggregate-output lint:*",
     "lint:eslint": "eslint --cache .",
     "lint:prettier": "prettier --check .",
     "fix": "run-s -l -c fix:eslint fix:prettier",
