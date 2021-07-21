@@ -1,9 +1,5 @@
 import { useTheme } from "next-themes";
-import type {
-  DetailedHTMLProps,
-  SelectHTMLAttributes,
-  VFC,
-} from "react";
+import type { DetailedHTMLProps, SelectHTMLAttributes, VFC } from "react";
 import { useEffect, useState } from "react";
 
 export const ThemeChanger: VFC = () => {
@@ -31,12 +27,12 @@ export const ThemeChanger: VFC = () => {
   if (!isMounted) return null;
 
   return (
-    <div className='mt-12'>
+    <div className="mt-12">
       {theme !== undefined && (
         <select value={theme} onBlur={handleOnBlur} onChange={handleOnChange}>
-          <option value='dark'>Dark</option>
-          <option value='light'>Light</option>
-          <option value='system'>System</option>
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+          <option value="system">System</option>
         </select>
       )}
     </div>
