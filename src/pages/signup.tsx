@@ -3,8 +3,8 @@ import type { NextPage } from "next";
 // import { PageLoader } from "src/components/PageLoader";
 import { Sign } from "src/components/shared/Sign";
 
-const Signin: NextPage = () => {
-  return <Sign page="signin" />;
+const Signup: NextPage = () => {
+  return <Sign page="signup" />;
 };
 
 // export default withAuthUser({
@@ -12,6 +12,6 @@ const Signin: NextPage = () => {
 //   whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,
 //   whenUnauthedAfterInit: AuthAction.RENDER,
 //   LoaderComponent: PageLoader,
-// })(Signin);
+// })(Signup);
 
-export default Signin;
+export default Signup;
