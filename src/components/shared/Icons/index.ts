@@ -1,5 +1,5 @@
 import { AppleIcon } from "./AppleIcon";
 import { GoogleIcon } from "./GoogleIcon";
-import { QinMemoIcon } from "./QinMemoIcon";
+import { QinTodoIcon } from "./QinTodoIcon";
 
-export { AppleIcon, GoogleIcon, QinMemoIcon };
+export { AppleIcon, GoogleIcon, QinTodoIcon };
