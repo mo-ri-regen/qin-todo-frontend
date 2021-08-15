@@ -8,4 +8,5 @@ module.exports = withPWA({
   },
   reactStrictMode: true,
   typescript: { ignoreDevErrors: true },
+  pageExtensions: ["page.tsx", "page.ts"],
 });
