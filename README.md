@@ -127,6 +127,6 @@ yarn start // localhost:3000 で立ち上がります。dev中はportを変え�
 
 ## その他
 
-[デザイン](https://www.figma.com/file/SNPCXNu0V6k6wHS4piYyS2/Qin-Todo?node-id=0%3A1)
-[バックエンドリポジトリ](https://github.com/mo-ri-regen/qin-todo-backend)
-[使用相談(プライベートリポジトリ)](https://github.com/qin-salon/qin-todo-backend/issues/1)
+- [デザイン](https://www.figma.com/file/SNPCXNu0V6k6wHS4piYyS2/Qin-Todo?node-id=0%3A1)
+- [バックエンドリポジトリ](https://github.com/mo-ri-regen/qin-todo-backend)
+- [使用相談(プライベートリポジトリ)](https://github.com/qin-salon/qin-todo-backend/issues/1)
