@@ -14,14 +14,20 @@
   - コードを分析し問題点を指摘してくれるツールです。これがあることでメンバー同士のコード差異が少なくなったり、独自ルールを追加して書き方を統一できます。
 - [Prettier](https://prettier.io/)
   - コードフォーマッターです。改行やクォーテーションなどを統一できます。ESLint とあわせて使うのが一般的で、ESLint だけでは実現できない部分をカバーします。
+- [GitMoji](https://gitmoji.dev/) 😜
+  - Commit メッセージに絵文字を使うことでパッと見で分かりやすくするものです。
+- [Mock Service Worker](https://mswjs.io/)
+  - サービスワーカーを利用して API モックを作れるライブラリ。フロントエンド駆動開発やテストに便利です。
+- [Vercel](https://vercel.com/)
+- [Firebase](https://firebase.google.com/)+[NextAuth.js](https://next-auth.js.org/)
+  - 認証に利用
+
+### 未定
+
 - [Jest](https://jestjs.io/ja/)
   - Facebook 製の JavaScript のテスティングフレームワークです。テストに関する様々な機能を提供しており、ドキュメントも豊富かつ実績もあるため、採用しています。
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
   - React "Components"をテストするためのものです。[Jest 公式](https://jestjs.io/docs/ja/tutorial-react#dom-%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88)でもコンポーネントをテストしたい場合に使えるものだと言及されています。
-- [Mock Service Worker](https://mswjs.io/)
-  - サービスワーカーを利用して API モックを作れるライブラリ。フロントエンド駆動開発やテストに便利です。
-- [GitMoji](https://gitmoji.dev/) 😜
-  - Commit メッセージに絵文字を使うことでパッと見で分かりやすくするものです。
 
 ## セットアップ
 
@@ -78,7 +84,7 @@ VS Code で行う場合は、リポジトリをクローンする（英語だと
 yarn
 ```
 
-## 開発する
+## 開発について
 
 開発を行う場合
 
@@ -118,3 +124,9 @@ yarn start // localhost:3000 で立ち上がります。dev中はportを変え�
 - 例: feature/lightsound-#1
 
 `main`, `develop`, `hotfix` に直接 push してはいけません。基本的に皆さんが触って良いのは `feature/あなたのGitHub名_*` ブランチだけです。
+
+## その他
+
+[デザイン](https://www.figma.com/file/SNPCXNu0V6k6wHS4piYyS2/Qin-Todo?node-id=0%3A1)
+[バックエンドリポジトリ](https://github.com/mo-ri-regen/qin-todo-backend)
+[使用相談(プライベートリポジトリ)](https://github.com/qin-salon/qin-todo-backend/issues/1)
