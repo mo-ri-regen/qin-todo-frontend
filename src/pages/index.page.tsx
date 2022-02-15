@@ -1,11 +1,12 @@
 import { ThemeChanger } from "src/components/ThemeChanger";
+import { TodoToday } from "src/components/TodoToday";
 import { Layout } from "src/layout";
 
 const Home = () => {
   return (
     <Layout>
-      <div className="text-5xl text-blue-500">Qin Todo</div>
       <ThemeChanger />
+      <TodoToday />
     </Layout>
   );
 };

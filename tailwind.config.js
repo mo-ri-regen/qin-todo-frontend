@@ -9,6 +9,9 @@ module.exports = {
       colors: {
         gray: colors.gray,
         orange: colors.orange,
+        primary: "#F43F5E",
+        secondary: "#FB923C",
+        tertiary: "#FBBF24",
       },
       // proseの色をダークモードに対応させたいが現時点では力技解決しか無い模様
       // 参考: https://github.com/tailwindlabs/tailwindcss-typography/issues/69#issuecomment-752946920
