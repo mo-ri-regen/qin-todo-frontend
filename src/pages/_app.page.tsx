@@ -6,6 +6,12 @@ import { ThemeProvider } from "next-themes";
 import { HeadPart } from "../components/HeadPart";
 
 const MyApp = (props: AppProps) => {
+  if (process.env.NODE_ENV === "development") {
+    const MockServer = () => {
+      return import("../mock");
+    };
+    MockServer();
+  }
   return (
     <ThemeProvider attribute="class">
       <HeadPart />
