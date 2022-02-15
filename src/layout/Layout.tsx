@@ -1,14 +1,15 @@
 import type { ReactNode, VFC } from "react";
 
+import { Header } from "./Header";
+
 type Props = {
   children: ReactNode;
 };
 export const Layout: VFC<Props> = (props) => {
   return (
-    <div className="pt-4 pb-20 space-y-8 sm:space-y-14">
-      <main className="px-4 mx-auto w-full max-w-screen-sm bg-blue-50">
-        {props.children}
-      </main>
+    <div className="flex flex-col mx-6 min-h-screen">
+      <Header />
+      <main className="flex-1 bg-blue-50">{props.children}</main>
     </div>
   );
 };
