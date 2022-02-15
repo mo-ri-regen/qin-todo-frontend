@@ -66,6 +66,7 @@ export const TodoToday = () => {
               <input
                 className="p-2 my-3 w-80 h-9 bg-[#F1F5F9] rounded-full"
                 onChange={handleOnChange}
+                value={tmpTodo}
               />
             </div>
             <div className="flex items-center mb-3 text-white">
