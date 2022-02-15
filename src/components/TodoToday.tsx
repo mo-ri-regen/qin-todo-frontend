@@ -55,7 +55,7 @@ export const TodoToday = () => {
         </div>
       </div>
       <div
-        className={`overflow-hidden fixed w-full h-2/5 bottom-14 right-0 z-10 transform ease-in-out duration-300 ${
+        className={`overflow-hidden fixed w-full h-2/5 bottom-12 right-0 z-10 transform ease-in-out duration-300 ${
           isFooterShow ? "translate-y-0" : "translate-y-full"
         }`}
       >
