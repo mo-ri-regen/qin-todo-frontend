@@ -13,7 +13,7 @@ const worker = setupWorker(
     }
     return res(
       ctx.json({
-        firstName: "John",
+        firstName: "しまぶー",
       })
     );
   })
