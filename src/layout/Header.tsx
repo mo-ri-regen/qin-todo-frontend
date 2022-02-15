@@ -5,7 +5,7 @@ export const Header = () => {
         <div className="flex justify-between items-center w-screen">
           <button className="w-9 h-9" />
           <div className="text-3xl">
-            <span>Qin</span> <span className="text-[#F43F5E]">Todo</span>
+            <span>Qin</span> <span className="text-primary">Todo</span>
           </div>
           <button className="w-9 h-9 bg-blue-500 rounded-full" />
         </div>
