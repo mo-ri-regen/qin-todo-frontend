@@ -5,8 +5,7 @@ import { useStore } from "../libs/store";
 import type { Todo as TodoType, TodosState } from "../types";
 // import { Footer } from "src/layout/Footer";
 
-// eslint-disable-next-line func-style
-function Todo({ title, done, index }: TodoType & { index: number }) {
+const Todo = ({ title, done, index }: TodoType & { index: number }) => {
   const toggleComplete = useStore((state: TodosState) => {
     return state.toggleDone;
   });
@@ -24,7 +23,7 @@ function Todo({ title, done, index }: TodoType & { index: number }) {
       <div className={done ? "line-through" : ""}>{title}</div>
     </div>
   );
-}
+};
 
 export const TodoToday = () => {
   const todos = useStore((state: TodosState) => {
