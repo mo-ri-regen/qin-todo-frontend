@@ -1,11 +1,10 @@
-/* eslint-disable react/destructuring-assignment */
 import { useState } from "react";
 
 import { useStore } from "../libs/store";
 import type { Todo as TodoType, TodosState } from "../types";
 // import { Footer } from "src/layout/Footer";
 
-const TodoTody = ({ title, done, index }: TodoType & { index: number }) => {
+const TodoTody = (props: TodoType & { index: number }) => {
   const toggleComplete = useStore((state: TodosState) => {
     return state.toggleDone;
   });
@@ -14,13 +13,13 @@ const TodoTody = ({ title, done, index }: TodoType & { index: number }) => {
       <input
         className="mr-4 w-6 h-6 text-primary rounded-full ring-0 focus:ring-gray-400"
         type="checkbox"
-        checked={done}
+        checked={props.done}
         // eslint-disable-next-line react/jsx-handler-names
         onChange={() => {
-          toggleComplete(index);
+          toggleComplete(props.index);
         }}
       />
-      <div className={done ? "line-through" : ""}>{title}</div>
+      <div className={props.done ? "line-through" : ""}>{props.title}</div>
     </div>
   );
 };
