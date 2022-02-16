@@ -13,7 +13,7 @@ function Todo({ title, done, index }: TodoType & { index: number }) {
   return (
     <div className="flex items-center">
       <input
-        className="mx-2 text-primary rounded-full ring-0 focus:ring-gray-400"
+        className="mr-4 mb-4 w-6 h-6 text-primary rounded-full ring-0 focus:ring-gray-400"
         type="checkbox"
         checked={done}
         // eslint-disable-next-line react/jsx-handler-names
@@ -64,18 +64,18 @@ export const TodoToday = () => {
   };
   return (
     <>
-      <div className="mb-3 text-2xl text-primary">今日する</div>
+      <div className="mb-3 text-2xl font-semibold text-primary">今日する</div>
       <div className="flex flex-col">
         <div className="flex items-center">
           <button
-            className="px-2 mr-2 text-white bg-gray-500 rounded-full"
+            className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full"
             onClick={handleOnToggleFooter}
           >
             +
           </button>
-          <input placeholder="タスクを追加する" />
+          <div className="text-gray-300">タスクを追加する</div>
         </div>
-        <div className="overflow-y-scroll m-5 max-h-36">
+        <div className="overflow-y-scroll my-5 max-h-36">
           <ol>
             {todos.map(({ title, done }: TodoType, index: number) => {
               return (
