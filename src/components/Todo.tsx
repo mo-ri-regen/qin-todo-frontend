@@ -5,7 +5,7 @@ import { useStore } from "../libs/store";
 import type { Todo as TodoType, TodosState } from "../types";
 // import { Footer } from "src/layout/Footer";
 
-const Todo = ({ title, done, index }: TodoType & { index: number }) => {
+const TodoTody = ({ title, done, index }: TodoType & { index: number }) => {
   const toggleComplete = useStore((state: TodosState) => {
     return state.toggleDone;
   });
@@ -25,7 +25,7 @@ const Todo = ({ title, done, index }: TodoType & { index: number }) => {
   );
 };
 
-export const TodoToday = () => {
+export const ListTodoToday = () => {
   const todos = useStore((state: TodosState) => {
     return state.todos;
   });
@@ -78,7 +78,7 @@ export const TodoToday = () => {
           <ol>
             {todos.map(({ title, done }: TodoType, index: number) => {
               return (
-                <Todo
+                <TodoTody
                   title={title}
                   done={done}
                   index={index}
