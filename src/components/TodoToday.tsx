@@ -1,9 +1,40 @@
+/* eslint-disable react/destructuring-assignment */
 import { useState } from "react";
+
+import { useStore } from "../libs/store";
+import type { Todo as TodoType, TodosState } from "../types";
 // import { Footer } from "src/layout/Footer";
 
+// eslint-disable-next-line func-style
+function Todo({ title, done, index }: TodoType & { index: number }) {
+  const toggleComplete = useStore((state: TodosState) => {
+    return state.toggleDone;
+  });
+  return (
+    <div className="flex items-center">
+      <input
+        className="mx-2 text-primary rounded-full ring-0 focus:ring-gray-400"
+        type="checkbox"
+        checked={done}
+        // eslint-disable-next-line react/jsx-handler-names
+        onChange={() => {
+          toggleComplete(index);
+        }}
+      />
+      <div className={done ? "line-through" : ""}>{title}</div>
+    </div>
+  );
+}
+
 export const TodoToday = () => {
-  const [todos, setTodos] = useState<any>([]);
-  const [tmpTodo, setTmpTodo] = useState("");
+  const todos = useStore((state: TodosState) => {
+    return state.todos;
+  });
+
+  const [tmpTodo, setTmpTodo] = useState<string>("");
+  const add = useStore((state) => {
+    return state.add;
+  });
   const [error, setError] = useState(" ");
   const [isFooterShow, setIsFooterShow] = useState(false);
   const handleOnToggleFooter = () => {
@@ -22,8 +53,10 @@ export const TodoToday = () => {
       setError("入力してください");
       return;
     }
-    setTodos([...todos, tmpTodo]);
-    setTmpTodo("");
+    if (tmpTodo) {
+      add(tmpTodo);
+      setTmpTodo("");
+    }
   };
   const handleOnChange = (e: any) => {
     setTmpTodo(e.target.value);
@@ -44,11 +77,14 @@ export const TodoToday = () => {
         </div>
         <div className="overflow-y-scroll m-5 max-h-36">
           <ol>
-            {todos.map((todo: any, index: any) => {
+            {todos.map(({ title, done }: TodoType, index: number) => {
               return (
-                <div key={index}>
-                  <li>{todo}</li>
-                </div>
+                <Todo
+                  title={title}
+                  done={done}
+                  index={index}
+                  key={`todo-${title}-${index}`}
+                />
               );
             })}
           </ol>
