@@ -11,9 +11,9 @@ function Todo({ title, done, index }: TodoType & { index: number }) {
     return state.toggleDone;
   });
   return (
-    <div className="flex items-center">
+    <div className="flex items-center mb-4">
       <input
-        className="mr-4 mb-4 w-6 h-6 text-primary rounded-full ring-0 focus:ring-gray-400"
+        className="mr-4 w-6 h-6 text-primary rounded-full ring-0 focus:ring-gray-400"
         type="checkbox"
         checked={done}
         // eslint-disable-next-line react/jsx-handler-names
