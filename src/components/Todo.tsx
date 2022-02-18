@@ -56,13 +56,25 @@ export const ListTodoToday = () => {
         </div>
         <div className="overflow-y-scroll my-5 max-h-36">
           <ol>
-            {todos.map(({ title, done }: TodoType, index: number) => {
+            {todos.map(({ text, done }: TodoType, index: number) => {
               return (
                 <TodoTody
-                  title={title}
+                  text={text}
                   done={done}
                   index={index}
-                  key={`todo-${title}-${index}`}
+                  key={`todo-${text}-${index}`}
+                />
+              );
+            })}
+          </ol>
+          <ol>
+            {todos.map(({ text, done }: TodoType, index: number) => {
+              return (
+                <TodoTody
+                  text={text}
+                  done={done}
+                  index={index}
+                  key={`todo-${text}-${index}`}
                 />
               );
             })}

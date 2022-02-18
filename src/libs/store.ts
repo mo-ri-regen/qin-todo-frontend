@@ -4,9 +4,9 @@ import create from "zustand";
 const useStore = create<TodosState>((set) => {
   return {
     todos: [],
-    add: (title: string) => {
+    add: (text: string) => {
       return set((state) => {
-        return { todos: [...state.todos, { title: title }] };
+        return { todos: [...state.todos, { text: text }] };
       });
     },
     toggleDone: (index: number) => {

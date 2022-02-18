@@ -16,7 +16,7 @@ export const TodoTody = (props: TodoType & { index: number }) => {
           toggleComplete(props.index);
         }}
       />
-      <div className={props.done ? "line-through" : ""}>{props.title}</div>
+      <div className={props.done ? "line-through" : ""}>{props.text}</div>
     </div>
   );
 };
