@@ -55,18 +55,7 @@ export const ListTodoToday = () => {
           <div className="text-gray-300">タスクを追加する</div>
         </div>
         <div className="overflow-y-scroll my-5 max-h-36">
-          <ol>
-            {todos.map(({ text, done }: TodoType, index: number) => {
-              return (
-                <TodoTody
-                  text={text}
-                  done={done}
-                  index={index}
-                  key={`todo-${text}-${index}`}
-                />
-              );
-            })}
-          </ol>
+          <ul>{/* ここにmockのデータを取得したい */}</ul>
           <ol>
             {todos.map(({ text, done }: TodoType, index: number) => {
               return (
