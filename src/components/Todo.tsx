@@ -10,7 +10,7 @@ export const ListTodoToday = () => {
     return state.todos;
   });
 
-  const [tmpTodo, setTmpTodo] = useState<string>("");
+  const [inputTodo, setInputTodo] = useState<string>("");
   const add = useStore((state) => {
     return state.add;
   });
@@ -28,17 +28,17 @@ export const ListTodoToday = () => {
     });
   };
   const handleAddTodo = () => {
-    if (tmpTodo === "") {
+    if (inputTodo === "") {
       setError("入力してください");
       return;
     }
-    if (tmpTodo) {
-      add(tmpTodo);
-      setTmpTodo("");
+    if (inputTodo) {
+      add(inputTodo);
+      setInputTodo("");
     }
   };
   const handleOnChange = (e: any) => {
-    setTmpTodo(e.target.value);
+    setInputTodo(e.target.value);
     setError("");
   };
   return (
@@ -93,7 +93,7 @@ export const ListTodoToday = () => {
               <input
                 className="p-2 my-3 w-80 h-9 bg-[#F1F5F9] rounded-full"
                 onChange={handleOnChange}
-                value={tmpTodo}
+                value={inputTodo}
               />
             </div>
             <div className="flex items-center mb-3 text-white">
