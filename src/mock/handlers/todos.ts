@@ -1,14 +1,16 @@
 import { rest } from "msw";
-import { EXAMPLE_MY_TODO } from "src/models/todo";
+import { EXAMPLE_MY_TODO, EXAMPLE_MY_TODO_LIST } from "src/models/todo";
+
+const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}todo/`;
 
 export const TodosHandlers = [
   // 新しいTodoを作成する
-  rest.post("/Todos", (_req, res, ctx) => {
-    return res(ctx.status(201), ctx.json({ id: "1" }));
+  rest.post(apiUrl, (_req, res, ctx) => {
+    return res(ctx.status(201), ctx.json({ id: 1 }));
   }),
 
   // 特定のTodoの情報を更新する
-  rest.put("http://localhost:8000/todo", (req, res, ctx) => {
+  rest.put(apiUrl, (req, res, ctx) => {
     const { todoId } = req.params;
     return res(
       ctx.delay(1000),
@@ -18,17 +20,17 @@ export const TodosHandlers = [
   }),
 
   // 特定のTodoの情報を取得する
-  rest.get("http://localhost:8000/todo", (req, res, ctx) => {
-    const { todoId } = req.params;
+  rest.get(apiUrl, (req, res, ctx) => {
+    // const { todoId } = req.params;
     return res(
       ctx.delay(1000),
       ctx.status(200),
-      ctx.json({ ...EXAMPLE_MY_TODO, id: todoId })
+      ctx.json(EXAMPLE_MY_TODO_LIST)
     );
   }),
 
   // 特定のTodoを削除する
-  rest.delete("http://localhost:8000/todo", (req, res, ctx) => {
+  rest.delete(apiUrl, (req, res, ctx) => {
     const { todoId } = req.params;
     return res(ctx.delay(1000), ctx.status(200), ctx.json({ id: todoId }));
   }),

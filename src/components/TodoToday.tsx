@@ -1,9 +1,15 @@
 // import { useEffect } from "react";
 
-import { useStore } from "../libs/store";
-import type { Todo as TodoType, TodosState } from "../types";
+import type { VFC } from "react";
 
-export const TodoTody = (props: TodoType & { index: number }) => {
+import { useStore } from "../libs/store";
+import type { ListTodo, TodosState } from "../types";
+
+type Props = {
+  todo: ListTodo;
+};
+
+export const TodoTody: VFC<Props> = (props) => {
   const toggleComplete = useStore((state: TodosState) => {
     return state.toggleDone;
   });
@@ -19,18 +25,20 @@ export const TodoTody = (props: TodoType & { index: number }) => {
       <input
         className="mr-4 w-6 h-6 text-primary rounded-full ring-0 focus:ring-gray-400"
         type="checkbox"
-        checked={props.done}
+        checked={props.todo.done}
         // eslint-disable-next-line react/jsx-handler-names
         onChange={() => {
-          toggleComplete(props.index);
+          toggleComplete(props.todo.id);
         }}
       />
-      <div className={props.done ? "line-through" : ""}>{props.text}</div>
+      <div className={props.todo.done ? "line-through" : ""}>
+        {props.todo.text}
+      </div>
       <button
         className="p-1 ml-5 text-gray-100 hover:bg-red-400 rounded"
         // eslint-disable-next-line react/jsx-handler-names
         onClick={() => {
-          return removeTodo(props.index);
+          return removeTodo(props.todo.id);
         }}
       >
         Delete

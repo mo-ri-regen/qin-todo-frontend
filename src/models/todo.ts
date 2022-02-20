@@ -1,6 +1,7 @@
 import type { ListTodo, Todo } from "src/types";
 
 export const EXAMPLE_MY_TODO: Todo = {
+  id: "6",
   text: `書籍を使って学ぶのは本当に必要なのか考察する。`,
   done: false,
 };

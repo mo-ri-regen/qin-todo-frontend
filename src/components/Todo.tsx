@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useStore } from "../libs/store";
-import type { Todo as TodoType, TodosState } from "../types";
+import type { TodosState } from "../types";
 import { TodoTody } from "./TodoToday";
 // import { Footer } from "src/layout/Footer";
 
@@ -11,6 +11,9 @@ export const ListTodoToday = () => {
   });
 
   const [inputTodo, setInputTodo] = useState<string>("");
+  const getTempTodos = useStore((state) => {
+    return state.getTempTodos;
+  });
   const addTodo = useStore((state) => {
     return state.addTodo;
   });
@@ -41,6 +44,10 @@ export const ListTodoToday = () => {
     setInputTodo(e.target.value);
     setError("");
   };
+
+  useEffect(() => {
+    getTempTodos();
+  }, []);
   return (
     <>
       <div className="mb-3 text-2xl font-semibold text-primary">今日する</div>
@@ -54,17 +61,12 @@ export const ListTodoToday = () => {
           </button>
           <div className="text-gray-300">タスクを追加する</div>
         </div>
-        <div className="overflow-y-scroll my-5 max-h-36">
+        <div className="overflow-y-scroll my-5 max-h-72">
           <ul>{/* ここにmockのデータを取得したい */}</ul>
           <ol>
-            {todos.map(({ text, done }: TodoType, index: number) => {
+            {todos.map((todo) => {
               return (
-                <TodoTody
-                  text={text}
-                  done={done}
-                  index={index}
-                  key={`todo-${text}-${index}`}
-                />
+                <TodoTody todo={todo} key={`todo-${todo.text}-${todo.id}`} />
               );
             })}
           </ol>
