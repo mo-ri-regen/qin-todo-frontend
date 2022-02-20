@@ -1,5 +1,3 @@
-// import { useEffect } from "react";
-
 import type { VFC } from "react";
 
 import { useStore } from "../libs/store";
@@ -16,10 +14,6 @@ export const TodoTody: VFC<Props> = (props) => {
   const removeTodo = useStore((state: TodosState) => {
     return state.removeTodo;
   });
-  //   useEffect(() => {
-  //  useeffectを使って画面起動時にデータの検索が実行可能か試すとは？
-  //     return()
-  //   }, []);
   return (
     <div className="flex items-center mb-4">
       <input
