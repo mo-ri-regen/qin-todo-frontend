@@ -9,9 +9,6 @@ export const ListTodoToday = () => {
   const todos = useStore((state: TodosState) => {
     return state.todos;
   });
-  // const removeTodo = useStore((state) => {
-  //   return state.removeTodo;
-  // });
 
   const [inputTodo, setInputTodo] = useState<string>("");
   const addTodo = useStore((state) => {
