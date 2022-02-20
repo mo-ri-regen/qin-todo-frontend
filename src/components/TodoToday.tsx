@@ -1,3 +1,5 @@
+// import { useEffect } from "react";
+
 import { useStore } from "../libs/store";
 import type { Todo as TodoType, TodosState } from "../types";
 
@@ -8,6 +10,10 @@ export const TodoTody = (props: TodoType & { index: number }) => {
   const removeTodo = useStore((state: TodosState) => {
     return state.removeTodo;
   });
+  //   useEffect(() => {
+  //  useeffectを使って画面起動時にデータの検索が実行可能か試すとは？
+  //     return()
+  //   }, []);
   return (
     <div className="flex items-center mb-4">
       <input
