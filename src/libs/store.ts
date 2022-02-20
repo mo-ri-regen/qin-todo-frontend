@@ -1,3 +1,4 @@
+import axios from "axios";
 import type { TodosState } from "src/types";
 import create from "zustand";
 import { devtools } from "zustand/middleware";
@@ -6,6 +7,10 @@ const useStore = create<TodosState>(
   devtools((set) => {
     return {
       todos: [],
+      getTempTodos: async () => {
+        const response = await axios.get("");
+        set({ todos: response.data });
+      },
       add: (text: string) => {
         return set((state) => {
           return { todos: [...state.todos, { text: text }] };
