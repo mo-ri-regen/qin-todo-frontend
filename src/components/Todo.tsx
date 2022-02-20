@@ -12,7 +12,7 @@ export const ListTodoToday = () => {
 
   const [inputTodo, setInputTodo] = useState<string>("");
   const add = useStore((state) => {
-    return state.add;
+    return state.addTodo;
   });
   const [error, setError] = useState(" ");
   const [isFooterShow, setIsFooterShow] = useState(false);

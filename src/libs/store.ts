@@ -11,7 +11,7 @@ const useStore = create<TodosState>(
         const response = await axios.get("");
         set({ todos: response.data });
       },
-      add: (text: string) => {
+      addTodo: (text: string) => {
         return set((state) => {
           return { todos: [...state.todos, { text: text }] };
         });

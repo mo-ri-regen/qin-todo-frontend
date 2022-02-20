@@ -6,6 +6,6 @@ export type ListTodo = {
 };
 export type TodosState = {
   todos: Array<Todo>;
-  add: (text: string) => void;
+  addTodo: (text: string) => void;
   toggleDone: (index: number) => void;
 };
