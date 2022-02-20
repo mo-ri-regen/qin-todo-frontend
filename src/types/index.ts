@@ -1,4 +1,4 @@
-export type Todo = { text: string; done?: boolean };
+export type Todo = { id?: string; text: string; done?: boolean };
 export type ListTodo = {
   id: string;
   text: string;

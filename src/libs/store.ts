@@ -16,6 +16,15 @@ const useStore = create<TodosState>(
           return { todos: [...state.todos, { text: text }] };
         });
       },
+      removeTodo: (id: string) => {
+        return set((state) => {
+          return {
+            todos: state.todos.filter((todo) => {
+              return todo.id !== id;
+            }),
+          };
+        });
+      },
       toggleDone: (index: number) => {
         return set((state) => {
           return {
