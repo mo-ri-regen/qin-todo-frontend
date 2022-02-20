@@ -9,9 +9,12 @@ export const ListTodoToday = () => {
   const todos = useStore((state: TodosState) => {
     return state.todos;
   });
+  // const removeTodo = useStore((state) => {
+  //   return state.removeTodo;
+  // });
 
   const [inputTodo, setInputTodo] = useState<string>("");
-  const add = useStore((state) => {
+  const addTodo = useStore((state) => {
     return state.addTodo;
   });
   const [error, setError] = useState(" ");
@@ -33,7 +36,7 @@ export const ListTodoToday = () => {
       return;
     }
     if (inputTodo) {
-      add(inputTodo);
+      addTodo(inputTodo);
       setInputTodo("");
     }
   };
