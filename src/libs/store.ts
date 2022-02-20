@@ -15,8 +15,21 @@ const useStore = create<TodosState>(
       },
       addTodo: (text: string) => {
         return set((state) => {
+          // id はバックエンド側で採番するが、一時的に設定する。
+          const maxid: string = state.todos.reduce(
+            (a: ListTodo, b: ListTodo) => {
+              if (Number(a.id) > Number(b.id)) {
+                return a;
+              } else {
+                return b;
+              }
+            }
+          ).id;
           return {
-            todos: [...state.todos, { id: "6", text: text, done: false }],
+            todos: [
+              ...state.todos,
+              { id: String(Number(maxid) + 1), text: text, done: false },
+            ],
           };
         });
       },
