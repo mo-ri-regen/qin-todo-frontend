@@ -5,6 +5,9 @@ export const TodoTody = (props: TodoType & { index: number }) => {
   const toggleComplete = useStore((state: TodosState) => {
     return state.toggleDone;
   });
+  const removeTodo = useStore((state: TodosState) => {
+    return state.removeTodo;
+  });
   return (
     <div className="flex items-center mb-4">
       <input
@@ -17,6 +20,15 @@ export const TodoTody = (props: TodoType & { index: number }) => {
         }}
       />
       <div className={props.done ? "line-through" : ""}>{props.text}</div>
+      <button
+        className="p-1 ml-5 text-gray-100 hover:bg-red-400 rounded"
+        // eslint-disable-next-line react/jsx-handler-names
+        onClick={() => {
+          return removeTodo(props.index);
+        }}
+      >
+        Delete
+      </button>
     </div>
   );
 };

@@ -16,11 +16,11 @@ const useStore = create<TodosState>(
           return { todos: [...state.todos, { text: text }] };
         });
       },
-      removeTodo: (id: string) => {
+      removeTodo: (index: number) => {
         return set((state) => {
           return {
-            todos: state.todos.filter((todo) => {
-              return todo.id !== id;
+            todos: state.todos.filter((todo, id) => {
+              return id !== index;
             }),
           };
         });
