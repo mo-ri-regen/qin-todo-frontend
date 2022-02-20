@@ -13,23 +13,13 @@ const useStore = create<TodosState>(
         const response = await axios.get<ListTodo[]>(apiUrl);
         set({ todos: response.data });
       },
-      addTodo: (text: string) => {
+      addTodo: async (text: string) => {
+        const postTodo = { text: text, done: false };
+        const response = await axios.post<string>(apiUrl, postTodo);
         return set((state) => {
-          // id はバックエンド側で採番するが、一時的に設定する。
-          const maxid: string = state.todos.reduce(
-            (a: ListTodo, b: ListTodo) => {
-              if (Number(a.id) > Number(b.id)) {
-                return a;
-              } else {
-                return b;
-              }
-            }
-          ).id;
+          const postTodo = { text: text, done: false, id: response.data };
           return {
-            todos: [
-              ...state.todos,
-              { id: String(Number(maxid) + 1), text: text, done: false },
-            ],
+            todos: [...state.todos, postTodo],
           };
         });
       },
