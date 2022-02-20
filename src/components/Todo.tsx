@@ -1,3 +1,4 @@
+import type { VFC } from "react";
 import { useEffect, useState } from "react";
 
 import { useStore } from "../libs/store";
@@ -5,7 +6,7 @@ import type { TodosState } from "../types";
 import { TodoTody } from "./TodoToday";
 // import { Footer } from "src/layout/Footer";
 
-export const ListTodoToday = () => {
+export const ListTodoToday: VFC<TodosState> = () => {
   const todos = useStore((state: TodosState) => {
     return state.todos;
   });
