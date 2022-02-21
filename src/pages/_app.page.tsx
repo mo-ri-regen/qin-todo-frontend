@@ -8,7 +8,7 @@ import { HeadPart } from "../components/HeadPart";
 const MyApp = (props: AppProps) => {
   if (process.env.NODE_ENV === "development") {
     const MockServer = () => {
-      return import("../mock");
+      require("../mock");
     };
     MockServer();
   }
