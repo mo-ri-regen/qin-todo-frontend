@@ -1,11 +1,13 @@
 import { ThemeChanger } from "src/components/ThemeChanger";
+import { ListTodoToday } from "src/components/Todo";
+import { Layout } from "src/layout";
 
 const Home = () => {
   return (
-    <>
-      <div className="text-5xl text-blue-500">Qin Todo</div>
+    <Layout>
       <ThemeChanger />
-    </>
+      <ListTodoToday />
+    </Layout>
   );
 };
 
