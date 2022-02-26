@@ -11,7 +11,7 @@ initAuth();
 const MyApp = (props: AppProps) => {
   if (process.env.NODE_ENV === "development") {
     const MockServer = () => {
-      require("../mock");
+      require("../api/mock");
     };
     MockServer();
   }
