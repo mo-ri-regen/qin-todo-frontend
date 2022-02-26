@@ -12,8 +12,8 @@ export const initAuth = () => {
     logoutAPIEndpoint: "/api/signout",
     firebaseAdminInitConfig: {
       credential: {
-        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-        clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID as string,
+        clientEmail: process.env.FIREBASE_CLIENT_EMAIL as string,
         privateKey: process.env.FIREBASE_PRIVATE_KEY
           ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n")
           : "",
@@ -21,7 +21,7 @@ export const initAuth = () => {
       databaseURL: "", // 無くても問題が無い。むしろFirestore, RealtimeDBを使わないのでこれで良し。
     },
     firebaseClientInitConfig: {
-      apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+      apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY as string,
       authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
       databaseURL: "", // 無くても問題が無い。むしろFirestore, RealtimeDBを使わないのでこれで良し。
       projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
