@@ -5218,10 +5218,10 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-next-firebase-auth@^0.14.3-alpha.0:
-  version "0.14.3-alpha.0"
-  resolved "https://registry.yarnpkg.com/next-firebase-auth/-/next-firebase-auth-0.14.3-alpha.0.tgz#c11568554fc325ba1d7314b97366dfc41c7aca55"
-  integrity sha512-/e5V6nKvqc62/tWgf0PGTJ6jTtoQAWc8DKCfcytX0OHADXLlaCCyZuHCWJxpOx9YCZs5lM1g64J7ns7taLTu7g==
+next-firebase-auth@^1.0.0-canary.7:
+  version "1.0.0-canary.7"
+  resolved "https://registry.yarnpkg.com/next-firebase-auth/-/next-firebase-auth-1.0.0-canary.7.tgz#907cc5b8e78e0a8ac67a0d135e8d938e1434fe8f"
+  integrity sha512-eokFqa56IyjZn+JClrhgpM+1E0H6bJyebDTL0GOqcjGKYpAhzn5mLvGjBAc9ycWwOf48vk8TJQMFilItM54l3A==
   dependencies:
     cookies "^0.8.0"
     hoist-non-react-statics "^3.3.2"
