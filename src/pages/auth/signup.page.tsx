@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 // import { AuthAction, withAuthUser } from "next-firebase-auth";
 // import { PageLoader } from "src/components/PageLoader";
-import { Sign } from "src/components/shared/Sign";
+import { Sign } from "src/pages/auth/Sign";
 
 const Signup: NextPage = () => {
   return <Sign page="signup" />;
