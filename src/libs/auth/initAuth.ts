@@ -29,7 +29,7 @@ export const initAuth = () => {
     },
     cookies: {
       // domain: "localhost", // いずれサブドメイン間認証できるか試す。期待値は低い。
-      name: "QinMemo",
+      name: "QinTodo",
       keys: [
         process.env.COOKIE_SECRET_CURRENT,
         process.env.COOKIE_SECRET_PREVIOUS,
