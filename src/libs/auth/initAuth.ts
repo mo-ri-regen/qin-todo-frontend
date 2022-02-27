@@ -11,6 +11,14 @@ export const initAuth = () => {
     appPageURL: "/",
     loginAPIEndpoint: "/api/signin",
     logoutAPIEndpoint: "/api/signout",
+    onLoginRequestError: (err) => {
+      console.error(err);
+    },
+    onLogoutRequestError: (err) => {
+      console.error(err);
+    },
+    // firebaseAuthEmulatorHost: process.env.NEXT_PUBLIC_EMULATOR_HOST, //この情報入れるとエラーになる
+    // useFirebaseAdminDefaultCredential: true, //この情報入れるとエラーになる
     firebaseAdminInitConfig: {
       credential: {
         projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID as string,
@@ -42,6 +50,12 @@ export const initAuth = () => {
       sameSite: "strict",
       secure: true,
       signed: true,
+    },
+    onVerifyTokenError: (err) => {
+      console.error(err);
+    },
+    onTokenRefreshError: (err) => {
+      console.error(err);
     },
   });
 };
