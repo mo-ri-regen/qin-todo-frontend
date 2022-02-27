@@ -1,11 +1,12 @@
 import { init } from "next-firebase-auth";
 
+const isProd = process.env.NODE_ENV === "production";
 /**
  * @package
  */
 export const initAuth = () => {
   init({
-    debug: false,
+    debug: isProd ? false : true,
     authPageURL: "/auth/signin",
     appPageURL: "/",
     loginAPIEndpoint: "/api/signin",
