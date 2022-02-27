@@ -2,13 +2,16 @@ import "../styles/globals.css";
 
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
+import { initAuth } from "src/libs/auth";
 
 import { HeadPart } from "../components/HeadPart";
+
+initAuth();
 
 const MyApp = (props: AppProps) => {
   if (process.env.NODE_ENV === "development") {
     const MockServer = () => {
-      require("../mock");
+      require("../api/mock");
     };
     MockServer();
   }
