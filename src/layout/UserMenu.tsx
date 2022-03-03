@@ -1,3 +1,9 @@
+import { SignoutButton } from "src/components/shared/Buttons/SignoutButton";
+
 export const UserMenu = () => {
-  return <div></div>;
+  return (
+    <div>
+      <SignoutButton />
+    </div>
+  );
 };
