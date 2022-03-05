@@ -23,7 +23,10 @@ const useStore = create<TodosState>(
           };
         });
       },
-      removeTodo: (index: string) => {
+      removeTodo: async (index: string) => {
+        const response = await axios.delete<ListTodo[]>(apiUrl);
+        alert(response);
+
         return set((state) => {
           return {
             todos: state.todos.filter((todo) => {
