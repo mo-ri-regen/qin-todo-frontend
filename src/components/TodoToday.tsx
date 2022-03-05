@@ -43,7 +43,6 @@ export const TodoTody = memo<Props>((props) => {
       </div>
       <button
         className="p-1 ml-5 text-gray-100 hover:bg-red-400 rounded"
-        // eslint-disable-next-line react/jsx-handler-names
         onClick={handleRemoveTodo}
       >
         <TrashIcon className="w-5 h-5 text-gray-800 dark:text-white " />
