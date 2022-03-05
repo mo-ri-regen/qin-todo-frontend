@@ -35,11 +35,11 @@ export const TodoTody = memo<Props>((props) => {
           }
         )}
         type="checkbox"
-        checked={props.todo.done}
+        checked={props.todo.isDone}
         onChange={handleToggleComplete}
       />
-      <div className={props.todo.done ? "line-through" : ""}>
-        {props.todo.text}
+      <div className={props.todo.isDone ? "line-through" : ""}>
+        {props.todo.task}
       </div>
       <button className="p-1 ml-5" onClick={handleRemoveTodo}>
         <TrashIcon className="w-5 h-5 text-gray-800 hover:text-red-500 dark:text-white" />
