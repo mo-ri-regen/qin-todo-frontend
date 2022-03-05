@@ -1,3 +1,5 @@
+import { QinTodoIcon } from "src/components/shared/Icons";
+
 import { UserMenu } from "./UserMenu";
 
 export const Header = () => {
@@ -7,7 +9,7 @@ export const Header = () => {
         <div className="flex justify-between items-center w-screen">
           <button className="w-9 h-9" />
           <div className="text-3xl">
-            <span>Qin</span> <span className="text-primary">Todo</span>
+            <QinTodoIcon />
           </div>
           <UserMenu />
         </div>
