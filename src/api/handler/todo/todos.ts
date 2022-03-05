@@ -7,7 +7,7 @@ const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}todo/`;
 export const TodosHandlers = [
   // 新しいTodoを作成する
   rest.post<PostTodo, never, ListTodo>(apiUrl, (req, res, ctx) => {
-    const { task, sortKey, dueDate, completeDate, isDone } = req.params;
+    const { task, sortKey, dueDate, completeDate, isDone } = req.body;
     return res(
       ctx.delay(10),
       ctx.status(201),
