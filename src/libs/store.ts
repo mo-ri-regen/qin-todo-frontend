@@ -24,9 +24,8 @@ const useStore = create<TodosState>(
         });
       },
       removeTodo: async (index: string) => {
-        await axios.delete(`${apiUrl}/todoId`).then((res) => {
-          return res;
-        });
+        const response = await axios.delete<ListTodo[]>(apiUrl);
+        alert(response);
 
         return set((state) => {
           return {
