@@ -1,3 +1,4 @@
+import { TrashIcon } from "@heroicons/react/outline";
 import type { VFC } from "react";
 
 import { useStore } from "../libs/store";
@@ -35,7 +36,7 @@ export const TodoTody: VFC<Props> = (props) => {
           return removeTodo(props.todo.id);
         }}
       >
-        Delete
+        <TrashIcon className="w-5 h-5 text-gray-800 dark:text-white " />
       </button>
     </div>
   );
