@@ -26,7 +26,7 @@ export const TodosHandlers = [
   }),
 
   // 特定のTodoを削除する
-  rest.delete(apiUrl, (req, res, ctx) => {
+  rest.delete(`${apiUrl}/todoId`, (req, res, ctx) => {
     const { todoId } = req.params;
     return res(ctx.delay(10), ctx.status(200), ctx.json({ id: todoId }));
   }),
