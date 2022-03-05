@@ -1,3 +1,5 @@
+import { UserMenu } from "./UserMenu";
+
 export const Header = () => {
   return (
     <>
@@ -7,7 +9,7 @@ export const Header = () => {
           <div className="text-3xl">
             <span>Qin</span> <span className="text-primary">Todo</span>
           </div>
-          <button className="w-9 h-9 bg-blue-500 rounded-full" />
+          <UserMenu />
         </div>
       </div>
     </>
