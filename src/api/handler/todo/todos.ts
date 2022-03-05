@@ -7,7 +7,7 @@ const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}todo/`;
 export const TodosHandlers = [
   // 新しいTodoを作成する
   rest.post<PostTodo, never, ListTodo>(apiUrl, (req, res, ctx) => {
-    const { task, sortKey, dueDate, completeDate, isDone } = req.body;
+    const { task, sortKey, dueDate, completeDate, isDone } = req.params;
     return res(
       ctx.delay(10),
       ctx.status(201),
@@ -26,33 +26,24 @@ export const TodosHandlers = [
   }),
 
   // 特定のTodoの情報を更新する
-  rest.put<ListTodo, { todoId: string }, ListTodo>(
+  rest.put<PostTodo, { todoId: string }, ListTodo>(
     `${apiUrl}:todoId`,
     (req, res, ctx) => {
-      const {
-        id,
-        task,
-        userId,
-        sortKey,
-        dueDate,
-        completeDate,
-        isDone,
-        createAt,
-        updateAt,
-      } = req.body;
+      const { todoId } = req.params;
+      const { task, sortKey, dueDate, completeDate, isDone } = req.body;
       return res(
         ctx.delay(10),
         ctx.status(200),
         ctx.json({
-          id,
+          id: todoId,
           task,
-          userId,
+          userId: "",
           sortKey,
           dueDate,
           completeDate,
           isDone,
-          createAt,
-          updateAt,
+          createAt: "",
+          updateAt: "",
         })
       );
     }
