@@ -32,11 +32,8 @@ export const TodoTody: VFC<Props> = (props) => {
       <div className={props.todo.done ? "line-through" : ""}>
         {props.todo.text}
       </div>
-      <button
-        className="p-1 ml-5 text-gray-100 hover:bg-red-400 rounded"
-        onClick={handleRemoveTodo}
-      >
-        <TrashIcon className="w-5 h-5 text-gray-800 dark:text-white " />
+      <button className="p-1 ml-5" onClick={handleRemoveTodo}>
+        <TrashIcon className="w-5 h-5 text-gray-800 hover:text-red-500 dark:text-white" />
       </button>
     </div>
   );
