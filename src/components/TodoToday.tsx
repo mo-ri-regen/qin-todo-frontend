@@ -1,5 +1,5 @@
-import clsx from "clsx";
-import { memo } from "react";
+import { TrashIcon } from "@heroicons/react/outline";
+import type { VFC } from "react";
 
 import { useStore } from "../libs/store";
 import type { ListTodo, TodosState } from "../types";
@@ -44,7 +44,7 @@ export const TodoTody = memo<Props>((props) => {
           return removeTodo(props.todo.id);
         }}
       >
-        Delete
+        <TrashIcon className="w-5 h-5 text-gray-800 dark:text-white " />
       </button>
     </div>
   );
