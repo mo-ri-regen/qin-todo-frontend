@@ -23,9 +23,10 @@ const useStore = create<TodosState>(
           };
         });
       },
-      removeTodo: async (index: string) => {
-        const response = await axios.delete<ListTodo[]>(apiUrl);
-        alert(`${response}を削除しますょ。いいですか？`); //ここに処理が入るはず...
+      removeTodo: async (index: string, id: string) => {
+        await axios.delete(`${apiUrl}${id}/`).then((res) => {
+          return res;
+        });
 
         return set((state) => {
           return {
