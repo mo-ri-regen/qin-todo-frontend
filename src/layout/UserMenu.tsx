@@ -44,7 +44,7 @@ export const UserMenu: VFC = () => {
                       </Link>
                     </div>
                     <div className="grid relative">
-                      <Link href="/setting/memo">
+                      <Link href="/setting/todo">
                         <a className="flex items-center py-2.5 px-4 hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none">
                           <div className="flex justify-center items-center shrink-0"></div>
                           <p className="ml-4 font-bold">設定</p>
