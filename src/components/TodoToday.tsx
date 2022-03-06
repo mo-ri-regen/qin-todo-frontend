@@ -1,13 +1,15 @@
-import type { VFC } from "react";
+import clsx from "clsx";
+import { memo } from "react";
 
 import { useStore } from "../libs/store";
 import type { ListTodo, TodosState } from "../types";
 
 type Props = {
   todo: ListTodo;
+  target: "1" | "2" | "3";
 };
 
-export const TodoTody: VFC<Props> = (props) => {
+export const TodoTody = memo<Props>((props) => {
   const toggleComplete = useStore((state: TodosState) => {
     return state.toggleDone;
   });
@@ -17,7 +19,14 @@ export const TodoTody: VFC<Props> = (props) => {
   return (
     <div className="flex items-center mb-4">
       <input
-        className="mr-4 w-6 h-6 text-primary rounded-full ring-0 focus:ring-gray-400"
+        className={clsx(
+          "mr-4 w-6 h-6 rounded-full ring-0 focus:ring-gray-400",
+          {
+            "text-primary": props.target == "1",
+            "text-secondary": props.target == "2",
+            "text-tertiary": props.target == "3",
+          }
+        )}
         type="checkbox"
         checked={props.todo.done}
         // eslint-disable-next-line react/jsx-handler-names
@@ -39,4 +48,6 @@ export const TodoTody: VFC<Props> = (props) => {
       </button>
     </div>
   );
-};
+});
+
+TodoTody.displayName = "TodoTody";
