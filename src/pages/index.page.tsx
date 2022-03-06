@@ -7,21 +7,11 @@ const Home = () => {
   return (
     <Layout>
       <ThemeChanger />
-      <ListTodoToday
-        todos={[]}
-        getTempTodos={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-        addTodo={function (_text: string): void {
-          throw new Error("Function not implemented.");
-        }}
-        removeTodo={function (_index: string): void {
-          throw new Error("Function not implemented.");
-        }}
-        toggleDone={function (_index: string): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
+      <div className="flex flex-col lg:flex-row">
+        <ListTodoToday title="今日する" target="1" />
+        <ListTodoToday title="明日する" target="2" />
+        <ListTodoToday title="今度する" target="3" />
+      </div>
     </Layout>
   );
 };
