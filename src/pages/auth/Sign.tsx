@@ -31,7 +31,7 @@ export const Sign: VFC<SignProps> = (props) => {
     <div className="grid place-items-center w-screen h-screen bg-gray-200 dark:bg-gray-700">
       <div className="p-4">
         <div className="flex justify-center">
-          <QinTodoIcon className="w-48" />
+          <QinTodoIcon />
         </div>
         <div className="mt-20 space-y-5">
           <Button
