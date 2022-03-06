@@ -1,12 +1,18 @@
-import type { VFC } from "react";
+// import { Footer } from "src/layout/Footer";
+import clsx from "clsx";
+import { memo } from "react";
 import { useEffect, useState } from "react";
 
 import { useStore } from "../libs/store";
 import type { TodosState } from "../types";
 import { TodoTody } from "./TodoToday";
-// import { Footer } from "src/layout/Footer";
 
-export const ListTodoToday: VFC<TodosState> = () => {
+type Props = {
+  title: string;
+  target: "1" | "2" | "3";
+};
+
+export const ListTodoToday = memo<Props>((props) => {
   const todos = useStore((state: TodosState) => {
     return state.todos;
   });
@@ -51,8 +57,16 @@ export const ListTodoToday: VFC<TodosState> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <>
-      <div className="mb-3 text-2xl font-semibold text-primary">今日する</div>
+    <div className="w-full lg:w-1/3">
+      <div
+        className={clsx("mb-3 text-2xl font-semibold", {
+          "text-primary": props.target == "1",
+          "text-yellow-500": props.target == "2",
+          "text-yellow-300": props.target == "3",
+        })}
+      >
+        {props.title}
+      </div>
       <div className="flex flex-col">
         <div className="flex items-center">
           <button
@@ -63,12 +77,16 @@ export const ListTodoToday: VFC<TodosState> = () => {
           </button>
           <div className="text-gray-300">タスクを追加する</div>
         </div>
-        <div className="overflow-y-scroll my-5 max-h-72">
+        <div className="overflow-y-scroll my-5 w-full max-h-72">
           <ul>{/* ここにmockのデータを取得したい */}</ul>
           <ol>
             {todos.map((todo) => {
               return (
-                <TodoTody todo={todo} key={`todo-${todo.text}-${todo.id}`} />
+                <TodoTody
+                  todo={todo}
+                  key={`todo-${todo.text}-${todo.id}`}
+                  target={props.target}
+                />
               );
             })}
           </ol>
@@ -107,6 +125,8 @@ export const ListTodoToday: VFC<TodosState> = () => {
           </div>
         </>
       </div>
-    </>
+    </div>
   );
-};
+});
+
+ListTodoToday.displayName = "ListTodoToday";
