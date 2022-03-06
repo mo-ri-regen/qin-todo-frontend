@@ -23,8 +23,8 @@ export const TodoTody = memo<Props>((props) => {
           "mr-4 w-6 h-6 rounded-full ring-0 focus:ring-gray-400",
           {
             "text-primary": props.target == "1",
-            "text-yellow-500": props.target == "2",
-            "text-yellow-300": props.target == "3",
+            "text-secondary": props.target == "2",
+            "text-tertiary": props.target == "3",
           }
         )}
         type="checkbox"

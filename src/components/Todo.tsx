@@ -61,8 +61,8 @@ export const ListTodoToday = memo<Props>((props) => {
       <div
         className={clsx("mb-3 text-2xl font-semibold", {
           "text-primary": props.target == "1",
-          "text-yellow-500": props.target == "2",
-          "text-yellow-300": props.target == "3",
+          "text-secondary": props.target == "2",
+          "text-tertiary": props.target == "3",
         })}
       >
         {props.title}
