@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { EXAMPLE_MY_TODO, EXAMPLE_MY_TODO_LIST } from "src/models/todo";
+import type { ListTodo } from "src/types";
 
 const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}todo/`;
 
@@ -26,8 +27,11 @@ export const TodosHandlers = [
   }),
 
   // 特定のTodoを削除する
-  rest.delete(`${apiUrl}/todoId`, (req, res, ctx) => {
-    const { todoId } = req.params;
-    return res(ctx.delay(10), ctx.status(200), ctx.json({ id: todoId }));
-  }),
+  rest.delete<never, { todoId: string }, Pick<ListTodo, "id">>(
+    `${apiUrl}:todoId`,
+    (req, res, ctx) => {
+      const { todoId } = req.params;
+      return res(ctx.delay(10), ctx.status(200), ctx.json({ id: todoId }));
+    }
+  ),
 ];
