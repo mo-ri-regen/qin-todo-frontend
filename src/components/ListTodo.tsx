@@ -37,15 +37,12 @@ export const ListTodo = memo<Props>((props) => {
 
   const todos = allTodos.filter((todo) => {
     switch (props.target) {
-      case "3":
+      case "3": // 「今度やる」のデータ抽出
         return todo.dueDate == "";
-        break;
-      case "2":
+      case "2": // 「明日やる」のデータ抽出
         return todo.dueDate > strDate && todo.completeDate == "";
-        break;
-      case "1":
+      case "1": // 「今日やる」のデータ抽出
         return todo.dueDate <= strDate && todo.dueDate != "";
-        break;
     }
   });
 
