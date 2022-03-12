@@ -13,13 +13,33 @@ const useStore = create<TodosState>(
         const response = await axios.get<ListTodo[]>(apiUrl);
         set({ todos: response.data });
       },
-      addTodo: async (text: string) => {
-        const postTodo = { text: text, done: false };
-        const response = await axios.post<string>(apiUrl, postTodo);
+      addTodo: async (postTodo) => {
+        const response = await axios.post<ListTodo>(apiUrl, postTodo);
+        const {
+          id,
+          task,
+          userId,
+          sortKey,
+          dueDate,
+          completeDate,
+          isDone,
+          createAt,
+          updateAt,
+        } = response.data;
         return set((state) => {
-          const postTodo = { text: text, done: false, id: response.data };
+          const listTodo: ListTodo = {
+            id,
+            task,
+            userId,
+            sortKey,
+            dueDate,
+            completeDate,
+            isDone,
+            createAt,
+            updateAt,
+          };
           return {
-            todos: [...state.todos, postTodo],
+            todos: [...state.todos, listTodo],
           };
         });
       },
@@ -43,7 +63,7 @@ const useStore = create<TodosState>(
               if (index !== todo.id) {
                 return todo;
               }
-              return { ...todo, done: !todo.done };
+              return { ...todo, done: !todo.isDone };
             }),
           };
         });

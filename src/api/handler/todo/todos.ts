@@ -1,28 +1,56 @@
 import { rest } from "msw";
-import { EXAMPLE_MY_TODO, EXAMPLE_MY_TODO_LIST } from "src/models/todo";
-import type { ListTodo } from "src/types";
+import { EXAMPLE_MY_TODO_LIST } from "src/models/todo";
+import type { ListTodo, PostTodo } from "src/types";
 
 const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}todo/`;
 
 export const TodosHandlers = [
   // 新しいTodoを作成する
-  rest.post(apiUrl, (req, res, ctx) => {
-    return res(ctx.delay(10), ctx.status(201), ctx.json({ id: "6" }));
-  }),
-
-  // 特定のTodoの情報を更新する
-  rest.put(apiUrl, (req, res, ctx) => {
-    const { todoId } = req.params;
+  rest.post<PostTodo, never, ListTodo>(apiUrl, (req, res, ctx) => {
+    const { task, sortKey, dueDate, completeDate, isDone } = req.body;
     return res(
       ctx.delay(10),
-      ctx.status(200),
-      ctx.json({ ...EXAMPLE_MY_TODO, id: todoId })
+      ctx.status(201),
+      ctx.json({
+        id: "6",
+        task,
+        userId: "",
+        sortKey,
+        dueDate,
+        completeDate,
+        isDone,
+        createAt: "",
+        updateAt: "",
+      })
     );
   }),
 
+  // 特定のTodoの情報を更新する
+  rest.put<PostTodo, { todoId: string }, ListTodo>(
+    `${apiUrl}:todoId`,
+    (req, res, ctx) => {
+      const { todoId } = req.params;
+      const { task, sortKey, dueDate, completeDate, isDone } = req.body;
+      return res(
+        ctx.delay(10),
+        ctx.status(200),
+        ctx.json({
+          id: todoId,
+          task,
+          userId: "",
+          sortKey,
+          dueDate,
+          completeDate,
+          isDone,
+          createAt: "",
+          updateAt: "",
+        })
+      );
+    }
+  ),
+
   // 特定のTodoの情報を取得する
-  rest.get(apiUrl, (req, res, ctx) => {
-    // const { todoId } = req.params;
+  rest.get<never, never, ListTodo[]>(apiUrl, (req, res, ctx) => {
     return res(ctx.delay(50), ctx.status(200), ctx.json(EXAMPLE_MY_TODO_LIST));
   }),
 

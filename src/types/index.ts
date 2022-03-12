@@ -1,15 +1,27 @@
-// TODO : 暫定対応（本来は、バックエンド側でPKを付番する。（型をnumber型にしたが、string型で正しい）
-export type Todo = { id?: string; text: string; done?: boolean };
 export type ListTodo = {
   id: string;
-  text: string;
-  done: boolean;
+  task: string;
+  userId: string;
+  sortKey: number;
+  dueDate: string;
+  completeDate: string;
+  isDone: boolean;
+  createAt: string;
+  updateAt: string;
+};
+
+export type PostTodo = {
+  task: string;
+  sortKey: number;
+  dueDate: string;
+  completeDate: string;
+  isDone: boolean;
 };
 
 export type TodosState = {
   todos: ListTodo[];
   getTempTodos: () => void;
-  addTodo: (text: string) => void;
+  addTodo: (postTodo: PostTodo) => void;
   removeTodo: (index: string) => void;
   toggleDone: (index: string) => void;
 };

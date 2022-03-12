@@ -4,7 +4,7 @@ import { memo } from "react";
 import { useEffect, useState } from "react";
 
 import { useStore } from "../libs/store";
-import type { TodosState } from "../types";
+import type { PostTodo, TodosState } from "../types";
 import { TodoTody } from "./TodoToday";
 
 type Props = {
@@ -43,7 +43,16 @@ export const ListTodoToday = memo<Props>((props) => {
       return;
     }
     if (inputTodo) {
-      addTodo(inputTodo);
+      // TODO:並びは一旦０にする。（別ISSUEにて対応）
+      // TODO：dueDateは一旦空白にする。（別ISSUEにて対応）
+      const postTodo: PostTodo = {
+        task: inputTodo,
+        sortKey: 0,
+        dueDate: "",
+        completeDate: "",
+        isDone: false,
+      };
+      addTodo(postTodo);
       setInputTodo("");
     }
   };
@@ -84,7 +93,7 @@ export const ListTodoToday = memo<Props>((props) => {
               return (
                 <TodoTody
                   todo={todo}
-                  key={`todo-${todo.text}-${todo.id}`}
+                  key={`todo-${todo.task}-${todo.id}`}
                   target={props.target}
                 />
               );
