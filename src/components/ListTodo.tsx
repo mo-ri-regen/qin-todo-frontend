@@ -1,10 +1,9 @@
-// import { Footer } from "src/layout/Footer";
 import clsx from "clsx";
 import { memo } from "react";
-import { useState } from "react";
+// import { useState } from "react";
+import { useStore } from "src/libs/store";
+import type { Target, TodosState } from "src/types";
 
-import { useStore } from "../libs/store";
-import type { PostTodo, Target, TodosState } from "../types";
 import { TodoRecord } from "./TodoRecord";
 
 type Props = {
@@ -29,9 +28,6 @@ export const ListTodo = memo<Props>((props) => {
   const allTodos = useStore((state: TodosState) => {
     return state.todos;
   });
-  // const selectTodos = useStore((state) => {
-  //   return state.selectTodos;
-  // });
   const date = new Date();
   const strDate = getStringFromDate(date);
 
@@ -46,47 +42,52 @@ export const ListTodo = memo<Props>((props) => {
     }
   });
 
-  const [inputTodo, setInputTodo] = useState<string>("");
+  // const [inputTodo, setInputTodo] = useState<string>("");
 
-  const addTodo = useStore((state) => {
-    return state.addTodo;
+  // const addTodo = useStore((state) => {
+  //   return state.addTodo;
+  // });
+  // const [error, setError] = useState(" ");
+  // const [isFooterShow, setIsFooterShow] = useState(false);
+  const toggleIsFooterShow = useStore((state: TodosState) => {
+    return state.toggleIsFooterShow;
   });
-  const [error, setError] = useState(" ");
-  const [isFooterShow, setIsFooterShow] = useState(false);
+
   const handleOnToggleFooter = () => {
-    setIsFooterShow((status) => {
-      if (status) {
-        document.body.style.overflow = "auto";
-      } else {
-        // Prevent scrolling
-        document.body.style.overflow = "hidden";
-      }
-      return !status;
-    });
+    // setIsFooterShow((status) => {
+    //   if (status) {
+    //     document.body.style.overflow = "auto";
+    //   } else {
+    //     // Prevent scrolling
+    //     document.body.style.overflow = "hidden";
+    //   }
+    //   return !status;
+    // });
+    toggleIsFooterShow();
   };
-  const handleAddTodo = () => {
-    if (inputTodo === "") {
-      setError("入力してください");
-      return;
-    }
-    if (inputTodo) {
-      // TODO:並びは一旦０にする。（別ISSUEにて対応）
-      // TODO：dueDateは一旦空白にする。（別ISSUEにて対応）
-      const postTodo: PostTodo = {
-        task: inputTodo,
-        sortKey: 0,
-        dueDate: "",
-        completeDate: "",
-        isDone: false,
-      };
-      addTodo(postTodo);
-      setInputTodo("");
-    }
-  };
-  const handleOnChange = (e: any) => {
-    setInputTodo(e.target.value);
-    setError("");
-  };
+  // const handleAddTodo = () => {
+  //   if (inputTodo === "") {
+  //     setError("入力してください");
+  //     return;
+  //   }
+  //   if (inputTodo) {
+  //     // TODO:並びは一旦０にする。（別ISSUEにて対応）
+  //     // TODO：dueDateは一旦空白にする。（別ISSUEにて対応）
+  //     const postTodo: PostTodo = {
+  //       task: inputTodo,
+  //       sortKey: 0,
+  //       dueDate: "",
+  //       completeDate: "",
+  //       isDone: false,
+  //     };
+  //     addTodo(postTodo);
+  //     setInputTodo("");
+  //   }
+  // };
+  // const handleOnChange = (e: any) => {
+  //   setInputTodo(e.target.value);
+  //   setError("");
+  // };
 
   return (
     <div className="w-full lg:w-1/3">
@@ -124,12 +125,11 @@ export const ListTodo = memo<Props>((props) => {
           </ol>
         </div>
       </div>
-      <div
+      {/* <div
         className={`overflow-hidden fixed w-full h-2/5 bottom-12 right-0 z-10 transform ease-in-out duration-300 ${
           isFooterShow ? "translate-y-0" : "translate-y-full"
         }`}
       >
-        {/* <Footer /> */}
         <>
           <div className="flex flex-col justify-center items-center h-[108px]">
             <div className="">
@@ -156,7 +156,7 @@ export const ListTodo = memo<Props>((props) => {
             <div className="text-sm text-gray-400"> {error}</div>
           </div>
         </>
-      </div>
+      </div> */}
     </div>
   );
 });
