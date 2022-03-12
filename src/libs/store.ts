@@ -9,7 +9,7 @@ const useStore = create<TodosState>(
   devtools((set) => {
     return {
       todos: [],
-      getTempTodos: async () => {
+      getTodos: async () => {
         const response = await axios.get<ListTodo[]>(apiUrl);
         set({ todos: response.data });
       },

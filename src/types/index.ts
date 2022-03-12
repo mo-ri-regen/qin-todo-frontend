@@ -20,7 +20,7 @@ export type PostTodo = {
 
 export type TodosState = {
   todos: ListTodo[];
-  getTempTodos: () => void;
+  getTodos: () => void;
   addTodo: (postTodo: PostTodo) => void;
   removeTodo: (index: string) => void;
   toggleDone: (index: string) => void;
