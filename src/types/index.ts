@@ -20,10 +20,12 @@ export type PostTodo = {
 
 export type TodosState = {
   todos: ListTodo[];
+  isFooterShow: boolean;
   getTodos: () => void;
   addTodo: (postTodo: PostTodo) => void;
   removeTodo: (id: string) => void;
   toggleDone: (index: string) => void;
+  toggleIsFooterShow: () => void;
 };
 
 export type Target = "1" | "2" | "3";
