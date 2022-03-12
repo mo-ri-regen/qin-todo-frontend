@@ -1,34 +1,5 @@
+import { getToday, getTommorow } from "src/libs/dateFunc";
 import type { ListTodo } from "src/types";
-
-// 当日
-const getToday = () => {
-  const date = new Date();
-  const year_str: string = date.getFullYear().toString();
-  //月だけ+1すること
-  const month_str: string = 1 + date.getMonth().toString();
-  const day_str: string = date.getDate().toString();
-
-  let format_str = "YYYY-MM-DD hh:mm:ss";
-  format_str = format_str.replace(/YYYY/g, year_str);
-  format_str = format_str.replace(/MM/g, month_str);
-  format_str = format_str.replace(/DD/g, day_str);
-  return format_str;
-};
-
-// 翌日
-const getTommorow = () => {
-  const date = new Date();
-  const year_str: string = date.getFullYear().toString();
-  //月だけ+1すること
-  const month_str: string = 1 + date.getMonth().toString();
-  const day_str: string = date.setDate(date.getDate() + 1).toString();
-
-  let format_str = "YYYY-MM-DD hh:mm:ss";
-  format_str = format_str.replace(/YYYY/g, year_str);
-  format_str = format_str.replace(/MM/g, month_str);
-  format_str = format_str.replace(/DD/g, day_str);
-  return format_str;
-};
 
 export const EXAMPLE_MY_TODO_LIST: ListTodo[] = [
   {
