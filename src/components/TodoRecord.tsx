@@ -15,7 +15,7 @@ export const TodoRecord = memo<Props>((props) => {
     return state.toggleDone;
   });
   const handleToggleComplete = () => {
-    toggleComplete(props.todo.id);
+    toggleComplete(props.todo);
   };
   const removeTodo = useStore((state: TodosState) => {
     return state.removeTodo;
@@ -36,7 +36,7 @@ export const TodoRecord = memo<Props>((props) => {
         )}
         type="checkbox"
         checked={props.todo.isDone}
-        onChange={handleToggleComplete}
+        onClick={handleToggleComplete}
       />
       <div className={props.todo.isDone ? "line-through" : ""}>
         {props.todo.task}

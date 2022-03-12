@@ -23,7 +23,7 @@ export type TodosState = {
   getTodos: () => void;
   addTodo: (postTodo: PostTodo) => void;
   removeTodo: (id: string) => void;
-  toggleDone: (index: string) => void;
+  toggleDone: (todo: ListTodo) => void;
 };
 
 export type Target = "1" | "2" | "3";
