@@ -1,9 +1,18 @@
 import { AuthAction, withAuthUser } from "next-firebase-auth";
+import { useEffect } from "react";
 import { ListTodo } from "src/components/ListTodo";
 import { ThemeChanger } from "src/components/ThemeChanger";
 import { Layout } from "src/layout";
+import { useStore } from "src/libs/store";
 
 const Home = () => {
+  const getTodos = useStore((state) => {
+    return state.getTodos;
+  });
+  useEffect(() => {
+    getTodos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Layout>
       <ThemeChanger />

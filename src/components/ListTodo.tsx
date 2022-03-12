@@ -1,26 +1,56 @@
 // import { Footer } from "src/layout/Footer";
 import clsx from "clsx";
 import { memo } from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { useStore } from "../libs/store";
-import type { PostTodo, TodosState } from "../types";
+import type { PostTodo, Target, TodosState } from "../types";
 import { TodoRecord } from "./TodoRecord";
 
 type Props = {
   title: string;
-  target: "1" | "2" | "3";
+  target: Target;
+};
+
+const getStringFromDate = (date: Date) => {
+  const year_str: string = date.getFullYear().toString();
+  //月だけ+1すること
+  const month_str: string = 1 + date.getMonth().toString();
+  const day_str: string = date.getDate().toString();
+
+  let format_str = "YYYY-MM-DD hh:mm:ss";
+  format_str = format_str.replace(/YYYY/g, year_str);
+  format_str = format_str.replace(/MM/g, month_str);
+  format_str = format_str.replace(/DD/g, day_str);
+  return format_str;
 };
 
 export const ListTodo = memo<Props>((props) => {
-  const todos = useStore((state: TodosState) => {
+  const allTodos = useStore((state: TodosState) => {
     return state.todos;
+  });
+  // const selectTodos = useStore((state) => {
+  //   return state.selectTodos;
+  // });
+  const date = new Date();
+  const strDate = getStringFromDate(date);
+
+  const todos = allTodos.filter((todo) => {
+    switch (props.target) {
+      case "3":
+        return todo.dueDate == "";
+        break;
+      case "2":
+        return todo.dueDate > strDate && todo.completeDate == "";
+        break;
+      case "1":
+        return todo.dueDate <= strDate && todo.dueDate != "";
+        break;
+    }
   });
 
   const [inputTodo, setInputTodo] = useState<string>("");
-  const getTodos = useStore((state) => {
-    return state.getTodos;
-  });
+
   const addTodo = useStore((state) => {
     return state.addTodo;
   });
@@ -61,10 +91,6 @@ export const ListTodo = memo<Props>((props) => {
     setError("");
   };
 
-  useEffect(() => {
-    getTodos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   return (
     <div className="w-full lg:w-1/3">
       <div
@@ -86,7 +112,7 @@ export const ListTodo = memo<Props>((props) => {
           </button>
           <div className="text-gray-300">タスクを追加する</div>
         </div>
-        <div className="overflow-y-scroll my-5 w-full max-h-72">
+        <div className="overflow-y-auto my-5 w-full h-full max-h-72">
           <ul>{/* ここにmockのデータを取得したい */}</ul>
           <ol>
             {todos.map((todo) => {
