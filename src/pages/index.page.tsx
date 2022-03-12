@@ -1,16 +1,25 @@
 import { AuthAction, withAuthUser } from "next-firebase-auth";
+import { useEffect } from "react";
+import { ListTodo } from "src/components/ListTodo";
 import { ThemeChanger } from "src/components/ThemeChanger";
-import { ListTodoToday } from "src/components/Todo";
 import { Layout } from "src/layout";
+import { useStore } from "src/libs/store";
 
 const Home = () => {
+  const getTodos = useStore((state) => {
+    return state.getTodos;
+  });
+  useEffect(() => {
+    getTodos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Layout>
       <ThemeChanger />
       <div className="flex flex-col lg:flex-row">
-        <ListTodoToday title="今日する" target="1" />
-        <ListTodoToday title="明日する" target="2" />
-        <ListTodoToday title="今度する" target="3" />
+        <ListTodo title="今日する" target="1" />
+        <ListTodo title="明日する" target="2" />
+        <ListTodo title="今度する" target="3" />
       </div>
     </Layout>
   );
