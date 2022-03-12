@@ -22,6 +22,8 @@ export type TodosState = {
   todos: ListTodo[];
   getTodos: () => void;
   addTodo: (postTodo: PostTodo) => void;
-  removeTodo: (index: string) => void;
+  removeTodo: (id: string) => void;
   toggleDone: (index: string) => void;
 };
+
+export type Target = "1" | "2" | "3";

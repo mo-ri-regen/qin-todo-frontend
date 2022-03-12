@@ -5,6 +5,19 @@ import { devtools } from "zustand/middleware";
 
 const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}todo/`;
 
+// const getStringFromDate = (date: Date) => {
+//   const year_str: string = date.getFullYear().toString();
+//   //月だけ+1すること
+//   const month_str: string = 1 + date.getMonth().toString();
+//   const day_str: string = date.getDate().toString();
+
+//   let format_str = "YYYY-MM-DD hh:mm:ss";
+//   format_str = format_str.replace(/YYYY/g, year_str);
+//   format_str = format_str.replace(/MM/g, month_str);
+//   format_str = format_str.replace(/DD/g, day_str);
+//   return format_str;
+// };
+
 const useStore = create<TodosState>(
   devtools((set) => {
     return {
