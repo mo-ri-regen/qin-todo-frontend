@@ -24,7 +24,7 @@ const useStore = create<TodosState>(
         });
       },
       removeTodo: async (id: string) => {
-        await axios.delete(`${apiUrl}${id}/`).then((res) => {
+        await axios.delete(`${apiUrl}${id}`).then((res) => {
           return res;
         });
 
