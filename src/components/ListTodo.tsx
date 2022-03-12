@@ -12,7 +12,7 @@ type Props = {
   target: "1" | "2" | "3";
 };
 
-export const ListTodoToday = memo<Props>((props) => {
+export const ListTodo = memo<Props>((props) => {
   const todos = useStore((state: TodosState) => {
     return state.todos;
   });
@@ -138,4 +138,4 @@ export const ListTodoToday = memo<Props>((props) => {
   );
 });
 
-ListTodoToday.displayName = "ListTodoToday";
+ListTodo.displayName = "ListTodo";
