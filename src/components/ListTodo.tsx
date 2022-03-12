@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { useStore } from "../libs/store";
 import type { PostTodo, TodosState } from "../types";
-import { TodoTody } from "./TodoToday";
+import { TodoRecord } from "./TodoRecord";
 
 type Props = {
   title: string;
@@ -91,7 +91,7 @@ export const ListTodo = memo<Props>((props) => {
           <ol>
             {todos.map((todo) => {
               return (
-                <TodoTody
+                <TodoRecord
                   todo={todo}
                   key={`todo-${todo.task}-${todo.id}`}
                   target={props.target}

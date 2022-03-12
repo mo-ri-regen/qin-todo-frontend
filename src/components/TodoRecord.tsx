@@ -10,7 +10,7 @@ type Props = {
   target: "1" | "2" | "3";
 };
 
-export const TodoTody = memo<Props>((props) => {
+export const TodoRecord = memo<Props>((props) => {
   const toggleComplete = useStore((state: TodosState) => {
     return state.toggleDone;
   });
@@ -48,4 +48,4 @@ export const TodoTody = memo<Props>((props) => {
   );
 });
 
-TodoTody.displayName = "TodoTody";
+TodoRecord.displayName = "TodoRecord";
