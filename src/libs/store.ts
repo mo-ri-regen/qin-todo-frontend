@@ -3,6 +3,8 @@ import type { ListTodo, PostTodo, TodosState } from "src/types";
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 
+import { getToday } from "./dateFunc";
+
 const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}todo/`;
 
 export const initEditTodo: PostTodo = {
@@ -66,14 +68,37 @@ const useStore = create<TodosState>(
           };
         });
       },
-      toggleDone: (index: string) => {
-        return set((state) => {
+      toggleDone: async (editTodo: ListTodo) => {
+        editTodo.isDone = !editTodo.isDone;
+        if (editTodo.isDone) {
+          editTodo.completeDate = getToday().toString();
+        } else {
+          editTodo.completeDate = "";
+        }
+
+        const putTodo: PostTodo = {
+          task: editTodo.task,
+          sortKey: editTodo.sortKey,
+          dueDate: editTodo.dueDate,
+          completeDate: editTodo.completeDate,
+          isDone: editTodo.isDone,
+        };
+        const response = await axios.put<ListTodo>(
+          `${apiUrl}${editTodo.id}`,
+          putTodo
+        );
+        if (response.status != 200) {
+          // エラー時の処理を記述する想定
+          // eslint-disable-next-line no-console
+          console.log(response.statusText);
+        }
+        set((state) => {
           return {
             todos: state.todos.map((todo) => {
-              if (index !== todo.id) {
+              if (editTodo.id !== todo.id) {
                 return todo;
               }
-              return { ...todo, done: !todo.isDone };
+              return editTodo;
             }),
           };
         });
