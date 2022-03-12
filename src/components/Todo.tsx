@@ -18,8 +18,8 @@ export const ListTodoToday = memo<Props>((props) => {
   });
 
   const [inputTodo, setInputTodo] = useState<string>("");
-  const getTempTodos = useStore((state) => {
-    return state.getTempTodos;
+  const getTodos = useStore((state) => {
+    return state.getTodos;
   });
   const addTodo = useStore((state) => {
     return state.addTodo;
@@ -62,7 +62,7 @@ export const ListTodoToday = memo<Props>((props) => {
   };
 
   useEffect(() => {
-    getTempTodos();
+    getTodos();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
