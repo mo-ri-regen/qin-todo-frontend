@@ -87,16 +87,7 @@ export const SettingQinTodo: NextPage = () => {
                   </div>
                 </a>
               </li>
-              <li>
-                <a
-                  className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://forms.gle/pNNUdFnf3YmYpqhJ6"
-                >
-                  お問い合わせ
-                </a>
-              </li>
+              <li>お問い合わせ</li>
               <li>
                 <div className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none">
                   バージョン
