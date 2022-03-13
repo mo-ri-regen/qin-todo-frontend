@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 
-const SettingTodo: NextPage = () => {
+const SettingTerms: NextPage = () => {
   return (
     <div className="flex flex-1 items-center px-2">
       <div className="flex flex-col mx-auto max-w-xl">
@@ -375,4 +375,4 @@ const SettingTodo: NextPage = () => {
   );
 };
 
-export default SettingTodo;
+export default SettingTerms;
