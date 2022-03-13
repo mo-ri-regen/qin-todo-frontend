@@ -9,7 +9,7 @@ const SettingTodoTheme: NextPage = () => {
   const router = useRouter();
   const { themes, isMounted, currentTheme, handleTheme } = useTheme();
   if (!isMounted) return null;
-  const handleClick = () => {
+  const handleClickReturn = () => {
     return router.back();
   };
 
@@ -18,7 +18,7 @@ const SettingTodoTheme: NextPage = () => {
       <div className="flex items-center pb-6">
         <button
           type="button"
-          onClick={handleClick}
+          onClick={handleClickReturn}
           className="grid place-items-center w-10 h-10 font-bold hover:text-blue-400 focus-visible:text-blue-400 hover:bg-blue-50 focus-visible:bg-blue-50 dark:hover:bg-opacity-10 dark:focus-visible:bg-opacity-10 rounded-full focus-visible:ring-2 focus-visible:ring-blue-400 transition duration-200 ease-in-out focus:outline-none"
         >
           <ChevronLeftIcon className="w-6 h-6 text-blue-500" />

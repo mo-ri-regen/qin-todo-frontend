@@ -4,27 +4,26 @@ import { useRouter } from "next/router";
 
 const SettingPrivacy: NextPage = () => {
   const router = useRouter();
-  const handleClick = () => {
+  const handleClickReturn = () => {
     return router.back();
   };
 
   return (
-    <div className="flex flex-col items-center px-2">
+    <div className=" mx-auto max-w-xl">
       <div className="flex items-center pb-6">
         <button
           type="button"
-          onClick={handleClick}
-          className="grid place-items-center w-10 h-10 font-bold hover:text-blue-400 focus-visible:text-blue-400 hover:bg-blue-50 focus-visible:bg-blue-50 dark:hover:bg-opacity-10 dark:focus-visible:bg-opacity-10 rounded-full focus-visible:ring-2 focus-visible:ring-blue-400 transition duration-200 ease-in-out focus:outline-none"
+          onClick={handleClickReturn}
+          className="grid place-items-center w-10 h-10 font-bold hover:bg-blue-50 dark:hover:bg-opacity-10 dark:focus-visible:bg-opacity-10 rounded-full focus-visible:ring-2 transition duration-200 ease-in-out focus:outline-none"
         >
           <ChevronLeftIcon className="w-6 h-6 text-gray-500" />
         </button>
-        <div className="flex flex-1 justify-between px-2">
-          <div className="my-4 mx-auto text-xl font-bold">
-            <h1>プライバシーポリシー</h1>
-          </div>
+        <div className="flex flex-1 justify-center px-2">
+          <div className="text-xl font-bold">プライバシーポリシー</div>
         </div>
+        <div className="w-5" />
       </div>
-      <div className="flex flex-col mx-auto max-w-xl">
+      <div className="flex flex-col mx-5 sm:mx-auto">
         <div className="mx-auto prose prose-blue dark:prose-invert">
           <p>
             合同会社Qin（以下「弊社」とします）は、個人情報が人格尊重の理念の下に慎重に取扱われるべきものであることに鑑み、個人情報を保護することが弊社の事業活動の基本であり、社会的責務であると認識し、以下の方針に基づき個人情報の保護に努めます。
