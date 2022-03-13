@@ -3,7 +3,7 @@ import { CheckIcon, ChevronLeftIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useTheme } from "src/libs/theme";
+import { useTheme } from "src/contexts/useTheme";
 
 const SettingTodoTheme: NextPage = () => {
   const router = useRouter();

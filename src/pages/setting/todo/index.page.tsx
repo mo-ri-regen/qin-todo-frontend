@@ -1,7 +1,10 @@
 import { ChevronRightIcon, ExternalLinkIcon } from "@heroicons/react/outline";
 import type { NextPage } from "next";
+import { useTheme } from "src/contexts/useTheme";
 
 export const SettingQinTodo: NextPage = () => {
+  const { themes } = useTheme();
+
   return (
     <main className="px-4 mx-auto w-full max-w-screen-sm">
       <div className="my-4 text-xl font-bold text-center">
@@ -39,7 +42,7 @@ export const SettingQinTodo: NextPage = () => {
                   className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none"
                   href="/setting/qin/theme"
                 >
-                  テーマ
+                  テーマ<div className="font-normal">{themes[0].label}</div>
                   <div className="w-5 h-5">
                     <ChevronRightIcon />
                   </div>
