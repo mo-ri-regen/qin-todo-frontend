@@ -1,5 +1,6 @@
 import { ChevronRightIcon, ExternalLinkIcon } from "@heroicons/react/outline";
 import type { NextPage } from "next";
+import Link from "next/link";
 import { useTheme } from "src/contexts/useTheme";
 
 export const SettingQinTodo: NextPage = () => {
@@ -16,37 +17,34 @@ export const SettingQinTodo: NextPage = () => {
             <div className="text-sm font-bold text-gray-400">設定</div>
             <ul>
               <li>
-                <a
-                  className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none"
-                  href="/setting/qin/user/edit"
-                >
-                  プロフィール
-                  <div className="w-5 h-5">
-                    <ChevronRightIcon />
-                  </div>
-                </a>
+                <Link href="/setting/qin/user/edit">
+                  <a className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none">
+                    プロフィール
+                    <div className="w-5 h-5">
+                      <ChevronRightIcon />
+                    </div>
+                  </a>
+                </Link>
               </li>
               <li>
-                <a
-                  className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none"
-                  href="/setting/qin/account"
-                >
-                  アカウント
-                  <div className="w-5 h-5">
-                    <ChevronRightIcon />
-                  </div>
-                </a>
+                <Link href="/setting/qin/account">
+                  <a className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none">
+                    アカウント
+                    <div className="w-5 h-5">
+                      <ChevronRightIcon />
+                    </div>
+                  </a>
+                </Link>
               </li>
               <li>
-                <a
-                  className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none"
-                  href="/setting/qin/theme"
-                >
-                  テーマ<div className="font-normal">{themes[0].label}</div>
-                  <div className="w-5 h-5">
-                    <ChevronRightIcon />
-                  </div>
-                </a>
+                <Link href="/setting/qin/theme">
+                  <a className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none">
+                    テーマ<div className="font-normal">{themes[0].label}</div>
+                    <div className="w-5 h-5">
+                      <ChevronRightIcon />
+                    </div>
+                  </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -56,26 +54,24 @@ export const SettingQinTodo: NextPage = () => {
             <div className="text-sm font-bold text-gray-400">サポート</div>
             <ul>
               <li>
-                <a
-                  className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none"
-                  href="/setting/todo/privacy"
-                >
-                  プライバシーポリシー
-                  <div className="w-5 h-5">
-                    <ChevronRightIcon />
-                  </div>
-                </a>
+                <Link href="/setting/todo/privacy">
+                  <a className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none">
+                    プライバシーポリシー
+                    <div className="w-5 h-5">
+                      <ChevronRightIcon />
+                    </div>
+                  </a>
+                </Link>
               </li>
               <li>
-                <a
-                  className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none"
-                  href="/setting/todo/terms"
-                >
-                  利用規約
-                  <div className="w-5 h-5">
-                    <ChevronRightIcon />
-                  </div>
-                </a>
+                <Link href="/setting/todo/terms">
+                  <a className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none">
+                    利用規約
+                    <div className="w-5 h-5">
+                      <ChevronRightIcon />
+                    </div>
+                  </a>
+                </Link>
               </li>
               <li>
                 <a
