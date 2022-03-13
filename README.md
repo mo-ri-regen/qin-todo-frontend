@@ -19,7 +19,7 @@
 - [Mock Service Worker](https://mswjs.io/)
   - サービスワーカーを利用して API モックを作れるライブラリ。フロントエンド駆動開発やテストに便利です。
 - [Vercel](https://vercel.com/)
-- [Firebase](https://firebase.google.com/)+[NextAuth.js](https://next-auth.js.org/)
+- [Firebase](https://firebase.google.com/)+[next-firebase-auth](https://github.com/gladly-team/next-firebase-auth)
   - 認証に利用
 
 ### 未定
