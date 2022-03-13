@@ -1,4 +1,5 @@
 import { Popover, Transition } from "@headlessui/react";
+import { CogIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import type { VFC } from "react";
 import { Fragment } from "react";
@@ -40,6 +41,9 @@ export const UserMenu: VFC = () => {
                       <Link href="/setting/todo">
                         <a className="flex items-center py-2.5 px-4 hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none">
                           <div className="flex justify-center items-center shrink-0"></div>
+                          <div className="w-7 h-7">
+                            <CogIcon />
+                          </div>
                           <p className="ml-4 font-bold">設定</p>
                         </a>
                       </Link>
