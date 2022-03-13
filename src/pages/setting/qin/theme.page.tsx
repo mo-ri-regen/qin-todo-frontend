@@ -5,7 +5,7 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useTheme } from "src/libs/theme";
 
-const SettingMemoTheme: NextPage = () => {
+const SettingTodoTheme: NextPage = () => {
   const router = useRouter();
   const { themes, isMounted, currentTheme, handleTheme } = useTheme();
   if (!isMounted) return null;
@@ -63,4 +63,4 @@ const SettingMemoTheme: NextPage = () => {
   );
 };
 
-export default SettingMemoTheme;
+export default SettingTodoTheme;
