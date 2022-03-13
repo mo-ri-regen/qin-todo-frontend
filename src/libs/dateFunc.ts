@@ -16,10 +16,11 @@ export const getToday = () => {
 // 翌日
 export const getTommorow = () => {
   const date = new Date();
+  date.setDate(date.getDate() + 1);
   const year_str: string = date.getFullYear().toString();
   //月だけ+1すること
   const month_str: string = 1 + date.getMonth().toString();
-  const day_str: string = date.setDate(date.getDate() + 1).toString();
+  const day_str: string = date.getDate().toString();
 
   let format_str = "YYYY-MM-DD";
   format_str = format_str.replace(/YYYY/g, year_str);
