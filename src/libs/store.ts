@@ -1,27 +1,24 @@
 import axios from "axios";
-import type { ListTodo, TodosState } from "src/types";
+import type { ListTodo, PostTodo, TodosState } from "src/types";
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 
 const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}todo/`;
 
-// const getStringFromDate = (date: Date) => {
-//   const year_str: string = date.getFullYear().toString();
-//   //月だけ+1すること
-//   const month_str: string = 1 + date.getMonth().toString();
-//   const day_str: string = date.getDate().toString();
-
-//   let format_str = "YYYY-MM-DD hh:mm:ss";
-//   format_str = format_str.replace(/YYYY/g, year_str);
-//   format_str = format_str.replace(/MM/g, month_str);
-//   format_str = format_str.replace(/DD/g, day_str);
-//   return format_str;
-// };
+export const initEditTodo: PostTodo = {
+  task: "",
+  sortKey: 0,
+  dueDate: "",
+  completeDate: "",
+  isDone: false,
+};
 
 const useStore = create<TodosState>(
   devtools((set) => {
     return {
       todos: [],
+      editTodo: initEditTodo,
+      isFooterShow: false,
       getTodos: async () => {
         const response = await axios.get<ListTodo[]>(apiUrl);
         set({ todos: response.data });
@@ -78,6 +75,24 @@ const useStore = create<TodosState>(
               }
               return { ...todo, done: !todo.isDone };
             }),
+          };
+        });
+      },
+      toggleIsFooterShow: () => {
+        return set((state) => {
+          return { isFooterShow: !state.isFooterShow };
+        });
+      },
+      setEditTodo: (postTodo: PostTodo) => {
+        return set(() => {
+          return {
+            editTodo: {
+              task: postTodo.task,
+              sortKey: postTodo.sortKey,
+              dueDate: postTodo.dueDate,
+              completeDate: postTodo.completeDate,
+              isDone: postTodo.isDone,
+            },
           };
         });
       },
