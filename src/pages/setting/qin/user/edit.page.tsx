@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { ChevronLeftIcon } from "@heroicons/react/outline";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
