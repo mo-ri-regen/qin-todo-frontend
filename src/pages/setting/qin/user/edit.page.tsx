@@ -72,9 +72,7 @@ const EditPage: NextPage = () => {
                       autoComplete="off"
                       // label='名前'
                       name="accountName"
-                      // placeholder={
-                      //   !AuthUser.displayName ? null : AuthUser.displayName
-                      // }
+                      value={!AuthUser.displayName ? "" : AuthUser.displayName}
                     />
                   </div>
                 </label>
