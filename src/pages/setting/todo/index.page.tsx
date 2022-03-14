@@ -1,15 +1,34 @@
-import { ChevronRightIcon, ExternalLinkIcon } from "@heroicons/react/outline";
+import {
+  ChevronRightIcon,
+  ExternalLinkIcon,
+  XIcon,
+} from "@heroicons/react/outline";
 import type { NextPage } from "next";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useTheme } from "src/contexts/useTheme";
 
 export const SettingQinTodo: NextPage = () => {
   const { themes } = useTheme();
+  const router = useRouter();
+  const handleClickReturnHome = () => {
+    return router.push("/");
+  };
 
   return (
     <main className="px-4 mx-auto w-full max-w-screen-sm">
-      <div className="my-4 text-xl font-bold text-center">
-        <h1>設定</h1>
+      <div className="flex items-center pb-6">
+        <button
+          type="button"
+          onClick={handleClickReturnHome}
+          className="grid place-items-center w-10 h-10 font-bold hover:bg-blue-50 dark:hover:bg-opacity-10 dark:focus-visible:bg-opacity-10 rounded-full focus-visible:ring-2 transition duration-200 ease-in-out focus:outline-none"
+        >
+          <XIcon className="w-6 h-6 text-gray-500" />
+        </button>
+        <div className="flex flex-1 justify-center px-2 text-xl font-bold">
+          <h1>設定</h1>
+        </div>
+        <div className="w-5" />
       </div>
       <ul className="space-y-8">
         <li>
