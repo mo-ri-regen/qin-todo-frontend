@@ -1,4 +1,4 @@
-import { TrashIcon } from "@heroicons/react/outline";
+import { DocumentDuplicateIcon, TrashIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
 import { memo } from "react";
 
@@ -23,27 +23,37 @@ export const TodoRecord = memo<Props>((props) => {
   const handleRemoveTodo = () => {
     return removeTodo(props.todo.id);
   };
+  const handleDupulicateTodo = () => {
+    return alert("複製する処理");
+  };
   return (
-    <div className="flex items-center mb-4">
-      <input
-        className={clsx(
-          "mr-4 w-6 h-6 rounded-full ring-0 focus:ring-gray-400",
-          {
-            "text-primary": props.target == "1",
-            "text-secondary": props.target == "2",
-            "text-tertiary": props.target == "3",
-          }
-        )}
-        type="checkbox"
-        checked={props.todo.isDone}
-        onClick={handleToggleComplete}
-      />
-      <div className={props.todo.isDone ? "line-through" : ""}>
-        {props.todo.task}
+    <div className="flex justify-between items-center mb-4">
+      <div className="flex">
+        <input
+          className={clsx(
+            "mr-4 w-6 h-6 rounded-full ring-0 focus:ring-gray-400",
+            {
+              "text-primary": props.target == "1",
+              "text-secondary": props.target == "2",
+              "text-tertiary": props.target == "3",
+            }
+          )}
+          type="checkbox"
+          checked={props.todo.isDone}
+          onClick={handleToggleComplete}
+        />
+        <div className={props.todo.isDone ? "line-through" : ""}>
+          {props.todo.task}
+        </div>
       </div>
-      <button className="p-1 ml-5" onClick={handleRemoveTodo}>
-        <TrashIcon className="w-5 h-5 text-gray-800 hover:text-red-500 dark:text-white" />
-      </button>
+      <div className="flex">
+        <button className="p-1 ml-5" onClick={handleDupulicateTodo}>
+          <DocumentDuplicateIcon className="w-5 h-5 text-gray-800 hover:text-red-500 dark:text-white" />
+        </button>
+        <button className="p-1 sm:mx-3" onClick={handleRemoveTodo}>
+          <TrashIcon className="w-5 h-5 text-gray-800 hover:text-red-500 dark:text-white" />
+        </button>
+      </div>
     </div>
   );
 });
