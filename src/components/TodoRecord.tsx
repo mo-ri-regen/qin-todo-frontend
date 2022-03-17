@@ -1,6 +1,6 @@
 import { DocumentDuplicateIcon, TrashIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
-import { memo, useState } from "react";
+import { memo } from "react";
 
 import { useStore } from "../libs/store";
 import type { ListTodo, TodosState } from "../types";
@@ -26,13 +26,7 @@ export const TodoRecord = memo<Props>((props) => {
   const handleDupulicateTodo = () => {
     return alert("複製する処理");
   };
-  const [isHover, setIsHover] = useState(false);
-  const handleHover = () => {
-    setIsHover(true);
-  };
-  const handleHoverLeave = () => {
-    setIsHover(false);
-  };
+
   return (
     <div className="flex justify-between items-center mb-4">
       <div className="flex">
@@ -49,32 +43,16 @@ export const TodoRecord = memo<Props>((props) => {
           checked={props.todo.isDone}
           onClick={handleToggleComplete}
         />
-        <div
-          className={props.todo.isDone ? "line-through" : ""}
-          onMouseEnter={handleHover}
-          onMouseLeave={handleHoverLeave}
-        >
+        <div className={props.todo.isDone ? "line-through" : ""}>
           {props.todo.task}
         </div>
       </div>
       <div className="flex">
         <button className="p-1 ml-5" onClick={handleDupulicateTodo}>
-          <DocumentDuplicateIcon
-            className={
-              isHover
-                ? "w-5 h-5 text-gray-500 dark:text-white opacity-100"
-                : "w-5 h-5 text-gray-500 dark:text-white opacity-5"
-            }
-          />
+          <DocumentDuplicateIcon className="w-5 h-5 text-gray-500 dark:text-white opacity-100" />
         </button>
         <button className="p-1 sm:mx-3" onClick={handleRemoveTodo}>
-          <TrashIcon
-            className={
-              isHover
-                ? "w-5 h-5 text-gray-500 dark:text-white opacity-100"
-                : "w-5 h-5 text-gray-500 dark:text-white opacity-5"
-            }
-          />
+          <TrashIcon className="w-5 h-5 text-gray-500 dark:text-white opacity-100" />
         </button>
       </div>
     </div>
