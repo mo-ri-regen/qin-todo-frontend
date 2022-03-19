@@ -1,6 +1,6 @@
 import { DocumentDuplicateIcon, TrashIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
-import { memo } from "react";
+import { memo, useRef } from "react";
 
 import { useStore } from "../libs/store";
 import type { ListTodo, TodosState } from "../types";
@@ -26,10 +26,11 @@ export const TodoRecord = memo<Props>((props) => {
   const handleDupulicateTodo = () => {
     return alert("複製する処理");
   };
+  const focusRef = useRef(null);
 
   return (
     <div className="group flex justify-between items-center mr-5 mb-4">
-      <div className="flex">
+      <div className="flex items-center ">
         <input
           className={clsx(
             "mr-4 w-6 h-6 rounded-full ring-0 focus:ring-gray-400",
@@ -43,16 +44,18 @@ export const TodoRecord = memo<Props>((props) => {
           checked={props.todo.isDone}
           onClick={handleToggleComplete}
         />
-        <div className="w-5/6">
-          <input
-            // type='text'
-            className={
-              props.todo.isDone
-                ? "line-through w-96 rounded focus:ring-gray-400 hover:ring-gray-400 focus:ring-1 focus:outline-none hover:ring-1 text-ellipsis overflow-x-auto"
-                : "w-96 rounded focus:ring-gray-400 hover:ring-gray-400 focus:outline-none focus:ring-1 hover:ring-1 text-ellipsis overflow-x-auto"
+        <div
+          ref={focusRef}
+          tabIndex={-1}
+          className={clsx(
+            "px-6 m-0 my-auto w-full dark:bg-gray-700 dark:focus:bg-transparent rounded-full border-none focus:ring-1 focus:ring-blue-300 cursor-text",
+            {
+              "line-through": props.todo.isDone,
+              "": !props.todo.isDone,
             }
-            value={props.todo.task}
-          />
+          )}
+        >
+          {props.todo.task}
         </div>
       </div>
       <div className="flex w-1/6 opacity-10 group-hover:opacity-100">
