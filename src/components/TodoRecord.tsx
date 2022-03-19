@@ -1,6 +1,6 @@
 import { DocumentDuplicateIcon, TrashIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
-import { memo } from "react";
+import { memo, useRef } from "react";
 
 import { useStore } from "../libs/store";
 import type { ListTodo, TodosState } from "../types";
@@ -26,10 +26,11 @@ export const TodoRecord = memo<Props>((props) => {
   const handleDupulicateTodo = () => {
     return alert("複製する処理");
   };
+  const focusRef = useRef(null);
 
   return (
-    <div className="group flex justify-between items-center mb-4">
-      <div className="flex">
+    <div className="group flex justify-between items-center mr-5 mb-4">
+      <div className="flex items-center ">
         <input
           className={clsx(
             "mr-4 w-6 h-6 rounded-full ring-0 focus:ring-gray-400",
@@ -43,11 +44,20 @@ export const TodoRecord = memo<Props>((props) => {
           checked={props.todo.isDone}
           onClick={handleToggleComplete}
         />
-        <div className={props.todo.isDone ? "line-through" : ""}>
+        <div
+          ref={focusRef}
+          tabIndex={-1}
+          className={clsx(
+            "px-6 m-0 my-auto w-full dark:bg-gray-700 dark:focus:bg-transparent rounded-full border-none focus:ring-blue-300 cursor-text",
+            {
+              "line-through": props.todo.isDone,
+            }
+          )}
+        >
           {props.todo.task}
         </div>
       </div>
-      <div className="flex opacity-10 group-hover:opacity-100">
+      <div className="flex w-1/6 opacity-10 group-hover:opacity-100">
         <button className="p-1 ml-5" onClick={handleDupulicateTodo}>
           <DocumentDuplicateIcon className="w-5 h-5 text-gray-500 dark:text-white" />
         </button>

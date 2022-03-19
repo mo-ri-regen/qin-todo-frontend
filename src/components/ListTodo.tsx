@@ -81,8 +81,7 @@ export const ListTodo = memo<Props>((props) => {
           </button>
           <div className="text-gray-300">タスクを追加する</div>
         </div>
-        <div className="overflow-y-auto my-5 w-full h-full max-h-72">
-          <ul>{/* ここにmockのデータを取得したい */}</ul>
+        <div className="overflow-y-auto pt-5 my-5 w-full h-full max-h-72">
           <ol>
             {todos.map((todo) => {
               return (
