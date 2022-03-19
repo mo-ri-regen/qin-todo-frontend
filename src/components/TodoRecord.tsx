@@ -51,7 +51,6 @@ export const TodoRecord = memo<Props>((props) => {
             "px-6 m-0 my-auto w-full dark:bg-gray-700 dark:focus:bg-transparent rounded-full border-none focus:ring-1 focus:ring-blue-300 cursor-text",
             {
               "line-through": props.todo.isDone,
-              "": !props.todo.isDone,
             }
           )}
         >
