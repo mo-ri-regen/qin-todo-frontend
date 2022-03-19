@@ -28,7 +28,7 @@ export const TodoRecord = memo<Props>((props) => {
   };
 
   return (
-    <div className="group flex justify-between items-center mb-4">
+    <div className="group flex justify-between items-center mr-5 mb-4">
       <div className="flex">
         <input
           className={clsx(
@@ -43,11 +43,19 @@ export const TodoRecord = memo<Props>((props) => {
           checked={props.todo.isDone}
           onClick={handleToggleComplete}
         />
-        <div className={props.todo.isDone ? "line-through" : ""}>
-          {props.todo.task}
+        <div className="w-5/6">
+          <input
+            // type='text'
+            className={
+              props.todo.isDone
+                ? "line-through w-96 rounded focus:ring-gray-400 hover:ring-gray-400 focus:ring-1 focus:outline-none hover:ring-1 text-ellipsis overflow-x-auto"
+                : "w-96 rounded focus:ring-gray-400 hover:ring-gray-400 focus:outline-none focus:ring-1 hover:ring-1 text-ellipsis overflow-x-auto"
+            }
+            value={props.todo.task}
+          />
         </div>
       </div>
-      <div className="flex opacity-10 group-hover:opacity-100">
+      <div className="flex w-1/6 opacity-10 group-hover:opacity-100">
         <button className="p-1 ml-5" onClick={handleDupulicateTodo}>
           <DocumentDuplicateIcon className="w-5 h-5 text-gray-500 dark:text-white" />
         </button>
