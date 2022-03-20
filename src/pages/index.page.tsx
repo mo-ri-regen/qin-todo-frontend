@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <Layout>
       <ThemeChanger />
-      <div className="flex flex-col lg:flex-row">
+      <div className="grid grid-cols-1 lg:grid-cols-3 grid-flow-row-dense lg:grid-flow-row auto-rows-min gap-4">
         <ListTodo title="今日する" target="1" />
         <ListTodo title="明日する" target="2" />
         <ListTodo title="今度する" target="3" />

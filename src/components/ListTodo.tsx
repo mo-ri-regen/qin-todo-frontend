@@ -61,7 +61,7 @@ export const ListTodo = memo<Props>((props) => {
   };
 
   return (
-    <div className="w-full lg:w-1/3">
+    <div>
       <div
         className={clsx("mb-3 text-2xl font-semibold", {
           "text-primary": props.target == "1",
@@ -71,7 +71,7 @@ export const ListTodo = memo<Props>((props) => {
       >
         {props.title}
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col bg-green-200">
         <div className="flex items-center">
           <button
             className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full"
