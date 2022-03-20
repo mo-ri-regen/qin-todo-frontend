@@ -87,37 +87,56 @@ export const Footer = () => {
     toggleFooterFocus();
   };
 
+  const FooterButtons = () => {
+    return (
+      <div className="flex items-center mb-3 text-white">
+        <button
+          className="px-4 mr-2 h-9 text-sm bg-primary rounded-full"
+          onClick={handleAddTodoToday}
+        >
+          + 今日する
+        </button>
+        <button
+          className="px-4 mr-2 h-9 text-sm bg-secondary rounded-full"
+          onClick={handleAddTodoTommorow}
+        >
+          + 明日する
+        </button>
+        <button
+          className="px-4 h-9 text-sm bg-tertiary rounded-full"
+          onClick={handleAddTodo}
+        >
+          + 今度する
+        </button>
+      </div>
+    );
+  };
+
   return (
     <>
-      <div className="flex flex-col justify-center items-center h-[108px]">
+      {/* pc footer */}
+      <div className="hidden lg:flex flex-col justify-center items-center h-[108px]">
         <div className="px-3 my-3 bg-[#F1F5F9] rounded-full border">
           <input
-            className="w-80 h-9 bg-[#F1F5F9] rounded-full border-none outline-none"
+            className="w-80 h-9 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none"
+            onChange={handleOnChange}
+            value={inputTodo}
+          />
+        </div>
+        <FooterButtons />
+      </div>
+
+      {/* mobile footer */}
+      <div className="flex lg:hidden flex-col justify-center items-center h-[108px]">
+        <div className="px-3 my-3 bg-[#F1F5F9] rounded-full border">
+          <input
+            className="w-80 h-9 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none"
             onChange={handleOnChange}
             onFocus={handleOnFocus}
             value={inputTodo}
           />
         </div>
-        <div className="flex items-center mb-3 text-white">
-          <button
-            className="px-4 mr-2 h-9 text-sm bg-primary rounded-full"
-            onClick={handleAddTodoToday}
-          >
-            + 今日する
-          </button>
-          <button
-            className="px-4 mr-2 h-9 text-sm bg-secondary rounded-full"
-            onClick={handleAddTodoTommorow}
-          >
-            + 明日する
-          </button>
-          <button
-            className="px-4 h-9 text-sm bg-tertiary rounded-full"
-            onClick={handleAddTodo}
-          >
-            + 今度する
-          </button>
-        </div>
+        <FooterButtons />
       </div>
     </>
   );
