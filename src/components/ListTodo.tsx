@@ -61,7 +61,7 @@ export const ListTodo = memo<Props>((props) => {
   };
 
   return (
-    <div className="w-full lg:w-1/3">
+    <div>
       <div
         className={clsx("mb-3 text-2xl font-semibold", {
           "text-primary": props.target == "1",
