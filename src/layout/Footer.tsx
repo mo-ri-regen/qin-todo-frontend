@@ -88,13 +88,6 @@ export const Footer = () => {
     toggleFooterFocus();
   };
 
-  const handleBlur = (e: any) => {
-    const target = e.target.value;
-    if (!target) {
-      alert("入力してください");
-    }
-  };
-
   const FooterButtons = () => {
     return (
       <div className="flex items-center mb-3 text-white">
@@ -164,7 +157,6 @@ export const Footer = () => {
               className="w-80 h-9 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none"
               onChange={handleOnChange}
               onFocus={handleOnFocus}
-              onBlur={handleBlur}
               value={inputTodo}
             />
           </div>
