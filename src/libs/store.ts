@@ -108,6 +108,11 @@ const useStore = create<TodosState>(
           return { isFooterShow: !state.isFooterShow };
         });
       },
+      toggleFooterFocus: () => {
+        return set((state) => {
+          return { isFooterShow: !state.isFooterShow };
+        });
+      },
       setEditTodo: (postTodo: PostTodo) => {
         return set(() => {
           return {

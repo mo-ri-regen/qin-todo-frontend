@@ -16,6 +16,9 @@ export const Footer = () => {
   const toggleIsFooterShow = useStore((state) => {
     return state.toggleIsFooterShow;
   });
+  const toggleFooterFocus = useStore((state) => {
+    return state.toggleFooterFocus;
+  });
 
   const [inputTodo, setInputTodo] = useState<string>(editTodo.task);
   const handleAddTodoToday = () => {
@@ -80,6 +83,10 @@ export const Footer = () => {
     // setError("");
   };
 
+  const handleOnFocus = () => {
+    toggleFooterFocus();
+  };
+
   return (
     <>
       <div className="flex flex-col justify-center items-center h-[108px]">
@@ -87,6 +94,7 @@ export const Footer = () => {
           <input
             className="w-80 h-9 bg-[#F1F5F9] rounded-full border-none outline-none"
             onChange={handleOnChange}
+            onFocus={handleOnFocus}
             value={inputTodo}
           />
         </div>
