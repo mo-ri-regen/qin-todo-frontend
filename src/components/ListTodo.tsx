@@ -71,7 +71,7 @@ export const ListTodo = memo<Props>((props) => {
       >
         {props.title}
       </div>
-      <div className="flex flex-col bg-green-200">
+      <div className="flex flex-col">
         <div className="flex items-center">
           <button
             className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full"
