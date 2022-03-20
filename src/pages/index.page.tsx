@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { AuthAction, withAuthUser } from "next-firebase-auth";
 import { useEffect } from "react";
 import { ListTodo } from "src/components/ListTodo";
@@ -10,9 +9,6 @@ import { useStore } from "src/libs/store";
 const Home = () => {
   const getTodos = useStore((state) => {
     return state.getTodos;
-  });
-  const isFooterShow = useStore((state) => {
-    return state.isFooterShow;
   });
 
   useEffect(() => {
@@ -27,17 +23,7 @@ const Home = () => {
         <ListTodo title="明日する" target="2" />
         <ListTodo title="今度する" target="3" />
       </div>
-      <div
-        className={clsx(
-          "overflow-hidden fixed right-0 bottom-12 z-10 w-full h-2/5 bg-white dark:bg-gray-700 duration-300 ease-in-out transform",
-          {
-            "translate-y-full": isFooterShow,
-            "translate-y-20": !isFooterShow,
-          }
-        )}
-      >
-        <Footer />
-      </div>
+      <Footer />
     </Layout>
   );
 };

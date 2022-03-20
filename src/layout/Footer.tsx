@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useState } from "react";
 import { getToday, getTommorow } from "src/libs/dateFunc";
 import { initEditTodo, useStore } from "src/libs/store";
@@ -119,32 +120,56 @@ export const Footer = () => {
     );
   };
 
+  const isFooterShow = useStore((state) => {
+    return state.isFooterShow;
+  });
+
   return (
     <>
       {/* pc footer */}
-      <div className="hidden lg:flex flex-col justify-center items-center h-[108px]">
-        <div className="px-3 my-3 bg-[#F1F5F9] rounded-full border">
-          <input
-            className="w-80 h-9 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none"
-            onChange={handleOnChange}
-            value={inputTodo}
-          />
+      <div
+        className={clsx(
+          "hidden overflow-hidden fixed right-0 bottom-12 z-10 w-full h-2/5 bg-white dark:bg-gray-700 duration-300 ease-in-out transform",
+          {
+            "translate-y-full": isFooterShow,
+            "translate-y-0": !isFooterShow,
+          }
+        )}
+      >
+        <div className="flex flex-col justify-center items-center h-[108px]">
+          <div className="px-3 my-3 bg-[#F1F5F9] rounded-full border">
+            <input
+              className="w-80 h-9 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none"
+              onChange={handleOnChange}
+              value={inputTodo}
+            />
+          </div>
+          <FooterButtons />
         </div>
-        <FooterButtons />
       </div>
 
       {/* mobile footer */}
-      <div className="flex lg:hidden flex-col justify-center items-center h-[108px]">
-        <div className="px-3 my-3 bg-[#F1F5F9] rounded-full border">
-          <input
-            className="w-80 h-9 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none"
-            onChange={handleOnChange}
-            onFocus={handleOnFocus}
-            onBlur={handleBlur}
-            value={inputTodo}
-          />
+      <div
+        className={clsx(
+          "lg:hidden overflow-hidden fixed right-0 bottom-12 z-10 w-full h-2/5 bg-white dark:bg-gray-700 duration-300 ease-in-out transform",
+          {
+            "translate-y-full": isFooterShow,
+            "translate-y-0": !isFooterShow,
+          }
+        )}
+      >
+        <div className="flex flex-col justify-center items-center h-[108px]">
+          <div className="px-3 my-3 bg-[#F1F5F9] rounded-full border">
+            <input
+              className="w-80 h-9 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none"
+              onChange={handleOnChange}
+              onFocus={handleOnFocus}
+              onBlur={handleBlur}
+              value={inputTodo}
+            />
+          </div>
+          <FooterButtons />
         </div>
-        <FooterButtons />
       </div>
     </>
   );
