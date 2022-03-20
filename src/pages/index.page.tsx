@@ -29,10 +29,10 @@ const Home = () => {
       </div>
       <div
         className={clsx(
-          "overflow-hidden fixed right-0 bottom-12 z-10 w-full h-2/5 duration-300 ease-in-out transform",
+          "overflow-hidden fixed right-0 bottom-12 z-10 w-full h-2/5 bg-white dark:bg-gray-700 duration-300 ease-in-out transform",
           {
             "translate-y-full": isFooterShow,
-            "translate-y-0": !isFooterShow,
+            "translate-y-20": !isFooterShow,
           }
         )}
       >
