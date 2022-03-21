@@ -11,12 +11,12 @@ export const Footer: VFC = () => {
         return (
           <>
             <Popover.Button>
-              <div className="absolute right-[50%] bottom-0 z-30 bg-white dark:bg-black translate-x-[50%]">
+              <div className="fixed right-[50%] bottom-0 z-30 w-screen bg-white dark:bg-black translate-x-[50%]">
                 <button className="w-80 h-9 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none" />
               </div>
             </Popover.Button>
 
-            <div className="relative">
+            <div className="relative bg-white dark:bg-black">
               <Transition
                 show={open}
                 as={Fragment}
@@ -29,7 +29,7 @@ export const Footer: VFC = () => {
               >
                 <Popover.Panel
                   static
-                  className="absolute right-[50%] bottom-0 z-30 bg-white dark:bg-black translate-x-[50%]"
+                  className="fixed right-[50%] bottom-0 z-30 bg-white dark:bg-black translate-x-[50%]"
                 >
                   <FooterButtons />
                 </Popover.Panel>
