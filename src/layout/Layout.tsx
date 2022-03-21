@@ -8,7 +8,7 @@ type Props = {
 };
 export const Layout: VFC<Props> = (props) => {
   return (
-    <div className="grid px-3 mx-auto mb-6 min-h-screen grid-rows-[auto, 1fr, auto]">
+    <div className="grid px-3 mx-auto mb-6 h-screen min-h-screen grid-rows-[auto, 1fr, auto]">
       <Header />
       <main>{props.children}</main>
       <Footer />
