@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { ListTodo } from "src/components/ListTodo";
 import { ThemeChanger } from "src/components/ThemeChanger";
 import { Layout } from "src/layout";
-import { Footer } from "src/layout/Footer";
 import { useStore } from "src/libs/store";
 
 const Home = () => {
@@ -23,7 +22,6 @@ const Home = () => {
         <ListTodo title="明日する" target="2" />
         <ListTodo title="今度する" target="3" />
       </div>
-      <Footer />
     </Layout>
   );
 };
