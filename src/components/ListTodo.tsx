@@ -81,7 +81,7 @@ export const ListTodo = memo<Props>((props) => {
           </button>
           <div className="text-gray-300">タスクを追加する</div>
         </div>
-        <div className="pt-5 my-5 w-full h-full max-h-72">
+        <div className="overflow-y-auto pt-3 w-full max-h-60 lg:max-h-full">
           <ol>
             {todos.map((todo) => {
               return (
