@@ -73,26 +73,39 @@ export const FooterButtons: VFC = () => {
     }
   };
 
+  const handleOnChange = (e: any) => {
+    setInputTodo(e.target.value);
+  };
+
   return (
-    <div className="flex items-center mb-3 text-white">
-      <button
-        className="px-4 mr-2 h-9 text-sm whitespace-nowrap bg-primary rounded-full"
-        onClick={handleAddTodoToday}
-      >
-        + 今日する
-      </button>
-      <button
-        className="px-4 mr-2 h-9 text-sm whitespace-nowrap bg-secondary rounded-full"
-        onClick={handleAddTodoTommorow}
-      >
-        + 明日する
-      </button>
-      <button
-        className="px-4 h-9 text-sm whitespace-nowrap bg-tertiary rounded-full"
-        onClick={handleAddTodo}
-      >
-        + 今度する
-      </button>
-    </div>
+    <>
+      <div className="relative">
+        <input
+          className="px-2 mb-3 w-80 h-8 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none"
+          onChange={handleOnChange}
+          value={inputTodo}
+        />
+      </div>
+      <div className="flex items-center mb-3 text-white">
+        <button
+          className="px-4 mr-2 h-9 text-sm whitespace-nowrap bg-primary rounded-full"
+          onClick={handleAddTodoToday}
+        >
+          + 今日する
+        </button>
+        <button
+          className="px-4 mr-2 h-9 text-sm whitespace-nowrap bg-secondary rounded-full"
+          onClick={handleAddTodoTommorow}
+        >
+          + 明日する
+        </button>
+        <button
+          className="px-4 h-9 text-sm whitespace-nowrap bg-tertiary rounded-full"
+          onClick={handleAddTodo}
+        >
+          + 今度する
+        </button>
+      </div>
+    </>
   );
 };

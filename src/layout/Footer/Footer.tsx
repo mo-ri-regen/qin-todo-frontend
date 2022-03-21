@@ -3,7 +3,6 @@ import type { VFC } from "react";
 import { Fragment } from "react";
 
 import { FooterButtons } from "./FooterButtons";
-import { InputField } from "./InputField";
 
 export const Footer: VFC = () => {
   return (
@@ -32,7 +31,6 @@ export const Footer: VFC = () => {
                   static
                   className="absolute right-[50%] bottom-0 z-30 bg-white dark:bg-black translate-x-[50%]"
                 >
-                  <InputField />
                   <FooterButtons />
                 </Popover.Panel>
               </Transition>
