@@ -121,11 +121,7 @@ export const Footer: VFC = () => {
         return (
           <>
             <Popover.Button>
-              <input
-                className="w-80 h-9 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none"
-                onChange={handleOnChange}
-                value={inputTodo}
-              />
+              <button className="w-80 h-9 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none" />
             </Popover.Button>
 
             <div className="relative">
