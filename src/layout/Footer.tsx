@@ -1,10 +1,12 @@
-import clsx from "clsx";
+import { Popover, Transition } from "@headlessui/react";
+import type { VFC } from "react";
 import { useState } from "react";
+import { Fragment } from "react";
 import { getToday, getTommorow } from "src/libs/dateFunc";
 import { initEditTodo, useStore } from "src/libs/store";
 import type { PostTodo } from "src/types";
 
-export const Footer = () => {
+export const Footer: VFC = () => {
   const addTodo = useStore((state) => {
     return state.addTodo;
   });
@@ -14,12 +16,12 @@ export const Footer = () => {
   const setEditTodo = useStore((state) => {
     return state.setEditTodo;
   });
-  const toggleIsFooterShow = useStore((state) => {
-    return state.toggleIsFooterShow;
-  });
-  const toggleFooterFocus = useStore((state) => {
-    return state.toggleFooterFocus;
-  });
+  // const toggleIsFooterShow = useStore((state) => {
+  //   return state.toggleIsFooterShow;
+  // });
+  // const toggleFooterFocus = useStore((state) => {
+  //   return state.toggleFooterFocus;
+  // });
 
   const [inputTodo, setInputTodo] = useState<string>(editTodo.task);
   const handleAddTodoToday = () => {
@@ -38,7 +40,7 @@ export const Footer = () => {
       addTodo(postTodo);
       setInputTodo("");
       setEditTodo(initEditTodo);
-      toggleIsFooterShow();
+      // toggleIsFooterShow();
     }
   };
   const handleAddTodoTommorow = () => {
@@ -57,7 +59,7 @@ export const Footer = () => {
       addTodo(postTodo);
       setInputTodo("");
       setEditTodo(initEditTodo);
-      toggleIsFooterShow();
+      // toggleIsFooterShow();
     }
   };
   const handleAddTodo = () => {
@@ -76,7 +78,7 @@ export const Footer = () => {
       addTodo(postTodo);
       setInputTodo("");
       setEditTodo(initEditTodo);
-      toggleIsFooterShow();
+      // toggleIsFooterShow();
     }
   };
   const handleOnChange = (e: any) => {
@@ -84,27 +86,27 @@ export const Footer = () => {
     // setError("");
   };
 
-  const handleOnFocus = () => {
-    toggleFooterFocus();
-  };
+  // const handleOnFocus = () => {
+  //   toggleFooterFocus();
+  // };
 
   const FooterButtons = () => {
     return (
       <div className="flex items-center mb-3 text-white">
         <button
-          className="px-4 mr-2 h-9 text-sm bg-primary rounded-full"
+          className="px-4 mr-2 h-9 text-sm whitespace-nowrap bg-primary rounded-full"
           onClick={handleAddTodoToday}
         >
           + 今日する
         </button>
         <button
-          className="px-4 mr-2 h-9 text-sm bg-secondary rounded-full"
+          className="px-4 mr-2 h-9 text-sm whitespace-nowrap bg-secondary rounded-full"
           onClick={handleAddTodoTommorow}
         >
           + 明日する
         </button>
         <button
-          className="px-4 h-9 text-sm bg-tertiary rounded-full"
+          className="px-4 h-9 text-sm whitespace-nowrap bg-tertiary rounded-full"
           onClick={handleAddTodo}
         >
           + 今度する
@@ -113,31 +115,44 @@ export const Footer = () => {
     );
   };
 
-  const isFooterShow = useStore((state) => {
-    return state.isFooterShow;
-  });
-
   return (
-    <div
-      className={clsx(
-        "lg:hidden overflow-hidden fixed right-0 bottom-12 z-10 w-full h-2/5 bg-white dark:bg-gray-700 duration-300 ease-in-out transform",
-        {
-          "translate-y-full": isFooterShow,
-          "translate-y-0": !isFooterShow,
-        }
-      )}
-    >
-      <div className="flex flex-col justify-center items-center h-[108px]">
-        <div className="px-3 my-3 bg-[#F1F5F9] rounded-full border">
-          <input
-            className="w-80 h-9 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none"
-            onChange={handleOnChange}
-            onFocus={handleOnFocus}
-            value={inputTodo}
-          />
-        </div>
-        <FooterButtons />
-      </div>
-    </div>
+    <Popover className="grid lg:hidden relative">
+      {({ open }) => {
+        return (
+          <>
+            <Popover.Button>
+              <div className="fixed right-[50%] -bottom-0 z-30 bg-white dark:bg-black translate-x-[50%]">
+                <button className="w-80 h-9 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none" />
+              </div>
+            </Popover.Button>
+
+            <div className="relative">
+              <Transition
+                show={open}
+                as={Fragment}
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 -translate-y-1"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 -translate-y-1"
+              >
+                <Popover.Panel
+                  static
+                  className="fixed right-[50%] -bottom-0 z-30 bg-white dark:bg-black translate-x-[50%]"
+                >
+                  <input
+                    className="px-2 mb-3 w-80 h-8 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none"
+                    onChange={handleOnChange}
+                    value={inputTodo}
+                  />
+                  <FooterButtons />
+                </Popover.Panel>
+              </Transition>
+            </div>
+          </>
+        );
+      }}
+    </Popover>
   );
 };

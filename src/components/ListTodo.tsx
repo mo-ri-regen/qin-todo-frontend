@@ -61,7 +61,7 @@ export const ListTodo = memo<Props>((props) => {
   };
 
   return (
-    <div>
+    <div className="lg:min-h-screen">
       <div
         className={clsx("mb-3 text-2xl font-semibold", {
           "text-primary": props.target == "1",
@@ -81,7 +81,7 @@ export const ListTodo = memo<Props>((props) => {
           </button>
           <div className="text-gray-300">タスクを追加する</div>
         </div>
-        <div className="overflow-y-auto pt-5 my-5 w-full h-full max-h-72">
+        <div className="pt-5 my-5 w-full h-full max-h-72">
           <ol>
             {todos.map((todo) => {
               return (
