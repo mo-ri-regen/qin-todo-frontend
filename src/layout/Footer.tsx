@@ -121,7 +121,9 @@ export const Footer: VFC = () => {
         return (
           <>
             <Popover.Button>
-              <button className="w-80 h-9 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none" />
+              <div className="fixed right-[50%] -bottom-0 z-30 bg-white dark:bg-black translate-x-[50%]">
+                <button className="w-80 h-9 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none" />
+              </div>
             </Popover.Button>
 
             <div className="relative">
@@ -137,7 +139,7 @@ export const Footer: VFC = () => {
               >
                 <Popover.Panel
                   static
-                  className="absolute -top-10 right-[50%] z-30 translate-x-[50%]"
+                  className="fixed right-[50%] -bottom-0 z-30 bg-white dark:bg-black translate-x-[50%]"
                 >
                   <input
                     className="px-2 mb-3 w-80 h-8 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none"
