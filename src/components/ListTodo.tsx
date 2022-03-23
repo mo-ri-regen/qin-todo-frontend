@@ -83,6 +83,14 @@ export const ListTodo = memo<Props>((props) => {
                   })}
                 </ol>
               </div>
+              <Popover.Button>
+                <div className="hidden lg:flex items-center">
+                  <button className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full">
+                    +
+                  </button>
+                  <div className="text-gray-300">タスクを追加する</div>
+                </div>
+              </Popover.Button>
             </div>
             <div className="relative">
               <Transition
