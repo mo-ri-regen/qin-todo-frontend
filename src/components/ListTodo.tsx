@@ -47,6 +47,16 @@ export const ListTodo = memo<Props>((props) => {
     }
   });
 
+  const AddTaskButton = () => {
+    return (
+      <div className="flex items-center">
+        <button className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full">
+          +
+        </button>
+        <div className="text-gray-300">タスクを追加する</div>
+      </div>
+    );
+  };
   return (
     <Popover className="lg:min-h-screen">
       {({ open }) => {
@@ -64,11 +74,8 @@ export const ListTodo = memo<Props>((props) => {
             <div className="flex flex-col">
               {todos[0] ? null : (
                 <Popover.Button>
-                  <div className="flex lg:hidden items-center">
-                    <button className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full">
-                      +
-                    </button>
-                    <div className="text-gray-300">タスクを追加する</div>
+                  <div className="lg:hidden">
+                    <AddTaskButton />
                   </div>
                 </Popover.Button>
               )}
@@ -86,11 +93,8 @@ export const ListTodo = memo<Props>((props) => {
                 </ol>
               </div>
               <Popover.Button>
-                <div className="hidden lg:flex items-center">
-                  <button className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full">
-                    +
-                  </button>
-                  <div className="text-gray-300">タスクを追加する</div>
+                <div className="hidden lg:flex">
+                  <AddTaskButton />
                 </div>
               </Popover.Button>
             </div>
