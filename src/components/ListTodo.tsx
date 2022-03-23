@@ -62,14 +62,16 @@ export const ListTodo = memo<Props>((props) => {
               {props.title}
             </div>
             <div className="flex flex-col">
-              <Popover.Button>
-                <div className="flex items-center">
-                  <button className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full">
-                    +
-                  </button>
-                  <div className="text-gray-300">タスクを追加する</div>
-                </div>
-              </Popover.Button>
+              {todos[0] ? null : (
+                <Popover.Button>
+                  <div className="flex lg:hidden items-center">
+                    <button className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full">
+                      +
+                    </button>
+                    <div className="text-gray-300">タスクを追加する</div>
+                  </div>
+                </Popover.Button>
+              )}
               <div className="overflow-y-auto pt-3 w-full max-h-48 lg:max-h-full">
                 <ol>
                   {todos.map((todo) => {
