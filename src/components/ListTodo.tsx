@@ -49,12 +49,14 @@ export const ListTodo = memo<Props>((props) => {
 
   const AddTaskButton = () => {
     return (
-      <div className="flex items-center">
-        <button className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full">
-          +
-        </button>
-        <div className="text-gray-300">タスクを追加する</div>
-      </div>
+      <Popover.Button>
+        <div className="flex items-center">
+          <button className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full">
+            +
+          </button>
+          <div className="text-gray-300">タスクを追加する</div>
+        </div>
+      </Popover.Button>
     );
   };
   return (
@@ -73,11 +75,9 @@ export const ListTodo = memo<Props>((props) => {
             </div>
             <div className="flex flex-col">
               {todos[0] ? null : (
-                <Popover.Button>
-                  <div className="lg:hidden">
-                    <AddTaskButton />
-                  </div>
-                </Popover.Button>
+                <div className="lg:hidden">
+                  <AddTaskButton />
+                </div>
               )}
               <div className="overflow-y-auto pt-3 w-full max-h-48 lg:max-h-full">
                 <ol>
@@ -92,11 +92,9 @@ export const ListTodo = memo<Props>((props) => {
                   })}
                 </ol>
               </div>
-              <Popover.Button>
-                <div className="hidden lg:flex">
-                  <AddTaskButton />
-                </div>
-              </Popover.Button>
+              <div className="hidden lg:flex">
+                <AddTaskButton />
+              </div>
             </div>
             <div className="relative">
               <Transition
@@ -111,7 +109,7 @@ export const ListTodo = memo<Props>((props) => {
               >
                 <Popover.Panel
                   static
-                  className="lg:hidden fixed right-[50%] bottom-0 z-50 bg-white dark:bg-black translate-x-[50%]"
+                  className="fixed right-[50%] bottom-0 z-50 bg-white dark:bg-black translate-x-[50%]"
                 >
                   <FooterButtons />
                 </Popover.Panel>
