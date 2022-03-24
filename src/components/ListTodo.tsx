@@ -59,43 +59,53 @@ export const ListTodo = memo<Props>((props) => {
       </Popover.Button>
     );
   };
+
+  const List = () => {
+    return (
+      <>
+        <div
+          className={clsx("mb-3 text-2xl font-semibold", {
+            "text-primary": props.target == "1",
+            "text-secondary": props.target == "2",
+            "text-tertiary": props.target == "3",
+          })}
+        >
+          {props.title}
+        </div>
+        <div className="flex flex-col">
+          {todos[0] ? null : (
+            <div className="lg:hidden">
+              <AddTaskButton />
+            </div>
+          )}
+          <div className="overflow-y-auto pt-3 w-full max-h-48 lg:max-h-full">
+            <ol>
+              {todos.map((todo) => {
+                return (
+                  <TodoRecord
+                    todo={todo}
+                    key={`todo-${todo.task}-${todo.id}`}
+                    target={props.target}
+                  />
+                );
+              })}
+            </ol>
+          </div>
+          {/* pc時リスト末尾に表示されるタスク追加ボタン */}
+          <div className="hidden lg:flex">
+            <AddTaskButton />
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
     <Popover className="lg:min-h-screen">
       {({ open }) => {
         return (
           <>
-            <div
-              className={clsx("mb-3 text-2xl font-semibold", {
-                "text-primary": props.target == "1",
-                "text-secondary": props.target == "2",
-                "text-tertiary": props.target == "3",
-              })}
-            >
-              {props.title}
-            </div>
-            <div className="flex flex-col">
-              {todos[0] ? null : (
-                <div className="lg:hidden">
-                  <AddTaskButton />
-                </div>
-              )}
-              <div className="overflow-y-auto pt-3 w-full max-h-48 lg:max-h-full">
-                <ol>
-                  {todos.map((todo) => {
-                    return (
-                      <TodoRecord
-                        todo={todo}
-                        key={`todo-${todo.task}-${todo.id}`}
-                        target={props.target}
-                      />
-                    );
-                  })}
-                </ol>
-              </div>
-              <div className="hidden lg:flex">
-                <AddTaskButton />
-              </div>
-            </div>
+            <List />
             <div className="relative">
               <Transition
                 show={open}
@@ -109,7 +119,7 @@ export const ListTodo = memo<Props>((props) => {
               >
                 <Popover.Panel
                   static
-                  className="fixed right-[50%] bottom-0 z-50 bg-white dark:bg-black translate-x-[50%]"
+                  className="fixed right-[50%] bottom-0 z-50 bg-white dark:bg-gray-900 translate-x-[50%]"
                 >
                   <FooterButtons />
                 </Popover.Panel>
