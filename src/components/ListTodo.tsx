@@ -47,65 +47,58 @@ export const ListTodo = memo<Props>((props) => {
     }
   });
 
-  const AddTaskButton = () => {
-    return (
-      <Popover.Button>
-        <div className="flex items-center">
-          <button className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full">
-            +
-          </button>
-          <div className="text-gray-300">タスクを追加する</div>
-        </div>
-      </Popover.Button>
-    );
-  };
-
-  const List = () => {
-    return (
-      <>
-        <div
-          className={clsx("mb-3 text-2xl font-semibold", {
-            "text-primary": props.target == "1",
-            "text-secondary": props.target == "2",
-            "text-tertiary": props.target == "3",
-          })}
-        >
-          {props.title}
-        </div>
-        <div className="flex flex-col">
-          {todos[0] ? null : (
-            <div className="lg:hidden">
-              <AddTaskButton />
-            </div>
-          )}
-          <div className="pt-3 w-full">
-            <ol>
-              {todos.map((todo) => {
-                return (
-                  <TodoRecord
-                    todo={todo}
-                    key={`todo-${todo.task}-${todo.id}`}
-                    target={props.target}
-                  />
-                );
-              })}
-            </ol>
-          </div>
-          {/* pc時リスト末尾に表示されるタスク追加ボタン */}
-          <div className="hidden lg:flex">
-            <AddTaskButton />
-          </div>
-        </div>
-      </>
-    );
-  };
-
   return (
     <Popover className="lg:min-h-screen">
       {({ open }) => {
         return (
           <>
-            <List />
+            <div
+              className={clsx("mb-3 text-2xl font-semibold", {
+                "text-primary": props.target == "1",
+                "text-secondary": props.target == "2",
+                "text-tertiary": props.target == "3",
+              })}
+            >
+              {props.title}
+            </div>
+            <div className="flex flex-col">
+              {todos[0] ? null : (
+                <div className="lg:hidden">
+                  <Popover.Button>
+                    <div className="flex items-center">
+                      <button className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full">
+                        +
+                      </button>
+                      <div className="text-gray-300">タスクを追加する</div>
+                    </div>
+                  </Popover.Button>
+                </div>
+              )}
+              <div className="pt-3 w-full">
+                <ol>
+                  {todos.map((todo) => {
+                    return (
+                      <TodoRecord
+                        todo={todo}
+                        key={`todo-${todo.task}-${todo.id}`}
+                        target={props.target}
+                      />
+                    );
+                  })}
+                </ol>
+              </div>
+              {/* pc時リスト末尾に表示されるタスク追加ボタン */}
+              <div className="hidden lg:flex">
+                <Popover.Button>
+                  <div className="flex items-center">
+                    <button className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full">
+                      +
+                    </button>
+                    <div className="text-gray-300">タスクを追加する</div>
+                  </div>
+                </Popover.Button>
+              </div>
+            </div>
             <div className="relative">
               <Transition
                 show={open}
