@@ -1,7 +1,6 @@
 import { Popover, Transition } from "@headlessui/react";
 import { CogIcon } from "@heroicons/react/outline";
 import Link from "next/link";
-import { useAuthUser } from "next-firebase-auth";
 import type { VFC } from "react";
 import { Fragment } from "react";
 import { SignoutButton } from "src/components/shared/Buttons/SignoutButton";
@@ -10,8 +9,6 @@ import { SignoutButton } from "src/components/shared/Buttons/SignoutButton";
  * @package
  */
 export const UserMenu: VFC = () => {
-  const AuthUser = useAuthUser();
-  const initial = AuthUser.displayName?.slice(0, 1);
 
   return (
     <Popover className="grid">
@@ -19,16 +16,7 @@ export const UserMenu: VFC = () => {
         return (
           <>
             <Popover.Button className="flex rounded-full focus-visible:ring-2 focus-visible:ring-blue-400 focus:outline-none">
-              {AuthUser.photoURL ? (
-                <div
-                  style={{ background: `center/80% url(${AuthUser.photoURL})` }}
-                  className="z-30 w-9 h-9 rounded-full ring-1 ring-blue-100"
-                />
-              ) : (
-                <button className="w-9 h-9 bg-blue-500 rounded-full">
-                  {initial}
-                </button>
-              )}
+              <button className="w-9 h-9 bg-blue-500 rounded-full" />
             </Popover.Button>
 
             <div className="relative">
