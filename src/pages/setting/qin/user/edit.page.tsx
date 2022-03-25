@@ -16,6 +16,10 @@ const EditPage: NextPage = () => {
     return router.back();
   };
 
+  const handleChangeAvatar = () => {
+    alert("画像を変えるよ");
+  };
+
   return (
     <div className="flex flex-1 items-center px-2">
       <div className="flex flex-col mx-auto max-w-xl">
@@ -53,6 +57,7 @@ const EditPage: NextPage = () => {
                 </div>
                 <div>
                   <button
+                    onClick={handleChangeAvatar}
                     type="button"
                     className="grid place-items-center py-2.5 px-5 mt-4 font-bold bg-gray-100 hover:bg-gray-200 focus-visible:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus-visible:bg-gray-600 rounded-full focus-visible:ring-2 focus-visible:ring-blue-400 transition duration-200 ease-in-out focus:outline-none"
                   >
