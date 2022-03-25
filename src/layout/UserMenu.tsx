@@ -15,10 +15,7 @@ export const UserMenu: VFC = () => {
         return (
           <>
             <Popover.Button className="flex rounded-full focus-visible:ring-2 focus-visible:ring-blue-400 focus:outline-none">
-              <button
-                className="w-9 h-9 bg-blue-500 rounded-full"
-                // onClick={handleClick}
-              />
+              <button className="w-9 h-9 bg-blue-500 rounded-full" />
             </Popover.Button>
 
             <div className="relative">
