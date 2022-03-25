@@ -78,7 +78,7 @@ export const ListTodo = memo<Props>((props) => {
               <AddTaskButton />
             </div>
           )}
-          <div className="overflow-y-auto pt-3 w-full max-h-48 lg:max-h-full">
+          <div className="pt-3 w-full">
             <ol>
               {todos.map((todo) => {
                 return (
