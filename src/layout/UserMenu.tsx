@@ -22,7 +22,7 @@ export const UserMenu: VFC = () => {
               {AuthUser.photoURL ? (
                 <div
                   style={{ background: `center/80% url(${AuthUser.photoURL})` }}
-                  className="z-30 w-9 h-9 rounded-full"
+                  className="z-30 w-9 h-9 rounded-full ring-1 ring-blue-100"
                 />
               ) : (
                 <button className="w-9 h-9 bg-blue-500 rounded-full">
