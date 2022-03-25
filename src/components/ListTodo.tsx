@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { memo } from "react";
 import { useStore } from "src/libs/store";
 import type { Target, TodosState } from "src/types";
@@ -6,7 +5,7 @@ import type { Target, TodosState } from "src/types";
 import { TodoRecord } from "./TodoRecord";
 
 type Props = {
-  title: string;
+  title?: string;
   target: Target;
 };
 
@@ -46,15 +45,6 @@ export const ListTodo = memo<Props>((props) => {
 
   return (
     <div className="lg:min-h-screen">
-      <div
-        className={clsx("mb-3 text-2xl font-semibold", {
-          "text-primary": props.target == "1",
-          "text-secondary": props.target == "2",
-          "text-tertiary": props.target == "3",
-        })}
-      >
-        {props.title}
-      </div>
       <div className="flex flex-col">
         <div className="pt-3 w-full">
           <ol>
