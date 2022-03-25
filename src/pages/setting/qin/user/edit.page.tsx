@@ -38,14 +38,18 @@ const EditPage: NextPage = () => {
               <div className="text-sm font-bold text-gray-400">アイコン</div>
               <div className="flex justify-between">
                 <div className="flex justify-start items-center space-x-6">
-                  <div
-                    // style={{ backgroundImage: `url(${AuthUser.photoURL})` }}
-                    className="object-cover object-center overflow-hidden w-24 h-24 bg-blue-500 rounded-full"
-                  >
-                    <div className="pt-5 text-5xl text-center text-white">
-                      {initial}
+                  {AuthUser.photoURL ? (
+                    <div
+                      style={{ backgroundImage: `url(${AuthUser.photoURL})` }}
+                      className="object-cover object-center overflow-hidden w-24 h-24 rounded-full"
+                    ></div>
+                  ) : (
+                    <div className="object-cover object-center overflow-hidden w-24 h-24 bg-blue-500 rounded-full">
+                      <div className="pt-5 text-5xl text-center text-white">
+                        {initial}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
                 <div>
                   <button
