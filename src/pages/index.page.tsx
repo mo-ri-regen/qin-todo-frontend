@@ -20,7 +20,7 @@ const Home = () => {
     return (
       // {ListTodo.===0?null: //ここに何かを渡してない場合は「タスクを追加」を表示させる処理をさせたい
       <Popover.Button>
-        <div className="flex items-center">
+        <div className="flex items-center mb-3">
           <button className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full">
             +
           </button>
@@ -36,7 +36,7 @@ const Home = () => {
       <Popover className="lg:min-h-screen">
         {({ open }) => {
           return (
-            <>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-6 mb-6">
               <div>
                 <div className="mb-3 text-2xl font-semibold text-primary">
                   今日する
@@ -79,7 +79,7 @@ const Home = () => {
                   </Popover.Panel>
                 </Transition>
               </div>
-            </>
+            </div>
           );
         }}
       </Popover>
