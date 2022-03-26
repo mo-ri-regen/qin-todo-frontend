@@ -44,22 +44,18 @@ export const ListTodo = memo<Props>((props) => {
   });
 
   return (
-    <div className="lg:min-h-screen">
-      <div className="flex flex-col">
-        <div className="pt-3 w-full">
-          <ol>
-            {todos.map((todo) => {
-              return (
-                <TodoRecord
-                  todo={todo}
-                  key={`todo-${todo.task}-${todo.id}`}
-                  target={props.target}
-                />
-              );
-            })}
-          </ol>
-        </div>
-      </div>
+    <div className="pt-3 w-full">
+      <ol>
+        {todos.map((todo) => {
+          return (
+            <TodoRecord
+              todo={todo}
+              key={`todo-${todo.task}-${todo.id}`}
+              target={props.target}
+            />
+          );
+        })}
+      </ol>
     </div>
   );
 });
