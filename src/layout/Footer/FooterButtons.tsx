@@ -76,7 +76,7 @@ export const FooterButtons: VFC = () => {
   };
 
   return (
-    <>
+    <div className="lg:hidden">
       <div className="relative">
         <input
           className="px-2 mb-3 w-80 h-8 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none"
@@ -104,6 +104,6 @@ export const FooterButtons: VFC = () => {
           + 今度する
         </button>
       </div>
-    </>
+    </div>
   );
 };
