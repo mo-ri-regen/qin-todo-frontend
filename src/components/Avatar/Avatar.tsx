@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import clsx from "clsx";
-import Image from "next/image";
-import NoProfileImage from "public/no-profile-image.webp";
+// import Image from "next/image";
+// import NoProfileImage from "public/no-profile-image.webp";
 import type { VFC } from "react";
 
 import { DialogImage } from "./DialogImage";
@@ -23,7 +23,7 @@ export const Avatar: VFC<ImagePropsSrcUndefinedable> = (props) => {
   if (!hasSrc(rest)) {
     return (
       <div className={classes}>
-        <Image src={NoProfileImage} alt="No Profile Image" placeholder="blur" />
+        {/* <Image src={NoProfileImage} alt="No Profile Image" placeholder="blur" /> */}
       </div>
     );
   }
