@@ -11,13 +11,6 @@ const EditPage: NextPage = () => {
     return router.back();
   };
 
-  const handleChangeAvatar = () => {
-    <div className="App">
-      <input type="file" />
-      <button>Upload</button>
-    </div>;
-  };
-
   return (
     <div className="flex flex-1 items-center px-2">
       <div className="flex flex-col mx-auto max-w-xl">
