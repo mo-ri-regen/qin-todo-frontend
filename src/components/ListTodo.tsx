@@ -7,6 +7,7 @@ import { TodoRecord } from "./TodoRecord";
 type Props = {
   title?: string;
   target: Target;
+  length?: number;
 };
 
 const getStringFromDate = (date: Date) => {
@@ -42,6 +43,19 @@ export const ListTodo = memo<Props>((props) => {
         );
     }
   });
+  const todosLen = allTodos.filter((todo) => {
+    switch (props.target) {
+      case "3": // 「今度やる」のデータ抽出
+        return todo.dueDate == "";
+      case "2": // 「明日やる」のデータ抽出
+        return todo.dueDate > strDate && todo.completeDate == "";
+      case "1": // 「今日やる」のデータ抽出
+        return (
+          (todo.dueDate <= strDate && todo.dueDate != "") ||
+          todo.completeDate != ""
+        );
+    }
+  }).length;
 
   return (
     <div className="pt-3 w-full">
@@ -52,6 +66,7 @@ export const ListTodo = memo<Props>((props) => {
               todo={todo}
               key={`todo-${todo.task}-${todo.id}`}
               target={props.target}
+              length={todosLen}
             />
           );
         })}
