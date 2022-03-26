@@ -17,7 +17,10 @@ const EditPage: NextPage = () => {
   };
 
   const handleChangeAvatar = () => {
-    alert("画像を変えるよ");
+    <div className="App">
+      <input type="file" />
+      <button>Upload</button>
+    </div>;
   };
 
   return (
