@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { getStringFromDate } from "src/libs/dateFunc";
 import { useStore } from "src/libs/store";
 import type { Target, TodosState } from "src/types";
 
@@ -7,19 +8,6 @@ import { TodoRecord } from "./TodoRecord";
 type Props = {
   title?: string;
   target: Target;
-};
-
-const getStringFromDate = (date: Date) => {
-  const year_str: string = date.getFullYear().toString();
-  //月だけ+1すること
-  const month_str: string = 1 + date.getMonth().toString();
-  const day_str: string = date.getDate().toString();
-
-  let format_str = "YYYY-MM-DD";
-  format_str = format_str.replace(/YYYY/g, year_str);
-  format_str = format_str.replace(/MM/g, month_str);
-  format_str = format_str.replace(/DD/g, day_str);
-  return format_str;
 };
 
 export const ListTodo = memo<Props>((props) => {

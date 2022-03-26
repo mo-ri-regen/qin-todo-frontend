@@ -4,12 +4,31 @@ import { Fragment, useEffect } from "react";
 import { ListTodo } from "src/components/ListTodo";
 import { Layout } from "src/layout";
 import { FooterButtons } from "src/layout/Footer/FooterButtons";
+import { getStringFromDate } from "src/libs/dateFunc";
 import { useStore } from "src/libs/store";
+import type { TodosState } from "src/types";
 
 const Home = () => {
   const getTodos = useStore((state) => {
     return state.getTodos;
   });
+  const allTodos = useStore((state: TodosState) => {
+    return state.todos;
+  });
+  const date = new Date();
+  const strDate = getStringFromDate(date);
+
+  const todayTodosLen = allTodos.filter((todo) => {
+    return (
+      (todo.dueDate <= strDate && todo.dueDate != "") || todo.completeDate != ""
+    );
+  }).length;
+  const nextdayTodosLen = allTodos.filter((todo) => {
+    return todo.dueDate > strDate && todo.completeDate == "";
+  }).length;
+  const otherTodosLen = allTodos.filter((todo) => {
+    return todo.dueDate == "";
+  }).length;
 
   useEffect(() => {
     getTodos();
@@ -18,7 +37,6 @@ const Home = () => {
 
   const AddTaskButton = () => {
     return (
-      // {ListTodo.===0?null: //ここに何かを渡してない場合は「タスクを追加」を表示させる処理をさせたい
       <Popover.Button>
         <div className="flex items-center mb-3">
           <button className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full">
@@ -42,7 +60,7 @@ const Home = () => {
                   今日する
                 </div>
                 <div className="flex flex-col lg:flex-col-reverse">
-                  <AddTaskButton />
+                  {todayTodosLen === 0 && <AddTaskButton />}
                   <ListTodo title="今日する" target="1" />
                 </div>
               </div>
@@ -52,7 +70,7 @@ const Home = () => {
                   明日する
                 </div>
                 <div className="flex flex-col lg:flex-col-reverse">
-                  <AddTaskButton />
+                  {nextdayTodosLen === 0 && <AddTaskButton />}
                   <ListTodo title="明日する" target="2" />
                 </div>
               </div>
@@ -61,7 +79,7 @@ const Home = () => {
                   今度する
                 </div>
                 <div className="flex flex-col lg:flex-col-reverse">
-                  <AddTaskButton />
+                  {otherTodosLen === 0 && <AddTaskButton />}
                   <ListTodo title="今度する" target="3" />
                 </div>
               </div>
