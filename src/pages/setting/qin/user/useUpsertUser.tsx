@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { API_URL } from "src/api/endpoint";
 import type { UserType } from "src/api/handler/user/type";
 import { isUserType } from "src/api/handler/user/type";
-import { useUser } from "src/util/user";
+import { useUser } from "src/libs/user";
 
 import type { UserForm } from "./ProfileForm";
 
