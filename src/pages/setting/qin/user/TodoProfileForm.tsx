@@ -1,7 +1,7 @@
 import { useAuthUser } from "next-firebase-auth";
 import type { VFC } from "react";
 import { useForm } from "react-hook-form";
-import { MyAvater } from "src/components/Avatar/MyAvater";
+import { Avatar } from "src/components/Avatar";
 import { Button } from "src/components/Button";
 import { useUser } from "src/libs/user";
 
@@ -15,7 +15,13 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
   const AuthUser = useAuthUser();
   const { user } = useUser();
 
-  const { selectedFile, handleOpenFileDialog } = useFile();
+  const {
+    imageRef,
+    imageUrl,
+    selectedFile,
+    handleChangeFile,
+    handleOpenFileDialog,
+  } = useFile();
   const { isUpserting, upsertUser } = useUpsertUser(selectedFile);
 
   const { handleSubmit } = useForm<UserForm>({
@@ -32,8 +38,22 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
           <div className="space-y-1">
             <div className="text-sm font-bold text-gray-400">アイコン</div>
             <div className="flex justify-between">
-              <MyAvater />
+              <Avatar
+                noDialog
+                src={imageUrl ?? user?.avatarUrl ?? AuthUser.photoURL ?? ""}
+                alt={user?.accountName}
+                width={96}
+                height={96}
+                className="w-24 h-24"
+              />
               <div>
+                <input
+                  ref={imageRef}
+                  type="file"
+                  className="hidden"
+                  onChange={handleChangeFile}
+                  accept="image/png, image/jpeg"
+                />
                 <Button
                   variant="solid-gray"
                   className="py-2.5 px-5 mt-4"
