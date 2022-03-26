@@ -16,10 +16,8 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
   const { user } = useUser();
 
   const {
-    imageRef,
     imageUrl,
     selectedFile,
-    handleChangeFile,
     handleOpenFileDialog,
   } = useFile();
   const { isUpserting, upsertUser } = useUpsertUser(selectedFile);
@@ -47,13 +45,6 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
                 className="w-24 h-24"
               />
               <div>
-                <input
-                  ref={imageRef}
-                  type="file"
-                  className="hidden"
-                  onChange={handleChangeFile}
-                  accept="image/png, image/jpeg"
-                />
                 <Button
                   variant="solid-gray"
                   className="py-2.5 px-5 mt-4"
@@ -87,7 +78,7 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
         <li>
           <div className="mt-12 space-y-4">
             <Button
-              type="submit"
+              // type="submit"
               variant="solid-blue"
               className="p-3 w-full"
               disabled={isUpserting}
