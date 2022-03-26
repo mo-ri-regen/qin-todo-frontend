@@ -21,13 +21,10 @@ export type PostTodo = {
 export type TodosState = {
   todos: ListTodo[];
   editTodo: PostTodo;
-  isFooterShow: boolean;
   getTodos: () => void;
   addTodo: (postTodo: PostTodo) => void;
   removeTodo: (id: string) => void;
   toggleDone: (todo: ListTodo) => void;
-  toggleIsFooterShow: () => void;
-  toggleFooterFocus: () => void;
   setEditTodo: (postTodo: PostTodo) => void;
 };
 

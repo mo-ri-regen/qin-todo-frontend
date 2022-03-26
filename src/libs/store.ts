@@ -20,7 +20,6 @@ const useStore = create<TodosState>(
     return {
       todos: [],
       editTodo: initEditTodo,
-      isFooterShow: false,
       getTodos: async () => {
         const response = await axios.get<ListTodo[]>(apiUrl);
         set({ todos: response.data });
@@ -101,16 +100,6 @@ const useStore = create<TodosState>(
               return editTodo;
             }),
           };
-        });
-      },
-      toggleIsFooterShow: () => {
-        return set((state) => {
-          return { isFooterShow: !state.isFooterShow };
-        });
-      },
-      toggleFooterFocus: () => {
-        return set((state) => {
-          return { isFooterShow: !state.isFooterShow };
         });
       },
       setEditTodo: (postTodo: PostTodo) => {
