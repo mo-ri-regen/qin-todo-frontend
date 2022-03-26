@@ -87,7 +87,7 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
         <li>
           <div className="mt-12 space-y-4">
             <Button
-              // type="submit"
+              type="submit"
               variant="solid-blue"
               className="p-3 w-full"
               disabled={isUpserting}
