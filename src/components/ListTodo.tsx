@@ -1,8 +1,9 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import { getStringFromDate } from "src/libs/dateFunc";
 import { useStore } from "src/libs/store";
 import type { Target, TodosState } from "src/types";
 
+import { AddTaskButton } from "./shared/Buttons/AddTaskButton";
 import { TodoRecord } from "./TodoRecord";
 
 type Props = {
@@ -31,6 +32,26 @@ export const ListTodo = memo<Props>((props) => {
         );
     }
   });
+  const [isInput, setIsInput] = useState<boolean>(false);
+
+  const AddPcTaskButton = () => {
+    const handleOnClick = () => {
+      setIsInput(true);
+    };
+    const handleOnBlur = () => {
+      setIsInput(false);
+    };
+    return (
+      <div className="hidden lg:block">
+        {isInput ? (
+          <input onBlur={handleOnBlur} autoFocus />
+        ) : (
+          <AddTaskButton onClick={handleOnClick} onBlur={handleOnBlur} />
+        )}
+      </div>
+      // }
+    );
+  };
 
   return (
     <div className="pt-3 w-full">
@@ -44,6 +65,7 @@ export const ListTodo = memo<Props>((props) => {
             />
           );
         })}
+        <AddPcTaskButton />
       </ol>
     </div>
   );

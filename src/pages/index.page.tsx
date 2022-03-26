@@ -2,6 +2,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { AuthAction, withAuthUser } from "next-firebase-auth";
 import { Fragment, useEffect } from "react";
 import { ListTodo } from "src/components/ListTodo";
+import { AddTaskButton } from "src/components/shared/Buttons/AddTaskButton";
 import { Layout } from "src/layout";
 import { FooterButtons } from "src/layout/Footer/FooterButtons";
 import { getStringFromDate } from "src/libs/dateFunc";
@@ -35,15 +36,10 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const AddTaskButton = () => {
+  const AddMobileTaskButton = () => {
     return (
       <Popover.Button>
-        <div className="flex items-center mb-3">
-          <button className="px-2 mr-2 w-6 h-6 text-white bg-gray-300 rounded-full">
-            +
-          </button>
-          <div className="text-gray-300">タスクを追加する</div>
-        </div>
+        <AddTaskButton />
       </Popover.Button>
       // }
     );
@@ -59,8 +55,8 @@ const Home = () => {
                 <div className="mb-3 text-2xl font-semibold text-primary">
                   今日する
                 </div>
-                <div className="flex flex-col lg:flex-col-reverse">
-                  {todayTodosLen === 0 && <AddTaskButton />}
+                <div className="flex flex-col">
+                  {todayTodosLen === 0 && <AddMobileTaskButton />}
                   <ListTodo title="今日する" target="1" />
                 </div>
               </div>
@@ -69,8 +65,8 @@ const Home = () => {
                 <div className="mb-3 text-2xl font-semibold text-secondary">
                   明日する
                 </div>
-                <div className="flex flex-col lg:flex-col-reverse">
-                  {nextdayTodosLen === 0 && <AddTaskButton />}
+                <div className="flex flex-col">
+                  {nextdayTodosLen === 0 && <AddMobileTaskButton />}
                   <ListTodo title="明日する" target="2" />
                 </div>
               </div>
@@ -78,8 +74,8 @@ const Home = () => {
                 <div className="mb-3 text-2xl font-semibold text-tertiary">
                   今度する
                 </div>
-                <div className="flex flex-col lg:flex-col-reverse">
-                  {otherTodosLen === 0 && <AddTaskButton />}
+                <div className="flex flex-col">
+                  {otherTodosLen === 0 && <AddMobileTaskButton />}
                   <ListTodo title="今度する" target="3" />
                 </div>
               </div>
