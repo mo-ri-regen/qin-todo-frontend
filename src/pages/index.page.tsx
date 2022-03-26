@@ -41,23 +41,29 @@ const Home = () => {
                 <div className="mb-3 text-2xl font-semibold text-primary">
                   今日する
                 </div>
-                <AddTaskButton />
-                <ListTodo title="今日する" target="1" />
+                <div className="flex flex-col lg:flex-col-reverse">
+                  <AddTaskButton />
+                  <ListTodo title="今日する" target="1" />
+                </div>
               </div>
               <div>
                 <div />
                 <div className="mb-3 text-2xl font-semibold text-secondary">
                   明日する
                 </div>
-                <AddTaskButton />
-                <ListTodo title="明日する" target="2" />
+                <div className="flex flex-col lg:flex-col-reverse">
+                  <AddTaskButton />
+                  <ListTodo title="明日する" target="2" />
+                </div>
               </div>
               <div>
                 <div className="mb-3 text-2xl font-semibold text-tertiary">
                   今度する
                 </div>
-                <AddTaskButton />
-                <ListTodo title="今度する" target="3" />
+                <div className="flex flex-col lg:flex-col-reverse">
+                  <AddTaskButton />
+                  <ListTodo title="今度する" target="3" />
+                </div>
               </div>
 
               <div className="relative">
