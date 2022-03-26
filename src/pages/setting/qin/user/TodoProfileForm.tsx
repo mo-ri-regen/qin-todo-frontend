@@ -2,8 +2,8 @@ import { useAuthUser } from "next-firebase-auth";
 import type { VFC } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "src/components/Button";
+import { useUser } from "src/libs/user";
 
-// import { useUser } from "src/libs/user";
 import { useFile } from "./useFile";
 import { useUpsertUser } from "./useUpsertUser";
 
@@ -12,17 +12,17 @@ type ProfileFormProps = { accountName?: string; userName?: string };
 
 export const TodoProfileForm: VFC<ProfileFormProps> = () => {
   const AuthUser = useAuthUser();
-  // const { user } = useUser();
+  const { user } = useUser();
   const initial = AuthUser.displayName?.slice(0, 1);
 
   const { selectedFile, handleOpenFileDialog } = useFile();
   const { isUpserting, upsertUser } = useUpsertUser(selectedFile);
 
   const { handleSubmit } = useForm<UserForm>({
-    // defaultValues: {
-    //   accountName: user?.accountName ?? authUser.displayName ?? "",
-    //   userName: user?.userName ?? "",
-    // },
+    defaultValues: {
+      accountName: user?.accountName ?? AuthUser.displayName ?? "",
+      userName: user?.userName ?? "",
+    },
   });
 
   return (
