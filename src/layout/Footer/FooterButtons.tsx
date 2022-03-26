@@ -32,7 +32,6 @@ export const FooterButtons: VFC = () => {
       addTodo(postTodo);
       setInputTodo("");
       setEditTodo(initEditTodo);
-      // toggleIsFooterShow();
     }
   };
   const handleAddTodoTommorow = () => {
@@ -51,7 +50,6 @@ export const FooterButtons: VFC = () => {
       addTodo(postTodo);
       setInputTodo("");
       setEditTodo(initEditTodo);
-      // toggleIsFooterShow();
     }
   };
   const handleAddTodo = () => {
