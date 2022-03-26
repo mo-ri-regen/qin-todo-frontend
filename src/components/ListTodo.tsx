@@ -8,6 +8,7 @@ import { TodoRecord } from "./TodoRecord";
 type Props = {
   title?: string;
   target: Target;
+  length?: number;
 };
 
 export const ListTodo = memo<Props>((props) => {

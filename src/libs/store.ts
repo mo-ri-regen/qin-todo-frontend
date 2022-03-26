@@ -20,7 +20,6 @@ const useStore = create<TodosState>(
     return {
       todos: [],
       editTodo: initEditTodo,
-      isFooterShow: false,
       getTodos: async () => {
         const response = await axios.get<ListTodo[]>(apiUrl);
         set({ todos: response.data });
