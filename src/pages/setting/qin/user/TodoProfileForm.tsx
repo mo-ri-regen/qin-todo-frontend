@@ -1,18 +1,32 @@
 import { useAuthUser } from "next-firebase-auth";
+import type { VFC } from "react";
+import { useForm } from "react-hook-form";
+import { Button } from "src/components/Button";
 
-export const TodoProfileForm = () => {
+// import { useUser } from "src/libs/user";
+import { useFile } from "./useFile";
+import { useUpsertUser } from "./useUpsertUser";
+
+export type UserForm = { accountName: string; userName: string };
+type ProfileFormProps = { accountName?: string; userName?: string };
+
+export const TodoProfileForm: VFC<ProfileFormProps> = () => {
   const AuthUser = useAuthUser();
-
+  // const { user } = useUser();
   const initial = AuthUser.displayName?.slice(0, 1);
 
-  const handleChangeAvatar = () => {
-    <div className="App">
-      <input type="file" />
-      <button>Upload</button>
-    </div>;
-  };
+  const { selectedFile, handleOpenFileDialog } = useFile();
+  const { isUpserting, upsertUser } = useUpsertUser(selectedFile);
+
+  const { handleSubmit } = useForm<UserForm>({
+    // defaultValues: {
+    //   accountName: user?.accountName ?? authUser.displayName ?? "",
+    //   userName: user?.userName ?? "",
+    // },
+  });
+
   return (
-    <div>
+    <form onSubmit={handleSubmit(upsertUser)}>
       <ul className="space-y-8">
         <li>
           <div className="space-y-1">
@@ -33,13 +47,13 @@ export const TodoProfileForm = () => {
                 )}
               </div>
               <div>
-                <button
-                  onClick={handleChangeAvatar}
-                  type="button"
-                  className="grid place-items-center py-2.5 px-5 mt-4 font-bold bg-gray-100 hover:bg-gray-200 focus-visible:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus-visible:bg-gray-600 rounded-full focus-visible:ring-2 focus-visible:ring-blue-400 transition duration-200 ease-in-out focus:outline-none"
+                <Button
+                  variant="solid-gray"
+                  className="py-2.5 px-5 mt-4"
+                  onClick={handleOpenFileDialog}
                 >
-                  変更する
-                </button>
+                  {AuthUser ? "変更する" : "設定する"}
+                </Button>
               </div>
             </div>
           </div>
@@ -55,7 +69,6 @@ export const TodoProfileForm = () => {
                     id="accountName"
                     className="py-6 pr-5 pl-5 mt-0.5 w-full h-10 font-bold bg-gray-100 dark:bg-gray-700 dark:focus:bg-gray-600 rounded-full border-none focus:ring-2 focus:ring-blue-400 focus:outline-none"
                     autoComplete="off"
-                    // label='名前'
                     name="accountName"
                     value={!AuthUser.displayName ? "" : AuthUser.displayName}
                   />
@@ -66,16 +79,18 @@ export const TodoProfileForm = () => {
         </li>
         <li>
           <div className="mt-12 space-y-4">
-            <button
-              type="submit"
-              className="grid place-items-center p-3 w-full font-bold text-white bg-blue-500 hover:bg-blue-600 focus-visible:bg-blue-600 rounded-full focus-visible:ring-2 focus-visible:ring-blue-400 transition duration-200 ease-in-out focus:outline-none"
+            <Button
+              // type="submit"
+              variant="solid-blue"
+              className="p-3 w-full"
+              disabled={isUpserting}
             >
               保存する
-            </button>
+            </Button>
           </div>
         </li>
       </ul>
-    </div>
+    </form>
   );
 };
 
