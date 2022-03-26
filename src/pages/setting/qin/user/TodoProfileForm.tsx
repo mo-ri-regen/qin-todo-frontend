@@ -1,6 +1,7 @@
 import { useAuthUser } from "next-firebase-auth";
 import type { VFC } from "react";
 import { useForm } from "react-hook-form";
+import { MyAvater } from "src/components/Avatar/MyAvater";
 import { Button } from "src/components/Button";
 import { useUser } from "src/libs/user";
 
@@ -13,7 +14,6 @@ type ProfileFormProps = { accountName?: string; userName?: string };
 export const TodoProfileForm: VFC<ProfileFormProps> = () => {
   const AuthUser = useAuthUser();
   const { user } = useUser();
-  const initial = AuthUser.displayName?.slice(0, 1);
 
   const { selectedFile, handleOpenFileDialog } = useFile();
   const { isUpserting, upsertUser } = useUpsertUser(selectedFile);
@@ -32,20 +32,7 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
           <div className="space-y-1">
             <div className="text-sm font-bold text-gray-400">アイコン</div>
             <div className="flex justify-between">
-              <div className="flex justify-start items-center space-x-6">
-                {AuthUser.photoURL ? (
-                  <div
-                    style={{ backgroundImage: `url(${AuthUser.photoURL})` }}
-                    className="object-cover object-center overflow-hidden w-24 h-24 rounded-full ring-1 ring-blue-100"
-                  ></div>
-                ) : (
-                  <div className="object-cover object-center overflow-hidden w-24 h-24 bg-blue-500 rounded-full">
-                    <div className="pt-5 text-5xl text-center text-white">
-                      {initial}
-                    </div>
-                  </div>
-                )}
-              </div>
+              <MyAvater />
               <div>
                 <Button
                   variant="solid-gray"
