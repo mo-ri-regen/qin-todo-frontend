@@ -1,12 +1,8 @@
 import { useAuthUser } from "next-firebase-auth";
 import type { VFC } from "react";
 import { useForm } from "react-hook-form";
-<<<<<<< HEAD
 import { Avatar } from "src/components/Avatar";
-=======
-import { MyAvater } from "src/components/Avatar/MyAvater";
->>>>>>> cdce798 (Avaterをコンポーネント化)
-import { Button } from "src/components/Button";
+import { Button } from "src/components/shared/Buttons";
 import { useUser } from "src/libs/user";
 
 import { useFile } from "./useFile";
@@ -48,7 +44,6 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
                 height={96}
                 className="w-24 h-24"
               />
-              <MyAvater />
               <div>
                 <Button
                   variant="solid-gray"

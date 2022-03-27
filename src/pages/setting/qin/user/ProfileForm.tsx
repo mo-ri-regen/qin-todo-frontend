@@ -3,8 +3,8 @@ import type { VFC } from "react";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { Avatar } from "src/components/Avatar";
-import { Button } from "src/components/Button";
 import { Input } from "src/components/Form/Input";
+import { Button } from "src/components/shared/Buttons";
 import { useUser } from "src/libs/user";
 
 import { useFile } from "./useFile";
