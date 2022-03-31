@@ -11,7 +11,7 @@ export const EXAMPLE_MY_TODO_LIST: ListTodo[] = [
     completeDate: "",
     isDone: false,
     createAt: getToday(),
-    updateAt: "2022-03-01",
+    updateAt: getToday(),
   },
   {
     id: "9",
@@ -22,7 +22,7 @@ export const EXAMPLE_MY_TODO_LIST: ListTodo[] = [
     completeDate: "",
     isDone: false,
     createAt: getToday(),
-    updateAt: "2022-03-01",
+    updateAt: getToday(),
   },
   {
     id: "8",
@@ -33,7 +33,7 @@ export const EXAMPLE_MY_TODO_LIST: ListTodo[] = [
     completeDate: "",
     isDone: false,
     createAt: getToday(),
-    updateAt: "2022-03-01",
+    updateAt: getToday(),
   },
   {
     id: "7",
@@ -44,7 +44,7 @@ export const EXAMPLE_MY_TODO_LIST: ListTodo[] = [
     completeDate: "",
     isDone: false,
     createAt: getToday(),
-    updateAt: "2022-03-01",
+    updateAt: getToday(),
   },
   {
     id: "6",
@@ -55,7 +55,7 @@ export const EXAMPLE_MY_TODO_LIST: ListTodo[] = [
     completeDate: "",
     isDone: false,
     createAt: getToday(),
-    updateAt: "2022-03-01",
+    updateAt: getToday(),
   },
   {
     id: "5",
@@ -66,7 +66,7 @@ export const EXAMPLE_MY_TODO_LIST: ListTodo[] = [
     completeDate: "",
     isDone: false,
     createAt: getToday(),
-    updateAt: "2022-03-01",
+    updateAt: getToday(),
   },
   {
     id: "4",
