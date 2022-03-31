@@ -57,7 +57,7 @@ const Home = () => {
                 </div>
                 <div className="flex flex-col">
                   {todayTodosLen === 0 && <AddMobileTaskButton />}
-                  <ListTodo title="今日する" target="1" />
+                  <ListTodo title="今日する" target="today" />
                 </div>
               </div>
               <div>
@@ -67,7 +67,7 @@ const Home = () => {
                 </div>
                 <div className="flex flex-col">
                   {nextdayTodosLen === 0 && <AddMobileTaskButton />}
-                  <ListTodo title="明日する" target="2" />
+                  <ListTodo title="明日する" target="nextday" />
                 </div>
               </div>
               <div>
@@ -76,7 +76,7 @@ const Home = () => {
                 </div>
                 <div className="flex flex-col">
                   {otherTodosLen === 0 && <AddMobileTaskButton />}
-                  <ListTodo title="今度する" target="3" />
+                  <ListTodo title="今度する" target="other" />
                 </div>
               </div>
 

@@ -3,11 +3,11 @@ import clsx from "clsx";
 import { memo, useRef } from "react";
 
 import { useStore } from "../libs/store";
-import type { ListTodo, TodosState } from "../types";
+import type { ListTodo, Target, TodosState } from "../types";
 
 type Props = {
   todo: ListTodo;
-  target: "1" | "2" | "3";
+  target: Target;
 };
 
 export const TodoRecord = memo<Props>((props) => {
@@ -35,9 +35,9 @@ export const TodoRecord = memo<Props>((props) => {
           className={clsx(
             "mr-4 w-6 h-6 rounded-full ring-0 focus:ring-gray-400",
             {
-              "text-primary": props.target == "1",
-              "text-secondary": props.target == "2",
-              "text-tertiary": props.target == "3",
+              "text-primary": props.target === "today",
+              "text-secondary": props.target === "nextday",
+              "text-tertiary": props.target === "other",
             }
           )}
           type="checkbox"

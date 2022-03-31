@@ -28,4 +28,4 @@ export type TodosState = {
   setEditTodo: (postTodo: PostTodo) => void;
 };
 
-export type Target = "1" | "2" | "3";
+export type Target = "today" | "nextday" | "other";
