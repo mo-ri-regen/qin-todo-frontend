@@ -1,4 +1,4 @@
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes } from "firebase/storage";
 import { useRouter } from "next/router";
 import { useAuthUser } from "next-firebase-auth";
 import { useCallback, useState } from "react";
@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { API_URL } from "src/api/endpoint";
 // import type { UserType } from "src/api/handler/user/type";
 import { isUserType } from "src/api/handler/user/type";
+import { storage } from "src/libs/auth/initAuth";
 import { useUser } from "src/libs/user";
 
 import type { UserForm } from "./ProfileForm";
@@ -50,7 +51,6 @@ export const useUpsertUser = (selectedFile?: File) => {
 
       // 画像の登録処理
       if (selectedFile) {
-        const storage = getStorage();
         await uploadBytes(ref(storage, authUser.id), selectedFile);
         // TODO: 現在画像のリサイズに時間がかかっており、表示できなくなるため、あえて2秒待機させる
         await sleep(2000);
