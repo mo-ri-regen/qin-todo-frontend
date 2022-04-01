@@ -4,7 +4,7 @@ import { useAuthUser } from "next-firebase-auth";
 import { useCallback, useState } from "react";
 import toast from "react-hot-toast";
 import { API_URL } from "src/api/endpoint";
-import type { UserType } from "src/api/handler/user/type";
+// import type { UserType } from "src/api/handler/user/type";
 import { isUserType } from "src/api/handler/user/type";
 import { useUser } from "src/libs/user";
 
@@ -38,15 +38,15 @@ export const useUpsertUser = (selectedFile?: File) => {
       }
 
       // ユーザー名の重複が無いか確認
-      if (user?.userName !== formData.userName) {
-        const getUserResponse = await fetch(
-          `${API_URL}/users/${formData.userName}`
-        );
-        const searchedUser: UserType | undefined = await getUserResponse.json();
-        if (formData.userName === searchedUser?.userName) {
-          throw new Error("既に存在するユーザー名です");
-        }
-      }
+      // if (user?.userName !== formData.userName) {
+      //   const getUserResponse = await fetch(
+      //     `${API_URL}/users/${formData.userName}`
+      //   );
+      //   const searchedUser: UserType | undefined = await getUserResponse.json();
+      //   if (formData.userName === searchedUser?.userName) {
+      //     throw new Error("既に存在するユーザー名です");
+      //   }
+      // }
 
       // 画像の登録処理
       if (selectedFile) {
