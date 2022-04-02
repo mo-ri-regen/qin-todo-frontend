@@ -1,6 +1,11 @@
+import { useDroppable } from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 import { memo, useState } from "react";
 import { getStringFromDate } from "src/libs/dateFunc";
-import { useStore } from "src/libs/store";
+import { selectTodos, useStore } from "src/libs/store";
 import type { Target, TodosState } from "src/types";
 
 import { AddTaskButton } from "./shared/Buttons/AddTaskButton";
@@ -19,18 +24,9 @@ export const ListTodo = memo<Props>((props) => {
   const date = new Date();
   const strDate = getStringFromDate(date);
 
-  const todos = allTodos.filter((todo) => {
-    switch (props.target) {
-      case "3": // 「今度やる」のデータ抽出
-        return todo.dueDate == "";
-      case "2": // 「明日やる」のデータ抽出
-        return todo.dueDate > strDate && todo.completeDate == "";
-      case "1": // 「今日やる」のデータ抽出
-        return (
-          (todo.dueDate <= strDate && todo.dueDate != "") ||
-          todo.completeDate != ""
-        );
-    }
+  const todos = selectTodos(allTodos, strDate, props.target);
+  const todoIds = todos.map((todoTask) => {
+    return String(todoTask.id);
   });
   const [isInput, setIsInput] = useState<boolean>(false);
 
@@ -53,19 +49,42 @@ export const ListTodo = memo<Props>((props) => {
     );
   };
 
+  const { setNodeRef } = useDroppable({
+    id: props.target,
+    data: {
+      type: "container",
+      children: todos,
+    },
+  });
+
   return (
     <div className="pt-3 w-full">
       <ol>
-        {todos.map((todo) => {
-          return (
-            <TodoRecord
-              todo={todo}
-              key={`todo-${todo.task}-${todo.id}`}
-              target={props.target}
-            />
-          );
-        })}
-        <AddPcTaskButton />
+        <div
+          ref={setNodeRef}
+          style={
+            {
+              "--columns": 1,
+            } as React.CSSProperties
+          }
+        >
+          <SortableContext
+            id={props.target}
+            items={todoIds}
+            strategy={verticalListSortingStrategy}
+          >
+            {todos.map((todo) => {
+              return (
+                <TodoRecord
+                  todo={todo}
+                  key={`todo-${todo.task}-${todo.id}`}
+                  target={props.target}
+                />
+              );
+            })}
+            <AddPcTaskButton />
+          </SortableContext>
+        </div>
       </ol>
     </div>
   );
