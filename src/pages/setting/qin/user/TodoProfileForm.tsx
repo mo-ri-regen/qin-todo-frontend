@@ -15,11 +15,7 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
   const AuthUser = useAuthUser();
   const { user } = useUser();
 
-  const {
-    imageUrl,
-    selectedFile,
-    handleOpenFileDialog,
-  } = useFile();
+  const { imageUrl, selectedFile, handleOpenFileDialog } = useFile();
   const { isUpserting, upsertUser } = useUpsertUser(selectedFile);
 
   const { handleSubmit } = useForm<UserForm>({
@@ -78,7 +74,7 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
         <li>
           <div className="mt-12 space-y-4">
             <Button
-              // type="submit"
+              type="submit"
               variant="solid-blue"
               className="p-3 w-full"
               disabled={isUpserting}
