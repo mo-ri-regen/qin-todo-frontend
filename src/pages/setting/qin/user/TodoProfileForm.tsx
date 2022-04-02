@@ -3,7 +3,6 @@ import type { VFC } from "react";
 import { useForm } from "react-hook-form";
 import { Avatar } from "src/components/Avatar";
 import { Button } from "src/components/shared/Buttons";
-import { useUser } from "src/libs/user";
 
 import { useFile } from "./useFile";
 import { useUpsertUser } from "./useUpsertUser";
@@ -13,7 +12,6 @@ type ProfileFormProps = { accountName?: string; userName?: string };
 
 export const TodoProfileForm: VFC<ProfileFormProps> = () => {
   const AuthUser = useAuthUser();
-  const { user } = useUser();
 
   const {
     selectedFile,
@@ -25,8 +23,8 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
   const { isUpserting, upsertUser } = useUpsertUser(selectedFile);
   const { handleSubmit } = useForm<UserForm>({
     defaultValues: {
-      accountName: user?.accountName ?? AuthUser.displayName ?? "",
-      userName: user?.userName ?? "",
+      accountName: AuthUser.displayName ?? "",
+      userName: AuthUser.displayName ?? "",
     },
   });
 
@@ -39,8 +37,8 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
             <div className="flex justify-between">
               <Avatar
                 noDialog
-                src={imageUrl ?? user?.avatarUrl ?? AuthUser.photoURL ?? ""}
-                alt={user?.accountName}
+                src={imageUrl ?? AuthUser.photoURL ?? ""}
+                alt={imageUrl ?? AuthUser.displayName ?? ""}
                 width={96}
                 height={96}
                 className="w-24 h-24"

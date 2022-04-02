@@ -8,7 +8,7 @@ import { isUserType } from "src/api/handler/user/type";
 import { storage } from "src/libs/auth/initAuth";
 import { useUser } from "src/libs/user";
 
-import type { UserForm } from "./ProfileForm";
+import type { UserForm } from "./TodoProfileForm";
 
 const createAvatarUrl = (uid: string) => {
   const filePath = encodeURIComponent(`thumbnails/${uid}_200x200`);
