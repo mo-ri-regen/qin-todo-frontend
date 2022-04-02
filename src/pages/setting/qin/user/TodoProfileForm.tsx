@@ -56,7 +56,7 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
                   className="py-2.5 px-5 mt-4"
                   onClick={handleOpenFileDialog}
                 >
-                  {AuthUser ? "変更する" : "設定する"}
+                  変更する
                 </Button>
               </div>
             </div>
