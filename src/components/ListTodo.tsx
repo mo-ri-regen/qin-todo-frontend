@@ -21,6 +21,9 @@ export const ListTodo = memo<Props>((props) => {
   const allTodos = useStore((state: TodosState) => {
     return state.todos;
   });
+  const toggleIsAddInput = useStore((state) => {
+    return state.toggleIsAddInput;
+  });
   const date = new Date();
   const strDate = getStringFromDate(date);
 
@@ -33,9 +36,11 @@ export const ListTodo = memo<Props>((props) => {
   const AddPcTaskButton = () => {
     const handleOnClick = () => {
       setIsInput(true);
+      toggleIsAddInput(true);
     };
     const handleOnBlur = () => {
       setIsInput(false);
+      toggleIsAddInput(false);
     };
     return (
       <div className="hidden lg:block">

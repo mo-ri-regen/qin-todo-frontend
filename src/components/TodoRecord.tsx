@@ -25,6 +25,16 @@ export const TodoRecord = memo<Props>((props) => {
   const handleRemoveTodo = () => {
     return removeTodo(props.todo.id);
   };
+  const setEditTodo = useStore((state) => {
+    return state.setEditTodo;
+  });
+  const toggleIsAddInput = useStore((state) => {
+    return state.toggleIsAddInput;
+  });
+  const handleAddTodoToday = () => {
+    setEditTodo(props.todo);
+    toggleIsAddInput(true);
+  };
   const handleDupulicateTodo = () => {
     return alert("複製する処理");
   };
@@ -58,13 +68,15 @@ export const TodoRecord = memo<Props>((props) => {
             ref={focusRef}
             tabIndex={-1}
             className={clsx(
-              "px-6 m-0 my-auto w-full dark:bg-gray-700 dark:focus:bg-transparent rounded-full border-none focus:ring-blue-300 cursor-text",
+              "px-6 m-0 my-auto w-full dark:bg-gray-700 dark:focus:bg-transparent border-none focus:ring-blue-300 cursor-text",
               {
                 "line-through": props.todo.isDone,
               }
             )}
           >
-            {props.todo.task}
+            <button className="w-full text-left" onClick={handleAddTodoToday}>
+              {props.todo.task}
+            </button>
           </div>
         </div>
         <div className="flex w-1/6 opacity-10 group-hover:opacity-100">

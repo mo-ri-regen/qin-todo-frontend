@@ -47,6 +47,7 @@ const useStore = create<TodosState>(
   devtools((set) => {
     return {
       todos: [],
+      isAddInput: false,
       activeId: null,
       activeTarget: null,
       orveTarget: null,
@@ -96,6 +97,11 @@ const useStore = create<TodosState>(
               return todo.id !== id;
             }),
           };
+        });
+      },
+      toggleIsAddInput: (isAddInput: boolean) => {
+        return set(() => {
+          return { isAddInput: isAddInput };
         });
       },
       toggleDone: async (editTodo: ListTodo) => {
