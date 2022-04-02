@@ -3,7 +3,7 @@ export const getToday = () => {
   const date = new Date();
   const year_str: string = date.getFullYear().toString();
   //月だけ+1すること
-  const month_str: string = 1 + date.getMonth().toString();
+  const month_str: string = (date.getMonth() + 1).toString();
   const day_str: string = date.getDate().toString();
 
   let format_str = "YYYY-MM-DD";
@@ -19,7 +19,7 @@ export const getTommorow = () => {
   date.setDate(date.getDate() + 1);
   const year_str: string = date.getFullYear().toString();
   //月だけ+1すること
-  const month_str: string = 1 + date.getMonth().toString();
+  const month_str: string = (date.getMonth() + 1).toString();
   const day_str: string = date.getDate().toString();
 
   let format_str = "YYYY-MM-DD";
@@ -33,7 +33,7 @@ export const getTommorow = () => {
 export const getStringFromDate = (date: Date) => {
   const year_str: string = date.getFullYear().toString();
   //月だけ+1すること
-  const month_str: string = 1 + date.getMonth().toString();
+  const month_str: string = (date.getMonth() + 1).toString();
   const day_str: string = date.getDate().toString();
 
   let format_str = "YYYY-MM-DD";
