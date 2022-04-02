@@ -1,4 +1,4 @@
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytesResumable } from "firebase/storage";
 import { useRouter } from "next/router";
 import { useAuthUser } from "next-firebase-auth";
 import { useCallback, useState } from "react";
@@ -41,8 +41,7 @@ export const useUpsertUser = (selectedFile?: File) => {
       // 画像の登録処理
       if (selectedFile) {
         const sotrageRef = ref(storage, `thumbnails/${authUser.id}`);
-
-        await uploadBytes(ref(sotrageRef, authUser.id), selectedFile);
+        uploadBytesResumable(sotrageRef, selectedFile);
         // TODO: 現在画像のリサイズに時間がかかっており、表示できなくなるため、あえて2秒待機させる
         await sleep(2000);
       }
