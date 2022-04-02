@@ -15,9 +15,14 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
   const AuthUser = useAuthUser();
   const { user } = useUser();
 
-  const { imageUrl, selectedFile, handleOpenFileDialog } = useFile();
+  const {
+    selectedFile,
+    imageUrl,
+    imageRef,
+    handleChangeFile,
+    handleOpenFileDialog,
+  } = useFile();
   const { isUpserting, upsertUser } = useUpsertUser(selectedFile);
-
   const { handleSubmit } = useForm<UserForm>({
     defaultValues: {
       accountName: user?.accountName ?? AuthUser.displayName ?? "",
@@ -39,6 +44,13 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
                 width={96}
                 height={96}
                 className="w-24 h-24"
+              />
+              <input
+                ref={imageRef}
+                type="file"
+                className="hidden"
+                onChange={handleChangeFile}
+                accept="image/png, image/jpeg"
               />
               <div>
                 <Button
