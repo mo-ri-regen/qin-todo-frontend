@@ -29,6 +29,7 @@ const Demo = () => {
       setProgress(prog);
     });
   };
+
   return (
     <div className="flex flex-col mx-10 mt-10 min-h-screen">
       <div className="mb-10">
@@ -41,6 +42,14 @@ const Demo = () => {
         </form>
         <hr />
         <h2>Uploading done {progress}%</h2>
+      </div>
+      <div className="mt-10">
+        <div
+          style={{
+            background: `center / cover no-repeat url(https://firebasestorage.googleapis.com/v0/b/clerk-projects.appspot.com/o/thumbnails%2F${AuthUser.id}?alt=media&token=236329d2-675f-4d13-831e-05f20242e4ea)`,
+          }}
+          className="object-cover object-center overflow-hidden w-24 h-24 rounded-full ring-1 ring-blue-100"
+        ></div>
       </div>
     </div>
   );
