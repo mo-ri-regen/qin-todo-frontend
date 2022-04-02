@@ -3,6 +3,17 @@ import type { ListTodo } from "src/types";
 
 export const EXAMPLE_MY_TODO_LIST: ListTodo[] = [
   {
+    id: "11",
+    task: `Next.js, Tailwind CSS, Prettier, ESLint, React Query, Jest, Turborepo, Firebase Authentication, PlanetScale, Vercelを使いこなして、ポートフォリオ用のWebサービスを作る。バックエンドには、typescript、Node.js、Express,Prisma、Docker、Cloud Runを使って開発する。`,
+    userId: "",
+    sortKey: 3,
+    dueDate: "",
+    completeDate: "",
+    isDone: false,
+    createAt: getToday(),
+    updateAt: getToday(),
+  },
+  {
     id: "10",
     task: `機械学習の情報収集をする`,
     userId: "",
