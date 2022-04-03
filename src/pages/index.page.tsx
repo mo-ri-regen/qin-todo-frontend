@@ -15,9 +15,9 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
-import { Popover, Transition } from "@headlessui/react";
 import { AuthAction, withAuthUser } from "next-firebase-auth";
-import { Fragment, useEffect } from "react";
+import type { DOMAttributes } from "react";
+import { useEffect } from "react";
 import { ListTodo } from "src/components/ListTodo";
 import { AddTaskButton } from "src/components/shared/Buttons/AddTaskButton";
 import { Layout } from "src/layout";
@@ -50,6 +50,9 @@ const Home = () => {
   });
   const taskDropEnd = useStore((state) => {
     return state.taskDropEnd;
+  });
+  const toggleIsAddInput = useStore((state) => {
+    return state.toggleIsAddInput;
   });
   const date = new Date();
   const strDate = getStringFromDate(date);
@@ -119,80 +122,57 @@ const Home = () => {
   }, []);
 
   const AddMobileTaskButton = () => {
+    const handleOnClick: DOMAttributes<HTMLButtonElement>["onClick"] = () => {
+      toggleIsAddInput(true);
+    };
     return (
-      <Popover.Button>
-        <AddTaskButton />
-      </Popover.Button>
-      // }
+      <div className="lg:hidden">
+        <AddTaskButton onClick={handleOnClick} />
+      </div>
     );
   };
 
   return (
     <Layout>
-      <Popover className="lg:min-h-screen">
-        {({ open }) => {
-          return (
-            <DndContext
-              sensors={sensors}
-              collisionDetection={closestCorners}
-              onDragStart={handleDragStart}
-              onDragOver={handleDragOver}
-              onDragEnd={handleDragEnd}
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-6 mb-6">
-                <div>
-                  <div className="mb-3 text-2xl font-semibold text-primary">
-                    今日する
-                  </div>
-                  <div className="flex flex-col">
-                    {todayTodosLen === 0 && <AddMobileTaskButton />}
-                    <ListTodo title="今日する" target="today" />
-                  </div>
-                </div>
-                <div>
-                  <div />
-                  <div className="mb-3 text-2xl font-semibold text-secondary">
-                    明日する
-                  </div>
-                  <div className="flex flex-col">
-                    {nextdayTodosLen === 0 && <AddMobileTaskButton />}
-                    <ListTodo title="明日する" target="nextday" />
-                  </div>
-                </div>
-                <div>
-                  <div className="mb-3 text-2xl font-semibold text-tertiary">
-                    今度する
-                  </div>
-                  <div className="flex flex-col">
-                    {otherTodosLen === 0 && <AddMobileTaskButton />}
-                    <ListTodo title="今度する" target="other" />
-                  </div>
-                </div>
-
-                <div className="relative">
-                  <Transition
-                    show={open}
-                    as={Fragment}
-                    enter="transition ease-out duration-200"
-                    enterFrom="opacity-0 -translate-y-1"
-                    enterTo="opacity-100 translate-y-0"
-                    leave="transition ease-in duration-150"
-                    leaveFrom="opacity-100 translate-y-0"
-                    leaveTo="opacity-0 -translate-y-1"
-                  >
-                    <Popover.Panel
-                      static
-                      className="fixed right-[50%] bottom-0 z-50 bg-white dark:bg-gray-900 translate-x-[50%]"
-                    >
-                      <FooterButtons />
-                    </Popover.Panel>
-                  </Transition>
-                </div>
-              </div>
-            </DndContext>
-          );
-        }}
-      </Popover>
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCorners}
+        onDragStart={handleDragStart}
+        onDragOver={handleDragOver}
+        onDragEnd={handleDragEnd}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-6 mb-6">
+          <div>
+            <div className="mb-3 text-2xl font-semibold text-primary">
+              今日する
+            </div>
+            <div className="flex flex-col">
+              {todayTodosLen === 0 && <AddMobileTaskButton />}
+              <ListTodo title="今日する" target="today" />
+            </div>
+          </div>
+          <div>
+            <div />
+            <div className="mb-3 text-2xl font-semibold text-secondary">
+              明日する
+            </div>
+            <div className="flex flex-col">
+              {nextdayTodosLen === 0 && <AddMobileTaskButton />}
+              <ListTodo title="明日する" target="nextday" />
+            </div>
+          </div>
+          <div>
+            <div className="mb-3 text-2xl font-semibold text-tertiary">
+              今度する
+            </div>
+            <div className="flex flex-col">
+              {otherTodosLen === 0 && <AddMobileTaskButton />}
+              <ListTodo title="今度する" target="other" />
+            </div>
+          </div>
+          <FooterButtons />
+        </div>
+      </DndContext>
     </Layout>
   );
 };
