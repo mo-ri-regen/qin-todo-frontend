@@ -20,6 +20,7 @@ export type PostTodo = {
 
 export type TodosState = {
   todos: ListTodo[];
+  isAddInput: boolean;
   activeId: Target | null;
   activeTarget: Target | null;
   orveTarget: Target | null;
@@ -27,6 +28,7 @@ export type TodosState = {
   getTodos: () => void;
   addTodo: (postTodo: PostTodo) => void;
   removeTodo: (id: string) => void;
+  toggleIsAddInput: (isAddInput: boolean) => void;
   toggleDone: (todo: ListTodo) => void;
   setEditTodo: (postTodo: PostTodo) => void;
   setActiveId: (id: string) => void;
