@@ -105,11 +105,11 @@ export const FooterButtons: VFC = () => {
         >
           <Dialog.Overlay className="absolute inset-0 z-30 bg-opacity-40 backdrop-filter" />
         </Transition.Child>
-        <div className="lg:hidden fixed right-0 bottom-0 left-0 z-50 p-4 sm:p-6 mx-auto w-10/12 max-w-sm bg-white">
+        <div className="lg:hidden fixed right-0 bottom-0 left-0 z-50 p-4 sm:p-6 mx-auto w-10/12 max-w-sm bg-white dark:bg-gray-900">
           <div className="relative">
-            <input
+            <textarea
               autoFocus
-              className="mb-3 w-full h-8 dark:text-gray-700 bg-[#F1F5F9] rounded-full border-none outline-none"
+              className="mb-3 w-full h-8 dark:text-gray-700 bg-[#F1F5F9] rounded-lg border-none focus:ring-2 focus:ring-primary outline-none"
               onChange={handleOnChange}
               value={inputTodo}
             />
