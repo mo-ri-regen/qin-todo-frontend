@@ -67,7 +67,7 @@ export const TodoRecord = memo<Props>((props) => {
             {props.todo.task}
           </div>
         </div>
-        <div className="flex w-1/6 opacity-10 group-hover:opacity-100">
+        <div className="hidden lg:flex lg:w-1/6 opacity-10 group-hover:opacity-100">
           <button className="p-1 ml-5" onClick={handleDupulicateTodo}>
             <DocumentDuplicateIcon className="w-5 h-5 text-gray-500 dark:text-white" />
           </button>
