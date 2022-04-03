@@ -112,6 +112,7 @@ export const FooterButtons: VFC = () => {
               className="mb-3 w-full h-8 dark:text-gray-700 bg-[#F1F5F9] rounded-lg border-none focus:ring-2 focus:ring-primary outline-none"
               onChange={handleOnChange}
               value={inputTodo}
+              maxLength={100}
             />
           </div>
           <div className="flex justify-between items-center mb-2 w-full text-white">
