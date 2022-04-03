@@ -1,3 +1,7 @@
+import type { FirebaseApp } from "firebase/app";
+import { getApps, initializeApp } from "firebase/app";
+import type { FirebaseStorage } from "firebase/storage";
+import { getStorage } from "firebase/storage";
 import { init } from "next-firebase-auth";
 
 const isProd = process.env.NODE_ENV === "production";
@@ -59,3 +63,21 @@ export const initAuth = () => {
     },
   });
 };
+
+export const firebaseStrageConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY as string,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  databaseURL: "", // 無くても問題が無い。むしろFirestore, RealtimeDBを使わないのでこれで良し。
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+};
+
+export const app = (): FirebaseApp | undefined => {
+  // if (typeof window === "undefined") return; // バックエンドで実行されないようにする
+
+  return getApps()[0] || initializeApp(firebaseStrageConfig);
+};
+
+export const storage: FirebaseStorage = getStorage(app());

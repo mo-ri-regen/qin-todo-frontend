@@ -40,7 +40,11 @@ export const ListTodo = memo<Props>((props) => {
     return (
       <div className="hidden lg:block">
         {isInput ? (
-          <input onBlur={handleOnBlur} autoFocus />
+          <input
+            onBlur={handleOnBlur}
+            autoFocus
+            className="px-2 w-4/5 rounded-full focus:outline-none"
+          />
         ) : (
           <AddTaskButton onClick={handleOnClick} onBlur={handleOnBlur} />
         )}
