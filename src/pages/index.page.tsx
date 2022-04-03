@@ -3,6 +3,7 @@ import type {
   DragOverEvent,
   DragStartEvent,
   Over,
+  PointerActivationConstraint,
 } from "@dnd-kit/core";
 import { closestCorners } from "@dnd-kit/core";
 import {
@@ -68,11 +69,15 @@ const Home = () => {
   const otherTodosLen = allTodos.filter((todo) => {
     return todo.dueDate == "";
   }).length;
-
+  // 削除処理などのクリックと、並び替え処理のドラッグアンドドロップの判断用に５ミリ秒
+  // 以上つかんだらドラッグアンドドロップと判断する。（これがないと削除できない）
+  const activationConstraint: PointerActivationConstraint = {
+    distance: 5,
+  };
   const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(MouseSensor),
-    useSensor(TouchSensor),
+    useSensor(PointerSensor, { activationConstraint }),
+    useSensor(MouseSensor, { activationConstraint }),
+    useSensor(TouchSensor, { activationConstraint }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })
