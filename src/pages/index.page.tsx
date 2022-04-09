@@ -52,8 +52,8 @@ const Home = () => {
   const taskDropEnd = useStore((state) => {
     return state.taskDropEnd;
   });
-  const toggleIsAddInput = useStore((state) => {
-    return state.toggleIsAddInput;
+  const setIsAddInput = useStore((state) => {
+    return state.setIsAddInput;
   });
   const date = new Date();
   const strDate = getStringFromDate(date);
@@ -128,7 +128,7 @@ const Home = () => {
 
   const AddMobileTaskButton = () => {
     const handleOnClick: DOMAttributes<HTMLButtonElement>["onClick"] = () => {
-      toggleIsAddInput(true);
+      setIsAddInput(true);
     };
     return (
       <div className="lg:hidden">

@@ -4,14 +4,14 @@ import { initEditTodo, useStore } from "src/libs/store";
 import { FooterButtons } from "./FooterButtons";
 
 export const Footer: VFC = () => {
-  const toggleIsAddInput = useStore((state) => {
-    return state.toggleIsAddInput;
+  const setIsAddInput = useStore((state) => {
+    return state.setIsAddInput;
   });
   const setEditTodo = useStore((state) => {
     return state.setEditTodo;
   });
   const handleOpenModal = () => {
-    toggleIsAddInput(true);
+    setIsAddInput(true);
     setEditTodo(initEditTodo);
   };
   return (

@@ -18,8 +18,8 @@ export const FooterButtons: VFC = () => {
   const isAddInput = useStore((state) => {
     return state.isAddInput;
   });
-  const toggleIsAddInput = useStore((state) => {
-    return state.toggleIsAddInput;
+  const setIsAddInput = useStore((state) => {
+    return state.setIsAddInput;
   });
   const [inputTodo, setInputTodo] = useState<string>(editTodo.task);
   const handleAddTodoToday = () => {
@@ -80,7 +80,7 @@ export const FooterButtons: VFC = () => {
   const handleCloseModal = () => {
     setInputTodo("");
     setEditTodo(initEditTodo);
-    toggleIsAddInput(false);
+    setIsAddInput(false);
   };
   const handleOnChange = (e: any) => {
     setInputTodo(e.target.value);

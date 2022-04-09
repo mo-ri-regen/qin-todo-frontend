@@ -99,7 +99,7 @@ const useStore = create<TodosState>(
           };
         });
       },
-      toggleIsAddInput: (isAddInput: boolean) => {
+      setIsAddInput: (isAddInput: boolean) => {
         return set(() => {
           return { isAddInput: isAddInput };
         });
