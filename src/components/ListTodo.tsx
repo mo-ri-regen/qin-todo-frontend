@@ -4,7 +4,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { memo, useState } from "react";
-import { getStringFromDate } from "src/libs/dateFunc";
+import { getToday } from "src/libs/dateFunc";
 import { selectTodos, useStore } from "src/libs/store";
 import type { Target, TodosState } from "src/types";
 
@@ -21,8 +21,7 @@ export const ListTodo = memo<Props>((props) => {
   const allTodos = useStore((state: TodosState) => {
     return state.todos;
   });
-  const date = new Date();
-  const strDate = getStringFromDate(date);
+  const strDate = getToday();
 
   const todos = selectTodos(allTodos, strDate, props.target);
   const todoIds = todos.map((todoTask) => {
