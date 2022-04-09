@@ -28,8 +28,12 @@ export const TodoRecord = memo<Props>((props) => {
   const setEditTodo = useStore((state) => {
     return state.setEditTodo;
   });
+  const setIsAddInput = useStore((state) => {
+    return state.setIsAddInput;
+  });
   const handleEditTodo = () => {
     setEditTodo(props.todo);
+    setIsAddInput(true);
   };
   const handleDupulicateTodo = () => {
     return alert("複製する処理");

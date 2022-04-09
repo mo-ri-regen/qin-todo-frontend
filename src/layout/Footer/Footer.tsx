@@ -19,7 +19,7 @@ export const Footer: VFC = () => {
   };
   return (
     <div className="grid lg:hidden relative">
-      {isAddInput && (
+      {!isAddInput && (
         <div className="flex fixed right-0 bottom-0 left-0 z-30 flex-row mx-auto max-w-sm bg-white dark:bg-gray-900 ">
           <div className="w-full">
             <button
