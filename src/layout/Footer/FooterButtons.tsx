@@ -78,7 +78,7 @@ export const FooterButtons: VFC = () => {
       setEditTodo(initEditTodo);
     }
   };
-  const isOpen = editTodo.task !== "" || isAddInput;
+  const isOpen = inputTodo !== "" || (inputTodo === "" && isAddInput);
   const handleCloseModal = () => {
     setInputTodo("");
     setEditTodo(initEditTodo);
@@ -91,10 +91,7 @@ export const FooterButtons: VFC = () => {
   return (
     <Dialog open={isOpen} onClose={handleCloseModal} initialFocus={textareaRef}>
       <div className="text-center">
-        <div>
-          <Dialog.Overlay className="fixed inset-0 z-20 bg-opacity-40 backdrop-filter" />
-        </div>
-
+        <Dialog.Overlay className="fixed inset-0 z-20 bg-opacity-40 backdrop-filter" />
         <div className="lg:hidden fixed right-0 bottom-0 left-0 z-50 p-4 sm:p-6 mx-auto w-10/12 max-w-sm bg-white dark:bg-gray-900">
           <div className="text-center">
             <textarea
