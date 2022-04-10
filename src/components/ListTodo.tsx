@@ -31,21 +31,40 @@ export const ListTodo = memo<Props>((props) => {
   const [isInput, setIsInput] = useState<boolean>(false);
 
   const AddPcTaskButton = () => {
+    const [inputTodo, setInputTodo] = useState<string>("");
     const handleOnClick = () => {
       setIsInput(true);
     };
     const handleOnBlur = () => {
       setIsInput(false);
     };
+    const handleOnChange = (e: any) => {
+      setInputTodo(e.target.value);
+    };
+
+    const handleSubmit = (e: any) => {
+      e.preventDefault();
+      if (inputTodo === "") {
+        return;
+      } else {
+        alert(`entered text is ${inputTodo}`);
+        setInputTodo("");
+      }
+    };
+
     return (
       <div className="hidden lg:block">
         {isInput ? (
-          <textarea
-            onBlur={handleOnBlur}
-            autoFocus
-            className="px-2 w-4/5 rounded-full focus:ring-2 focus:ring-primary focus:outline-none"
-            maxLength={200}
-          />
+          <form onSubmit={handleSubmit}>
+            <input
+              onBlur={handleOnBlur}
+              autoFocus
+              className="px-2 w-4/5 h-10 text-gray-400 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              maxLength={200}
+              onChange={handleOnChange}
+              value={inputTodo}
+            />
+          </form>
         ) : (
           <AddTaskButton onClick={handleOnClick} onBlur={handleOnBlur} />
         )}
