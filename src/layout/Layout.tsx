@@ -8,11 +8,9 @@ type Props = {
 };
 export const Layout: VFC<Props> = (props) => {
   return (
-    <div>
-      <div className="grid px-3 mx-auto mb-6 min-h-screen grid-rows-[auto, 1fr]">
-        <Header />
-        <main className="overflow-auto h-[90vh]">{props.children}</main>
-      </div>
+    <div className="grid px-3 mx-auto min-h-screen grid-rows-[auto, 1fr]">
+      <Header />
+      <main className="h-[90vh]">{props.children}</main>
       <Footer />
     </div>
   );
