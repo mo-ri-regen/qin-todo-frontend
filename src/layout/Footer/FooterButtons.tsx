@@ -1,11 +1,13 @@
-import { Dialog, Transition } from "@headlessui/react";
+import { Dialog } from "@headlessui/react";
 import type { VFC } from "react";
-import { Fragment, useState } from "react";
+import { useRef } from "react";
+import { useState } from "react";
 import { getToday, getTommorow } from "src/libs/dateFunc";
 import { initEditTodo, useStore } from "src/libs/store";
 import type { PostTodo } from "src/types";
 
 export const FooterButtons: VFC = () => {
+  const textareaRef = useRef(null);
   const addTodo = useStore((state) => {
     return state.addTodo;
   });
@@ -18,8 +20,8 @@ export const FooterButtons: VFC = () => {
   const isAddInput = useStore((state) => {
     return state.isAddInput;
   });
-  const toggleIsAddInput = useStore((state) => {
-    return state.toggleIsAddInput;
+  const setIsAddInput = useStore((state) => {
+    return state.setIsAddInput;
   });
   const [inputTodo, setInputTodo] = useState<string>(editTodo.task);
   const handleAddTodoToday = () => {
@@ -76,39 +78,24 @@ export const FooterButtons: VFC = () => {
       setEditTodo(initEditTodo);
     }
   };
-  const isOpen = editTodo.task !== "" || isAddInput;
+  const isOpen = inputTodo !== "" || (inputTodo === "" && isAddInput);
   const handleCloseModal = () => {
     setInputTodo("");
     setEditTodo(initEditTodo);
-    toggleIsAddInput(false);
+    setIsAddInput(false);
   };
   const handleOnChange = (e: any) => {
     setInputTodo(e.target.value);
   };
 
   return (
-    <Transition show={isOpen} as={Fragment}>
-      <Dialog
-        // as="div"
-        static
-        open={isOpen}
-        // className="fixed right-[50%] bottom-0 z-10 h-20 bg-white dark:bg-gray-900 translate-x-[50%]"
-        onClose={handleCloseModal}
-      >
-        <Transition.Child
-          enter="transition-opacity ease-in-out duration-250"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="transition-opacity ease-in-out duration-250"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <Dialog.Overlay className="absolute inset-0 z-30 bg-opacity-40 backdrop-filter" />
-        </Transition.Child>
+    <Dialog open={isOpen} onClose={handleCloseModal} initialFocus={textareaRef}>
+      <div className="text-center">
+        <Dialog.Overlay className="fixed inset-0 z-20 bg-opacity-40 backdrop-filter" />
         <div className="lg:hidden fixed right-0 bottom-0 left-0 z-50 p-4 sm:p-6 mx-auto w-10/12 max-w-sm bg-white dark:bg-gray-900">
-          <div className="relative">
+          <div className="text-center">
             <textarea
-              autoFocus
+              ref={textareaRef}
               className="mb-3 w-full h-8 dark:text-gray-700 bg-[#F1F5F9] rounded-lg border-none focus:ring-2 focus:ring-primary outline-none"
               onChange={handleOnChange}
               value={inputTodo}
@@ -136,7 +123,7 @@ export const FooterButtons: VFC = () => {
             </button>
           </div>
         </div>
-      </Dialog>
-    </Transition>
+      </div>
+    </Dialog>
   );
 };

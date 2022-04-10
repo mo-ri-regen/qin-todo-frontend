@@ -23,7 +23,7 @@ import { ListTodo } from "src/components/ListTodo";
 import { AddTaskButton } from "src/components/shared/Buttons/AddTaskButton";
 import { Layout } from "src/layout";
 import { FooterButtons } from "src/layout/Footer/FooterButtons";
-import { getStringFromDate } from "src/libs/dateFunc";
+import { getToday } from "src/libs/dateFunc";
 import { useStore } from "src/libs/store";
 import type { TodosState } from "src/types";
 
@@ -52,11 +52,10 @@ const Home = () => {
   const taskDropEnd = useStore((state) => {
     return state.taskDropEnd;
   });
-  const toggleIsAddInput = useStore((state) => {
-    return state.toggleIsAddInput;
+  const setIsAddInput = useStore((state) => {
+    return state.setIsAddInput;
   });
-  const date = new Date();
-  const strDate = getStringFromDate(date);
+  const strDate = getToday();
 
   const todayTodosLen = allTodos.filter((todo) => {
     return (
@@ -128,7 +127,7 @@ const Home = () => {
 
   const AddMobileTaskButton = () => {
     const handleOnClick: DOMAttributes<HTMLButtonElement>["onClick"] = () => {
-      toggleIsAddInput(true);
+      setIsAddInput(true);
     };
     return (
       <div className="lg:hidden">
