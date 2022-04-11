@@ -4,21 +4,23 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 import { getToday, getTommorow } from "src/libs/dateFunc";
-import { initEditTodo, selectTodos, useStore } from "src/libs/store";
-import type { ListTodo, PostTodo, TodosState } from "src/types";
+// import { initEditTodo, selectTodos, useStore } from "src/libs/store";
+// import type { ListTodo, PostTodo, TodosState } from "src/types";
+import { initEditTodo, useStore } from "src/libs/store";
+import type { PostTodo } from "src/types";
 
 export const FooterButtons: VFC = () => {
-  const allTodos = useStore((state: TodosState) => {
-    return state.todos;
-  });
-  const strDate = getToday();
+  // const allTodos = useStore((state: TodosState) => {
+  //   return state.todos;
+  // });
+  // const strDate = getToday();
   const textareaRef = useRef(null);
   const addTodo = useStore((state) => {
     return state.addTodo;
   });
-  const updateTodo = useStore((state) => {
-    return state.updateTodo;
-  });
+  // const updateTodo = useStore((state) => {
+  //   return state.updateTodo;
+  // });
   const editTodo = useStore((state) => {
     return state.editTodo;
   });
@@ -36,41 +38,40 @@ export const FooterButtons: VFC = () => {
     if (inputTodo === "") {
       return;
     }
-    // if (inputTodo) {
-    if (isAddInput) {
-      const postTodo: PostTodo = {
-        task: inputTodo,
-        sortKey: editTodo.sortKey,
-        dueDate: getToday(),
-        completeDate: editTodo.completeDate,
-        isDone: editTodo.isDone,
-      };
-      addTodo(postTodo);
-    } else {
-      const todos = selectTodos(allTodos, strDate, "today");
-      const maxSortKey =
-        Math.max.apply(
-          null,
-          todos.map((todo) => {
-            return todo.sortKey;
-          })
-        ) + 1;
-      const postTodo: ListTodo = {
-        id: editTodo.id,
-        task: inputTodo,
-        userId: editTodo.userId,
-        sortKey: maxSortKey,
-        dueDate: getToday(),
-        completeDate: editTodo.completeDate,
-        isDone: editTodo.isDone,
-        createAt: editTodo.createAt,
-        updateAt: editTodo.updateAt,
-      };
-      updateTodo(postTodo);
-    }
+    // todo:なぜかエラーが発生する
+    // if (isAddInput) {
+    const postTodo: PostTodo = {
+      task: inputTodo,
+      sortKey: editTodo.sortKey,
+      dueDate: getToday(),
+      completeDate: editTodo.completeDate,
+      isDone: editTodo.isDone,
+    };
+    addTodo(postTodo);
+    // } else {
+    //   const todos = selectTodos(allTodos, strDate, "today");
+    //   const maxSortKey =
+    //     Math.max.apply(
+    //       null,
+    //       todos.map((todo) => {
+    //         return todo.sortKey;
+    //       })
+    //     ) + 1;
+    //   const postTodo: ListTodo = {
+    //     id: editTodo.id,
+    //     task: inputTodo,
+    //     userId: editTodo.userId,
+    //     sortKey: maxSortKey,
+    //     dueDate: getToday(),
+    //     completeDate: editTodo.completeDate,
+    //     isDone: editTodo.isDone,
+    //     createAt: editTodo.createAt,
+    //     updateAt: editTodo.updateAt,
+    //   };
+    //   updateTodo(postTodo);
+    // }
     setInputTodo("");
     setEditTodo(initEditTodo);
-    // }
   };
   const handleAddTodoTommorow = () => {
     if (inputTodo === "") {
