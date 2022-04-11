@@ -3,6 +3,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import type { DOMAttributes } from "react";
 import { memo, useState } from "react";
 import { getToday, getTommorow } from "src/libs/dateFunc";
 import { selectTodos, useStore } from "src/libs/store";
@@ -46,46 +47,26 @@ export const ListTodo = memo<Props>((props) => {
     const editTodo = useStore((state) => {
       return state.editTodo;
     });
-    const postTodoToday: PostTodo = {
+
+    const postTodo: PostTodo = {
       task: inputTodo,
       sortKey: editTodo.sortKey,
-      dueDate: getToday(),
-      completeDate: editTodo.completeDate,
-      isDone: editTodo.isDone,
-    };
-    const postTodoNextDay: PostTodo = {
-      task: inputTodo,
-      sortKey: editTodo.sortKey,
-      dueDate: getTommorow(),
-      completeDate: editTodo.completeDate,
-      isDone: editTodo.isDone,
-    };
-    const postTodoOtherDay: PostTodo = {
-      task: inputTodo,
-      sortKey: editTodo.sortKey,
-      dueDate: "",
+      dueDate:
+        props.target === "today"
+          ? getToday()
+          : props.target === "nextday"
+          ? getTommorow()
+          : "",
       completeDate: editTodo.completeDate,
       isDone: editTodo.isDone,
     };
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit: DOMAttributes<HTMLFormElement>["onSubmit"] = (e) => {
       e.preventDefault();
       if (inputTodo === "") {
         return;
       } else {
-        switch (props.target) {
-          case "today":
-            addTodo(postTodoToday);
-            break;
-          case "nextday":
-            addTodo(postTodoNextDay);
-            break;
-          case "other":
-            addTodo(postTodoOtherDay);
-            break;
-          default:
-            break;
-        }
+        addTodo(postTodo);
         setInputTodo("");
       }
     };
