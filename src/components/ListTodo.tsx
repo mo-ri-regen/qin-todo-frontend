@@ -6,7 +6,7 @@ import {
 import { memo, useState } from "react";
 import { getToday } from "src/libs/dateFunc";
 import { selectTodos, useStore } from "src/libs/store";
-import type { Target, TodosState } from "src/types";
+import type { PostTodo, Target, TodosState } from "src/types";
 
 import { AddTaskButton } from "./shared/Buttons/AddTaskButton";
 import { TodoRecord } from "./TodoRecord";
@@ -40,13 +40,26 @@ export const ListTodo = memo<Props>((props) => {
     const handleOnChange = (e: any) => {
       setInputTodo(e.target.value);
     };
+    const addTodo = useStore((state) => {
+      return state.addTodo;
+    });
+    const editTodo = useStore((state) => {
+      return state.editTodo;
+    });
 
     const handleSubmit = (e: any) => {
       e.preventDefault();
       if (inputTodo === "") {
         return;
       } else {
-        alert(`entered text is ${inputTodo}`);
+        const postTodo: PostTodo = {
+          task: inputTodo,
+          sortKey: editTodo.sortKey,
+          dueDate: getToday(),
+          completeDate: editTodo.completeDate,
+          isDone: editTodo.isDone,
+        };
+        addTodo(postTodo);
         setInputTodo("");
       }
     };
