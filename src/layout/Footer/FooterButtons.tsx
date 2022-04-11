@@ -1,15 +1,23 @@
 import { Dialog } from "@headlessui/react";
-import type { VFC } from "react";
+import type { DOMAttributes, VFC } from "react";
+import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 import { getToday, getTommorow } from "src/libs/dateFunc";
-import { initEditTodo, useStore } from "src/libs/store";
-import type { PostTodo } from "src/types";
+import { initEditTodo, selectTodos, useStore } from "src/libs/store";
+import type { ListTodo, PostTodo, TodosState } from "src/types";
 
 export const FooterButtons: VFC = () => {
+  const allTodos = useStore((state: TodosState) => {
+    return state.todos;
+  });
+  const strDate = getToday();
   const textareaRef = useRef(null);
   const addTodo = useStore((state) => {
     return state.addTodo;
+  });
+  const updateTodo = useStore((state) => {
+    return state.updateTodo;
   });
   const editTodo = useStore((state) => {
     return state.editTodo;
@@ -28,8 +36,8 @@ export const FooterButtons: VFC = () => {
     if (inputTodo === "") {
       return;
     }
-    if (inputTodo) {
-      // TODO:並びは「明日やる」⇒「今日やる」に変更した場合に対応が必要（別ISSUEにて対応）
+    // if (inputTodo) {
+    if (isAddInput) {
       const postTodo: PostTodo = {
         task: inputTodo,
         sortKey: editTodo.sortKey,
@@ -38,9 +46,31 @@ export const FooterButtons: VFC = () => {
         isDone: editTodo.isDone,
       };
       addTodo(postTodo);
-      setInputTodo("");
-      setEditTodo(initEditTodo);
+    } else {
+      const todos = selectTodos(allTodos, strDate, "today");
+      const maxSortKey =
+        Math.max.apply(
+          null,
+          todos.map((todo) => {
+            return todo.sortKey;
+          })
+        ) + 1;
+      const postTodo: ListTodo = {
+        id: editTodo.id,
+        task: inputTodo,
+        userId: editTodo.userId,
+        sortKey: maxSortKey,
+        dueDate: getToday(),
+        completeDate: editTodo.completeDate,
+        isDone: editTodo.isDone,
+        createAt: editTodo.createAt,
+        updateAt: editTodo.updateAt,
+      };
+      updateTodo(postTodo);
     }
+    setInputTodo("");
+    setEditTodo(initEditTodo);
+    // }
   };
   const handleAddTodoTommorow = () => {
     if (inputTodo === "") {
@@ -78,15 +108,23 @@ export const FooterButtons: VFC = () => {
       setEditTodo(initEditTodo);
     }
   };
-  const isOpen = inputTodo !== "" || (inputTodo === "" && isAddInput);
+
   const handleCloseModal = () => {
     setInputTodo("");
     setEditTodo(initEditTodo);
     setIsAddInput(false);
   };
-  const handleOnChange = (e: any) => {
-    setInputTodo(e.target.value);
+  const handleOnChange: DOMAttributes<HTMLTextAreaElement>["onChange"] = (
+    e
+  ) => {
+    setInputTodo(e.currentTarget.value);
   };
+  useEffect(() => {
+    setInputTodo(editTodo.task);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const isOpen = inputTodo !== "" || (inputTodo === "" && isAddInput);
 
   return (
     <Dialog open={isOpen} onClose={handleCloseModal} initialFocus={textareaRef}>

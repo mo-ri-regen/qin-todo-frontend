@@ -28,12 +28,8 @@ export const TodoRecord = memo<Props>((props) => {
   const setEditTodo = useStore((state) => {
     return state.setEditTodo;
   });
-  const setIsAddInput = useStore((state) => {
-    return state.setIsAddInput;
-  });
   const handleEditTodo = () => {
     setEditTodo(props.todo);
-    setIsAddInput(true);
   };
   const handleDupulicateTodo = () => {
     return alert("複製する処理");
@@ -46,7 +42,6 @@ export const TodoRecord = memo<Props>((props) => {
     transform: CSS.Transform.toString(transform),
     transition,
   };
-
   return (
     <li ref={setNodeRef} style={style} {...attributes} {...listeners}>
       <div className="group flex justify-between items-center mr-5 mb-4">
