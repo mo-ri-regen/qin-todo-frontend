@@ -3,10 +3,11 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import type { DOMAttributes } from "react";
 import { memo, useState } from "react";
-import { getToday } from "src/libs/dateFunc";
+import { getToday, getTommorow } from "src/libs/dateFunc";
 import { selectTodos, useStore } from "src/libs/store";
-import type { Target, TodosState } from "src/types";
+import type { PostTodo, Target, TodosState } from "src/types";
 
 import { AddTaskButton } from "./shared/Buttons/AddTaskButton";
 import { TodoRecord } from "./TodoRecord";
@@ -30,21 +31,59 @@ export const ListTodo = memo<Props>((props) => {
   const [isInput, setIsInput] = useState<boolean>(false);
 
   const AddPcTaskButton = () => {
+    const [inputTodo, setInputTodo] = useState<string>("");
     const handleOnClick = () => {
       setIsInput(true);
     };
     const handleOnBlur = () => {
       setIsInput(false);
     };
+    const handleOnChange = (e: any) => {
+      setInputTodo(e.target.value);
+    };
+    const addTodo = useStore((state) => {
+      return state.addTodo;
+    });
+    const editTodo = useStore((state) => {
+      return state.editTodo;
+    });
+
+    const postTodo: PostTodo = {
+      task: inputTodo,
+      sortKey: editTodo.sortKey,
+      dueDate:
+        props.target === "today"
+          ? getToday()
+          : props.target === "nextday"
+          ? getTommorow()
+          : "",
+      completeDate: editTodo.completeDate,
+      isDone: editTodo.isDone,
+    };
+
+    const handleSubmit: DOMAttributes<HTMLFormElement>["onSubmit"] = (e) => {
+      e.preventDefault();
+      if (inputTodo === "") {
+        return;
+      } else {
+        addTodo(postTodo);
+        setInputTodo("");
+      }
+    };
+
     return (
       <div className="hidden lg:block">
         {isInput ? (
-          <textarea
-            onBlur={handleOnBlur}
-            autoFocus
-            className="px-2 w-4/5 rounded-full focus:ring-2 focus:ring-primary focus:outline-none"
-            maxLength={200}
-          />
+          <form onSubmit={handleSubmit}>
+            <input
+              onBlur={handleOnBlur}
+              autoFocus
+              className="px-2 w-4/5 h-10 text-gray-400 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              maxLength={200}
+              onChange={handleOnChange}
+              value={inputTodo}
+            />
+          </form>
         ) : (
           <AddTaskButton onClick={handleOnClick} onBlur={handleOnBlur} />
         )}
