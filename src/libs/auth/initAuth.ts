@@ -1,5 +1,6 @@
 import type { FirebaseApp } from "firebase/app";
 import { getApps, initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 import type { FirebaseStorage } from "firebase/storage";
 import { getStorage } from "firebase/storage";
 import { init } from "next-firebase-auth";
@@ -80,4 +81,5 @@ export const app = (): FirebaseApp | undefined => {
   return getApps()[0] || initializeApp(firebaseStrageConfig);
 };
 
+export const db = getFirestore(app());
 export const storage: FirebaseStorage = getStorage(app());
