@@ -24,13 +24,14 @@ export type TodosState = {
   activeId: Target | null;
   activeTarget: Target | null;
   orveTarget: Target | null;
-  editTodo: PostTodo;
+  editTodo: ListTodo;
   getTodos: () => void;
   addTodo: (postTodo: PostTodo) => void;
+  updateTodo: (editTodo: ListTodo) => void;
   removeTodo: (id: string) => void;
   setIsAddInput: (isAddInput: boolean) => void;
   toggleDone: (todo: ListTodo) => void;
-  setEditTodo: (postTodo: PostTodo) => void;
+  setEditTodo: (editTodo: ListTodo) => void;
   setActiveId: (id: string) => void;
   findTarget: (id: string, isActive: boolean) => void;
   taskDropOver: (id: string, overId: string, strDate: string) => void;

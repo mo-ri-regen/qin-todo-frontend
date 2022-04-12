@@ -8,12 +8,16 @@ import { getToday, getTommorow } from "./dateFunc";
 
 const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}todo/`;
 
-export const initEditTodo: PostTodo = {
+export const initEditTodo: ListTodo = {
+  id: "",
   task: "",
   sortKey: 0,
   dueDate: "",
   completeDate: "",
   isDone: false,
+  userId: "",
+  createAt: "",
+  updateAt: "",
 };
 
 export const selectTodos = (
@@ -86,6 +90,47 @@ const useStore = create<TodosState>(
           };
         });
       },
+      updateTodo: async (editTodo) => {
+        const postTodo = {
+          task: editTodo.task,
+          sortKey: editTodo.sortKey,
+          dueDate: editTodo.dueDate,
+          completeDate: editTodo.completeDate,
+          isDone: editTodo.isDone,
+        };
+        const response = await axios.put<ListTodo>(
+          `${apiUrl}${editTodo.id}`,
+          postTodo
+        );
+        const {
+          task,
+          userId,
+          sortKey,
+          dueDate,
+          completeDate,
+          isDone,
+          createAt,
+          updateAt,
+        } = response.data;
+        return set((state) => {
+          const listTodo: ListTodo = {
+            id: editTodo.id,
+            task,
+            userId,
+            sortKey,
+            dueDate,
+            completeDate,
+            isDone,
+            createAt,
+            updateAt,
+          };
+          return {
+            todos: state.todos.filter((todo) => {
+              return todo.id === editTodo.id ? listTodo : todo;
+            }),
+          };
+        });
+      },
       removeTodo: async (id: string) => {
         await axios.delete(`${apiUrl}${id}`).then((res) => {
           return res;
@@ -139,16 +184,10 @@ const useStore = create<TodosState>(
           };
         });
       },
-      setEditTodo: (postTodo: PostTodo) => {
+      setEditTodo: (editTodo: ListTodo) => {
         return set(() => {
           return {
-            editTodo: {
-              task: postTodo.task,
-              sortKey: postTodo.sortKey,
-              dueDate: postTodo.dueDate,
-              completeDate: postTodo.completeDate,
-              isDone: postTodo.isDone,
-            },
+            editTodo: editTodo,
           };
         });
       },
