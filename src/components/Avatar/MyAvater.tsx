@@ -21,17 +21,17 @@ export const MyAvater: VFC<Props> = (props) => {
             })`,
           }}
           className={clsx("overflow-hidden rounded-full ring-1 ring-blue-100", {
-            "w-24 h-24": props.size === "large",
-            "w-14 h-14": props.size === "small",
+            "w-[100px] h-[100px]": props.size === "large",
+            "w-9 h-9": props.size === "small",
           })}
         ></div>
       ) : (
         <div
           className={clsx(
-            "object-cover object-center overflow-hidden w-24 h-24 bg-blue-500 rounded-full",
+            "object-cover object-center overflow-hidden w-[100px] h-[100px] bg-blue-500 rounded-full",
             {
-              "w-24 h-24": props.size === "large",
-              "w-14 h-14": props.size === "small",
+              "w-[100px] h-[100px]": props.size === "large",
+              "w-9 h-9": props.size === "small",
             }
           )}
         >
