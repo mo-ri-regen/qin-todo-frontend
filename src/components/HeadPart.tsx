@@ -1,6 +1,7 @@
 import Head from "next/head";
+import type { VFC } from "react";
 
-export const HeadPart = () => {
+export const HeadPart: VFC = () => {
   return (
     <Head>
       <meta charSet="utf-8" />

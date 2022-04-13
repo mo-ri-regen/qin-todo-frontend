@@ -16,6 +16,7 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
+import type { NextPage } from "next";
 import { AuthAction, withAuthUser } from "next-firebase-auth";
 import type { DOMAttributes } from "react";
 import { useEffect } from "react";
@@ -27,7 +28,7 @@ import { getToday } from "src/libs/dateFunc";
 import { useStore } from "src/libs/store";
 import type { TodosState } from "src/types";
 
-const Home = () => {
+const Home: NextPage = () => {
   const getTodos = useStore((state) => {
     return state.getTodos;
   });

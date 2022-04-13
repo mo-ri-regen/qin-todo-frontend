@@ -1,4 +1,5 @@
 import { ref, uploadBytesResumable } from "@firebase/storage";
+import type { NextPage } from "next";
 import {
   useAuthUser,
   withAuthUser,
@@ -7,7 +8,7 @@ import {
 import { useState } from "react";
 import { storage } from "src/libs/auth/initAuth";
 
-const Demo = () => {
+const Demo: NextPage = () => {
   const AuthUser = useAuthUser();
   const [progress, setProgress] = useState(0);
   const handleForm = (e: any) => {

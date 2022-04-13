@@ -1,3 +1,4 @@
+import type { NextPage } from "next";
 import SwipeableViews from "react-swipeable-views";
 
 const styles = {
@@ -17,7 +18,7 @@ const styles = {
   },
 };
 
-export const Sample = () => {
+export const Sample: NextPage = () => {
   return (
     <SwipeableViews enableMouseEvents>
       <div style={Object.assign({}, styles.slide, styles.slide1)}>
