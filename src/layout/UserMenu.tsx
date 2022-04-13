@@ -4,9 +4,8 @@ import Link from "next/link";
 import { useAuthUser } from "next-firebase-auth";
 import type { VFC } from "react";
 import { Fragment } from "react";
-import { Avatar } from "src/components/Avatar";
+import { MyAvater } from "src/components/Avatar/MyAvater";
 import { SignoutButton } from "src/components/shared/Buttons/SignoutButton";
-import { useProfile } from "src/libs/helper/useProfile";
 
 /**
  * @package
@@ -15,8 +14,6 @@ export const UserMenu: VFC = () => {
   const AuthUser = useAuthUser();
   const initial = AuthUser.displayName?.slice(0, 1);
 
-  const { imageUrl } = useProfile();
-
   return (
     <Popover className="grid">
       {({ open }) => {
@@ -24,14 +21,7 @@ export const UserMenu: VFC = () => {
           <>
             <Popover.Button className="flex rounded-full focus-visible:ring-2 focus-visible:ring-blue-400 focus:outline-none">
               {AuthUser.photoURL ? (
-                <Avatar
-                  noDialog
-                  src={imageUrl ?? AuthUser.photoURL ?? ""}
-                  alt={imageUrl ?? AuthUser.displayName ?? ""}
-                  width={40}
-                  height={40}
-                  className="w-24 h-24"
-                />
+                <MyAvater size="small" />
               ) : (
                 <button className="w-9 h-9 bg-blue-500 rounded-full">
                   {initial}

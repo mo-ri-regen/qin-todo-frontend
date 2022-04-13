@@ -1,6 +1,5 @@
-import { useAuthUser } from "next-firebase-auth";
 import type { VFC } from "react";
-import { Avatar } from "src/components/Avatar";
+import { MyAvater } from "src/components/Avatar/MyAvater";
 import { Button } from "src/components/shared/Buttons";
 import { useProfile } from "src/libs/helper/useProfile";
 
@@ -8,11 +7,8 @@ export type UserForm = { accountName: string; userName: string };
 type ProfileFormProps = { accountName?: string; userName?: string };
 
 export const TodoProfileForm: VFC<ProfileFormProps> = () => {
-  const AuthUser = useAuthUser();
-
   const {
     name,
-    imageUrl,
     imageRef,
     handleOnChangeName,
     handleOnChangeImage,
@@ -27,14 +23,7 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
           <div className="space-y-1">
             <div className="text-sm font-bold text-gray-400">アイコン</div>
             <div className="flex justify-between">
-              <Avatar
-                noDialog
-                src={imageUrl ?? AuthUser.photoURL ?? ""}
-                alt={imageUrl ?? AuthUser.displayName ?? ""}
-                width={96}
-                height={96}
-                className="w-24 h-24"
-              />
+              <MyAvater size="large" />
               <input
                 ref={imageRef}
                 type="file"
