@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
+import { useAuthUser } from "next-firebase-auth";
 import type { VFC } from "react";
-import { MyAvater } from "src/components/Avatar";
 import { Button } from "src/components/shared/Buttons";
 import { useProfile } from "src/libs/useProfile";
 
@@ -7,8 +8,11 @@ export type UserForm = { accountName: string; userName: string };
 type ProfileFormProps = { accountName?: string; userName?: string };
 
 export const TodoProfileForm: VFC<ProfileFormProps> = () => {
+  const AuthUser = useAuthUser();
+  const initial = AuthUser.displayName?.slice(0, 1);
   const {
     name,
+    imageUrl,
     imageRef,
     handleOnChangeName,
     handleOnChangeImage,
@@ -23,7 +27,23 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
           <div className="space-y-1">
             <div className="text-sm font-bold text-gray-400">アイコン</div>
             <div className="flex justify-between">
-              <MyAvater size="large" />
+              <div className="flex justify-start items-center space-x-6">
+                {imageUrl ? (
+                  <img
+                    src={imageUrl ?? AuthUser.photoURL ?? ""}
+                    alt={imageUrl ?? AuthUser.displayName ?? ""}
+                    height={96}
+                    width={96}
+                    className="object-cover object-center overflow-hidden w-[100px] h-[100px] rounded-full ring-1 ring-blue-100"
+                  />
+                ) : (
+                  <div className="object-cover object-center overflow-hidden w-[100px] h-[100px] bg-blue-500 rounded-full">
+                    <div className="pt-5 text-5xl text-center text-white">
+                      {initial}
+                    </div>
+                  </div>
+                )}
+              </div>
               <input
                 ref={imageRef}
                 type="file"
