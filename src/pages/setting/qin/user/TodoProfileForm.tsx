@@ -1,5 +1,5 @@
 import type { VFC } from "react";
-import { MyAvater } from "src/components/Avatar/MyAvater";
+import { MyAvater } from "src/components/Avatar";
 import { Button } from "src/components/shared/Buttons";
 import { useProfile } from "src/libs/helper/useProfile";
 
