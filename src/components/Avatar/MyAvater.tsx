@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useAuthUser } from "next-firebase-auth";
 import type { VFC } from "react";
-import { useProfile } from "src/libs/helper/useProfile";
+import { useProfile } from "src/libs/useProfile";
 
 type Props = {
   size: string;
@@ -13,7 +13,7 @@ export const MyAvater: VFC<Props> = (props) => {
   const initial = AuthUser.displayName?.slice(0, 1);
   return (
     <div className="flex justify-start items-center space-x-6">
-      {AuthUser.photoURL ? (
+      {imageUrl ? (
         <div
           style={{
             background: `center / contain no-repeat url(${

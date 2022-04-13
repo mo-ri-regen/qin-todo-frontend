@@ -1,7 +1,7 @@
 import type { VFC } from "react";
 import { MyAvater } from "src/components/Avatar";
 import { Button } from "src/components/shared/Buttons";
-import { useProfile } from "src/libs/helper/useProfile";
+import { useProfile } from "src/libs/useProfile";
 
 export type UserForm = { accountName: string; userName: string };
 type ProfileFormProps = { accountName?: string; userName?: string };
