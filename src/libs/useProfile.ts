@@ -2,6 +2,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useRouter } from "next/router";
 import { useAuthUser } from "next-firebase-auth";
+import type { ChangeEvent, RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { db, storage } from "src/libs/auth/initAuth";
 
@@ -10,9 +11,9 @@ type ProfileActions = {
   imageUrl: string;
   isNameRequired: boolean;
   isLoading: boolean;
-  imageRef: React.RefObject<HTMLInputElement>;
-  handleOnChangeName: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleOnChangeImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  imageRef: RefObject<HTMLInputElement>;
+  handleOnChangeName: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleOnChangeImage: (e: ChangeEvent<HTMLInputElement>) => void;
   handleOpenFileDialog: () => void;
   handleOnClickFileUpLoad: () => Promise<void>;
 };
@@ -55,7 +56,7 @@ export const useProfile = (): ProfileActions => {
     imageRef.current?.click();
   }, []);
 
-  const handleOnChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.item(0);
     if (!file) {
       return;
@@ -66,7 +67,7 @@ export const useProfile = (): ProfileActions => {
     setImageUrl(url);
   };
 
-  const handleOnChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChangeName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
