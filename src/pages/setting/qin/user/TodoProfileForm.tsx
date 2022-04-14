@@ -1,54 +1,56 @@
+/* eslint-disable @next/next/no-img-element */
 import { useAuthUser } from "next-firebase-auth";
 import type { VFC } from "react";
-import { useForm } from "react-hook-form";
-import { Avatar } from "src/components/Avatar";
 import { Button } from "src/components/shared/Buttons";
-
-import { useFile } from "./useFile";
-import { useUpsertUser } from "./useUpsertUser";
+import { useProfile } from "src/libs/useProfile";
 
 export type UserForm = { accountName: string; userName: string };
 type ProfileFormProps = { accountName?: string; userName?: string };
 
 export const TodoProfileForm: VFC<ProfileFormProps> = () => {
   const AuthUser = useAuthUser();
-
+  const initial = AuthUser.displayName?.slice(0, 1);
   const {
-    selectedFile,
+    name,
     imageUrl,
     imageRef,
-    handleChangeFile,
+    handleOnChangeName,
+    handleOnChangeImage,
     handleOpenFileDialog,
-  } = useFile();
-  const { isUpserting, upsertUser } = useUpsertUser(selectedFile);
-  const { handleSubmit } = useForm<UserForm>({
-    defaultValues: {
-      accountName: AuthUser.displayName ?? "",
-      userName: AuthUser.displayName ?? "",
-    },
-  });
+    handleOnClickFileUpLoad,
+  } = useProfile();
 
   return (
-    <form onSubmit={handleSubmit(upsertUser)}>
+    <form>
       <ul className="space-y-8">
         <li>
           <div className="space-y-1">
             <div className="text-sm font-bold text-gray-400">アイコン</div>
             <div className="flex justify-between">
-              <Avatar
-                noDialog
-                src={imageUrl ?? AuthUser.photoURL ?? ""}
-                alt={imageUrl ?? AuthUser.displayName ?? ""}
-                width={96}
-                height={96}
-                className="w-24 h-24"
-              />
+              <div className="flex justify-start items-center space-x-6">
+                {imageUrl ? (
+                  <img
+                    src={imageUrl ?? AuthUser.photoURL ?? ""}
+                    alt={imageUrl ?? AuthUser.displayName ?? ""}
+                    height={96}
+                    width={96}
+                    className="object-cover object-center overflow-hidden w-[100px] h-[100px] rounded-full ring-1 ring-blue-100"
+                  />
+                ) : (
+                  <div className="object-cover object-center overflow-hidden w-[100px] h-[100px] bg-blue-500 rounded-full">
+                    <div className="pt-5 text-5xl text-center text-white">
+                      {initial}
+                    </div>
+                  </div>
+                )}
+              </div>
               <input
                 ref={imageRef}
                 type="file"
+                id="image"
+                onChange={handleOnChangeImage}
                 className="hidden"
-                onChange={handleChangeFile}
-                accept="image/png, image/jpeg"
+                accept="image/*"
               />
               <div>
                 <Button
@@ -70,11 +72,11 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
                 <div className="relative">
                   <input
                     type="text"
-                    id="accountName"
+                    id="name"
+                    onChange={handleOnChangeName}
                     className="py-6 pr-5 pl-5 mt-0.5 w-full h-10 font-bold bg-gray-100 dark:bg-gray-700 dark:focus:bg-gray-600 rounded-full border-none focus:ring-2 focus:ring-blue-400 focus:outline-none"
                     autoComplete="off"
-                    name="accountName"
-                    value={!AuthUser.displayName ? "" : AuthUser.displayName}
+                    value={name}
                   />
                 </div>
               </label>
@@ -84,10 +86,9 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
         <li>
           <div className="mt-12 space-y-4">
             <Button
-              type="submit"
               variant="solid-blue"
+              onClick={handleOnClickFileUpLoad}
               className="p-3 w-full"
-              disabled={isUpserting}
             >
               保存する
             </Button>

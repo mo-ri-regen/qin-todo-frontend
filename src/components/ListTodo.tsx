@@ -3,7 +3,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import type { DOMAttributes } from "react";
+import type { CSSProperties, DOMAttributes } from "react";
 import { memo, useState } from "react";
 import { getToday, getTommorow } from "src/libs/dateFunc";
 import { selectTodos, useStore } from "src/libs/store";
@@ -108,7 +108,7 @@ export const ListTodo = memo<Props>((props) => {
           style={
             {
               "--columns": 1,
-            } as React.CSSProperties
+            } as CSSProperties
           }
         >
           <SortableContext
