@@ -1,9 +1,8 @@
-import type { VFC } from "react";
 import { QinTodoIcon } from "src/components/shared/Icons";
 
 import { UserMenu } from "./UserMenu";
 
-export const Header: VFC = () => {
+export const Header = () => {
   return (
     <>
       <div className="flex justify-center items-center h-14">
