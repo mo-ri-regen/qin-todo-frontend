@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useAuthUser } from "next-firebase-auth";
 import type { ChangeEvent, RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import { db, storage } from "src/libs/auth/initAuth";
 
 type ProfileActions = {
@@ -97,6 +98,21 @@ export const useProfile = (): ProfileActions => {
       setIsNameRequired(true);
     }
     setIsLoding(false);
+    toast.success("設定を保存しました", {
+      style: {
+        border:
+          "1px solid linear-gradient(90deg, rgba(243,243,209) 0%, rgba(79,96,11) 200%)",
+        padding: "8px",
+        color: "rgba(79,96,11,1)",
+        background:
+          "linear-gradient(90deg, rgba(243,243,209) 0%, rgba(179,196,11) 200%)",
+      },
+      iconTheme: {
+        primary: "rgba(179,196,11,1)",
+        secondary: "#FFFAEE",
+      },
+      position: "top-right",
+    });
   };
 
   return {
