@@ -100,12 +100,15 @@ export const useProfile = (): ProfileActions => {
     setIsLoding(false);
     toast.success("設定を保存しました", {
       style: {
-        border: "1px solid #713200",
+        border:
+          "1px solid linear-gradient(90deg, rgba(243,243,209) 0%, rgba(79,96,11) 200%)",
         padding: "8px",
-        color: "#713200",
+        color: "rgba(79,96,11,1)",
+        background:
+          "linear-gradient(90deg, rgba(243,243,209) 0%, rgba(179,196,11) 200%)",
       },
       iconTheme: {
-        primary: "#713200",
+        primary: "rgba(179,196,11,1)",
         secondary: "#FFFAEE",
       },
       position: "top-right",
