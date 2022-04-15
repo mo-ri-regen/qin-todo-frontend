@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useAuthUser } from "next-firebase-auth";
 import type { ChangeEvent, RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import { db, storage } from "src/libs/auth/initAuth";
 
 type ProfileActions = {
@@ -97,6 +98,17 @@ export const useProfile = (): ProfileActions => {
       setIsNameRequired(true);
     }
     setIsLoding(false);
+    toast.success("設定を保存しました", {
+      style: {
+        border: "1px solid #713200",
+        padding: "8px",
+        color: "#713200",
+      },
+      iconTheme: {
+        primary: "#713200",
+        secondary: "#FFFAEE",
+      },
+    });
   };
 
   return {

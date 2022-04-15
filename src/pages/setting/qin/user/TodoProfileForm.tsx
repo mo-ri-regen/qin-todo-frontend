@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useAuthUser } from "next-firebase-auth";
 import type { VFC } from "react";
+import { Toaster } from "react-hot-toast";
 import { Button } from "src/components/shared/Buttons";
 import { useProfile } from "src/libs/useProfile";
 
@@ -92,6 +93,7 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
             >
               保存する
             </Button>
+            <Toaster />
           </div>
         </li>
       </ul>
