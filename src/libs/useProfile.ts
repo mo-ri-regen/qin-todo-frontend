@@ -108,6 +108,7 @@ export const useProfile = (): ProfileActions => {
         primary: "#713200",
         secondary: "#FFFAEE",
       },
+      position: "top-right",
     });
   };
 
