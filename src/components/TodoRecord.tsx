@@ -2,7 +2,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { DocumentDuplicateIcon, TrashIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
-import { memo, useRef } from "react";
+import { memo, useRef, useState } from "react";
 
 import { useStore } from "../libs/store";
 import type { ListTodo, Target, TodosState } from "../types";
@@ -13,6 +13,8 @@ type Props = {
 };
 
 export const TodoRecord = memo<Props>((props) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [taskPc, setTaskPc] = useState(props.todo.task);
   const toggleComplete = useStore((state: TodosState) => {
     return state.toggleDone;
   });
@@ -28,7 +30,17 @@ export const TodoRecord = memo<Props>((props) => {
   const setEditTodo = useStore((state) => {
     return state.setEditTodo;
   });
-  const handleEditTodo = () => {
+  const handleEditTodoPC = () => {
+    setIsEditing(true);
+    setEditTodo(props.todo);
+  };
+  const handleOnChange = (e: any) => {
+    setTaskPc(e.target.value);
+  };
+  const handleOnBlur = () => {
+    setIsEditing(false);
+  };
+  const handleEditTodoMobile = () => {
     setEditTodo(props.todo);
   };
   const handleDupulicateTodo = () => {
@@ -61,26 +73,43 @@ export const TodoRecord = memo<Props>((props) => {
           />
           {/* pc tasks*/}
           <div className="hidden lg:block">
-            <button
-              ref={focusRef}
-              tabIndex={-1}
-              onClick={handleEditTodo}
-              className={clsx(
-                "hidden lg:block px-6 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
-                {
-                  "line-through": props.todo.isDone,
-                }
-              )}
-            >
-              {props.todo.task}
-            </button>
+            {isEditing ? (
+              <textarea
+                name="textarea"
+                ref={focusRef}
+                tabIndex={-1}
+                onChange={handleOnChange}
+                className={clsx(
+                  "hidden lg:block px-6 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
+                  {
+                    "line-through": props.todo.isDone,
+                  }
+                )}
+                defaultValue={taskPc}
+                onBlur={handleOnBlur}
+              />
+            ) : (
+              <button
+                ref={focusRef}
+                tabIndex={-1}
+                onClick={handleEditTodoPC}
+                className={clsx(
+                  "hidden lg:block px-6 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
+                  {
+                    "line-through": props.todo.isDone,
+                  }
+                )}
+              >
+                {props.todo.task}
+              </button>
+            )}
           </div>
           {/* mobile tasks */}
           <div className="lg:hidden ">
             <button
               ref={focusRef}
               tabIndex={-1}
-              onClick={handleEditTodo}
+              onClick={handleEditTodoMobile}
               className={clsx(
                 "px-6 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
                 {
