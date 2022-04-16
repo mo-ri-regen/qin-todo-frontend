@@ -9,7 +9,7 @@ import { HeadPart } from "../components/HeadPart";
 initAuth();
 
 const MyApp = (props: AppProps) => {
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NEXT_PUBLIC_NODE_ENV === "development") {
     const MockServer = () => {
       require("../api/mock");
     };
