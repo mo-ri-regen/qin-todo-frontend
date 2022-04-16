@@ -87,7 +87,6 @@ export const TodoRecord = memo<Props>((props) => {
           />
           {/* pc tasks*/}
           <div className="hidden lg:block">
-<<<<<<< HEAD
             {isEditing ? (
               <form onSubmit={handleSubmit}>
                 <textarea
@@ -120,32 +119,13 @@ export const TodoRecord = memo<Props>((props) => {
                 {props.todo.task}
               </button>
             )}
-=======
-            <button
-              ref={focusRef}
-              tabIndex={-1}
-              onClick={handleEditTodo}
-              className={clsx(
-                "hidden lg:block px-6 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
-                {
-                  "line-through": props.todo.isDone,
-                }
-              )}
-            >
-              {props.todo.task}
-            </button>
->>>>>>> bef1fec (task表示をpc/mobileで分ける処理)
           </div>
           {/* mobile tasks */}
           <div className="lg:hidden ">
             <button
               ref={focusRef}
               tabIndex={-1}
-<<<<<<< HEAD
               onClick={handleEditTodoMobile}
-=======
-              onClick={handleEditTodo}
->>>>>>> bef1fec (task表示をpc/mobileで分ける処理)
               className={clsx(
                 "px-6 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
                 {
