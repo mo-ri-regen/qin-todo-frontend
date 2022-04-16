@@ -43,8 +43,11 @@ export const TodoRecord = memo<Props>((props) => {
   const handleEditTodoMobile = () => {
     setEditTodo(props.todo);
   };
-  const handleDupulicateTodo = () => {
-    return alert("複製する処理");
+  const copyTodo = useStore((state) => {
+    return state.copyTodo;
+  });
+  const handleCopyTodo = () => {
+    copyTodo(props.todo);
   };
   const focusRef = useRef(null);
 
@@ -122,7 +125,7 @@ export const TodoRecord = memo<Props>((props) => {
           </div>
         </div>
         <div className="hidden lg:flex lg:w-1/6 opacity-10 group-hover:opacity-100">
-          <button className="p-1 ml-5" onClick={handleDupulicateTodo}>
+          <button className="p-1 ml-5" onClick={handleCopyTodo}>
             <DocumentDuplicateIcon className="w-5 h-5 text-gray-500 dark:text-white" />
           </button>
           <button className="p-1 sm:mx-3" onClick={handleRemoveTodo}>
