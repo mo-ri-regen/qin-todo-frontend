@@ -90,8 +90,8 @@ const useStore = create<TodosState>(
           };
         });
       },
-      copyTodo: async (postTodo) => {
-        const response = await axios.post<ListTodo>(apiUrl, postTodo);
+      copyTodo: async (copyTodo) => {
+        const response = await axios.post<ListTodo>(apiUrl, copyTodo);
         const {
           id,
           task,
