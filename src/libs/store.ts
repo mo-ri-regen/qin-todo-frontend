@@ -6,7 +6,7 @@ import { devtools } from "zustand/middleware";
 
 import { getToday, getTommorow } from "./dateFunc";
 
-const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}todo/`;
+const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}tasks`;
 
 export const initEditTodo: ListTodo = {
   id: "",
@@ -162,7 +162,7 @@ const useStore = create<TodosState>(
         });
       },
       removeTodo: async (id: string) => {
-        await axios.delete(`${apiUrl}${id}`).then((res) => {
+        await axios.delete(`${apiUrl}/${id}`).then((res) => {
           return res;
         });
 
@@ -195,7 +195,7 @@ const useStore = create<TodosState>(
           isDone: editTodo.isDone,
         };
         const response = await axios.put<ListTodo>(
-          `${apiUrl}${editTodo.id}`,
+          `${apiUrl}/${editTodo.id}`,
           putTodo
         );
         if (response.status != 200) {
