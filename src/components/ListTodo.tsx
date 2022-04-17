@@ -56,7 +56,7 @@ export const ListTodo = memo<Props>((props) => {
           ? getToday()
           : props.target === "nextday"
           ? getTommorow()
-          : "",
+          : null,
       completeDate: editTodo.completeDate,
       isDone: editTodo.isDone,
     };

@@ -3,8 +3,8 @@ export type ListTodo = {
   task: string;
   userId: string;
   sortKey: number;
-  dueDate: string;
-  completeDate: string;
+  dueDate: string | null;
+  completeDate: string | null;
   isDone: boolean;
   createAt: string;
   updateAt: string;
@@ -13,8 +13,8 @@ export type ListTodo = {
 export type PostTodo = {
   task: string;
   sortKey: number;
-  dueDate: string;
-  completeDate: string;
+  dueDate: string | null;
+  completeDate: string | null;
   isDone: boolean;
 };
 
