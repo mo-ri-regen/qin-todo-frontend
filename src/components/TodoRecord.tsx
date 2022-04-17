@@ -38,7 +38,22 @@ export const TodoRecord = memo<Props>((props) => {
   const handleOnChange = (e: any) => {
     setTaskPc(e.target.value);
   };
-  const handleOnBlur = () => {
+  const updateTodo = useStore((state) => {
+    return state.updateTodo;
+  });
+  const handleOnBlur = (e: any) => {
+    const postTodo: ListTodo = {
+      userId: props.todo.userId,
+      id: props.todo.id,
+      task: e.target.value,
+      sortKey: props.todo.sortKey,
+      dueDate: props.todo.dueDate,
+      completeDate: props.todo.completeDate,
+      isDone: props.todo.isDone,
+      createAt: props.todo.createAt,
+      updateAt: props.todo.updateAt,
+    };
+    updateTodo(postTodo);
     setIsEditing(false);
   };
   const handleEditTodoMobile = () => {
