@@ -23,20 +23,24 @@ export const ListTodo = memo<Props>((props) => {
     return state.todos;
   });
   const strDate = getToday();
-
+  const isAddInput = useStore((state) => {
+    return state.isAddInput;
+  });
+  const setIsAddInput = useStore((state) => {
+    return state.setIsAddInput;
+  });
   const todos = selectTodos(allTodos, strDate, props.target);
   const todoIds = todos.map((todoTask) => {
     return String(todoTask.id);
   });
-  const [isInput, setIsInput] = useState<boolean>(false);
 
   const AddPcTaskButton = () => {
     const [inputTodo, setInputTodo] = useState<string>("");
     const handleOnClick = () => {
-      setIsInput(true);
+      setIsAddInput(true);
     };
     const handleOnBlur = () => {
-      setIsInput(false);
+      setIsAddInput(false);
     };
     const handleOnChange = (e: any) => {
       setInputTodo(e.target.value);
@@ -73,7 +77,7 @@ export const ListTodo = memo<Props>((props) => {
 
     return (
       <div className="hidden lg:block">
-        {isInput ? (
+        {isAddInput ? (
           <form onSubmit={handleSubmit}>
             <input
               onBlur={handleOnBlur}

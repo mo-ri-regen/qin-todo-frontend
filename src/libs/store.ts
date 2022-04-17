@@ -95,7 +95,7 @@ const useStore = create<TodosState>(
         });
       },
       updateTodo: async (editTodo) => {
-        const postTodo = {
+        const putTodo = {
           task: editTodo.task,
           sortKey: editTodo.sortKey,
           dueDate: editTodo.dueDate,
@@ -103,8 +103,8 @@ const useStore = create<TodosState>(
           isDone: editTodo.isDone,
         };
         const response = await axios.put<ListTodo>(
-          `${apiUrl}${editTodo.id}`,
-          postTodo
+          `${apiUrl}/${editTodo.id}`,
+          putTodo
         );
         const {
           task,
@@ -158,7 +158,7 @@ const useStore = create<TodosState>(
         if (editTodo.isDone) {
           editTodo.completeDate = getToday().toString();
         } else {
-          editTodo.completeDate = "";
+          editTodo.completeDate = null;
         }
 
         const putTodo: PostTodo = {
