@@ -2,7 +2,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { DocumentDuplicateIcon, TrashIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
-import type { DOMAttributes } from "react";
+import type { ChangeEvent, DOMAttributes, FocusEvent } from "react";
 import { memo, useRef, useState } from "react";
 
 import { useStore } from "../libs/store";
@@ -35,13 +35,13 @@ export const TodoRecord = memo<Props>((props) => {
     setIsEditing(true);
     setEditTodo(props.todo);
   };
-  const handleOnChange = (e: any) => {
+  const handleOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTaskPc(e.target.value);
   };
   const updateTodo = useStore((state) => {
     return state.updateTodo;
   });
-  const handleOnBlur = (e: any) => {
+  const handleOnBlur = (e: FocusEvent<HTMLTextAreaElement>) => {
     const postTodo: ListTodo = {
       userId: props.todo.userId,
       id: props.todo.id,
