@@ -17,7 +17,7 @@ export const getTommorow = () => {
 export const getStringFromDate = (date: Date) => {
   const year_str: string = date.getFullYear().toString();
   //月だけ+1すること
-  const month_str: string = (date.getMonth() + 1).toString();
+  const month_str: string = (date.getMonth() + 1).toString().padStart(2, "0");
   const day_str: string = date.getDate().toString();
 
   let format_str = "YYYY-MM-DD";
