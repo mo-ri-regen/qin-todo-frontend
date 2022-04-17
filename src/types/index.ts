@@ -8,6 +8,7 @@ export type ListTodo = {
   isDone: boolean;
   createAt: string;
   updateAt: string;
+  isEditing: boolean;
 };
 
 export type PostTodo = {

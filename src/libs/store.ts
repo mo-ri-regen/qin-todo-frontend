@@ -18,6 +18,7 @@ export const initEditTodo: ListTodo = {
   userId: "",
   createAt: "",
   updateAt: "",
+  isEditing: false,
 };
 
 export const selectTodos = (
@@ -72,6 +73,7 @@ const useStore = create<TodosState>(
           isDone,
           createAt,
           updateAt,
+          isEditing,
         } = response.data;
         return set((state) => {
           const listTodo: ListTodo = {
@@ -84,6 +86,7 @@ const useStore = create<TodosState>(
             isDone,
             createAt,
             updateAt,
+            isEditing,
           };
           return {
             todos: [...state.todos, listTodo],
@@ -102,6 +105,7 @@ const useStore = create<TodosState>(
           isDone,
           createAt,
           updateAt,
+          isEditing,
         } = response.data;
         return set((state) => {
           const listTodo: ListTodo = {
@@ -114,6 +118,7 @@ const useStore = create<TodosState>(
             isDone,
             createAt,
             updateAt,
+            isEditing,
           };
           return {
             todos: [...state.todos, listTodo],
@@ -141,6 +146,7 @@ const useStore = create<TodosState>(
           isDone,
           createAt,
           updateAt,
+          isEditing,
         } = response.data;
         return set((state) => {
           const listTodo: ListTodo = {
@@ -153,6 +159,7 @@ const useStore = create<TodosState>(
             isDone,
             createAt,
             updateAt,
+            isEditing,
           };
           return {
             todos: state.todos.filter((todo) => {
