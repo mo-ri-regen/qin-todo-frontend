@@ -2,6 +2,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { DocumentDuplicateIcon, TrashIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
+import type { DOMAttributes } from "react";
 import { memo, useRef, useState } from "react";
 
 import { useStore } from "../libs/store";
@@ -57,6 +58,10 @@ export const TodoRecord = memo<Props>((props) => {
     transform: CSS.Transform.toString(transform),
     transition,
   };
+  const handleSubmit: DOMAttributes<HTMLFormElement>["onSubmit"] = (e) => {
+    e.preventDefault();
+    setEditTodo(props.todo);
+  };
   return (
     <li ref={setNodeRef} style={style} {...attributes} {...listeners}>
       <div className="group flex justify-between items-center mr-5 mb-4">
@@ -77,20 +82,22 @@ export const TodoRecord = memo<Props>((props) => {
           {/* pc tasks*/}
           <div className="hidden lg:block">
             {isEditing ? (
-              <textarea
-                name="textarea"
-                ref={focusRef}
-                tabIndex={-1}
-                onChange={handleOnChange}
-                className={clsx(
-                  "hidden lg:block px-6 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
-                  {
-                    "line-through": props.todo.isDone,
-                  }
-                )}
-                defaultValue={taskPc}
-                onBlur={handleOnBlur}
-              />
+              <form onSubmit={handleSubmit}>
+                <textarea
+                  name="textarea"
+                  ref={focusRef}
+                  tabIndex={-1}
+                  onChange={handleOnChange}
+                  className={clsx(
+                    "hidden lg:block px-6 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
+                    {
+                      "line-through": props.todo.isDone,
+                    }
+                  )}
+                  defaultValue={taskPc}
+                  onBlur={handleOnBlur}
+                />
+              </form>
             ) : (
               <button
                 ref={focusRef}
