@@ -123,7 +123,7 @@ export const FooterButtons: VFC = () => {
   useEffect(() => {
     setInputTodo(editTodo.task);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [editTodo.task]);
 
   const isOpen = inputTodo !== "" || (inputTodo === "" && isAddInput);
 
