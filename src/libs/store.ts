@@ -29,12 +29,12 @@ export const selectTodos = (
     .filter((todo) => {
       switch (target) {
         case "other": // 「今度やる」のデータ抽出
-          return todo.dueDate === null;
+          return todo.dueDate === null && todo.completeDate === null;
         case "nextday": // 「明日やる」のデータ抽出
           return (
             todo.dueDate !== null &&
             todo.dueDate > strDate &&
-            todo.completeDate == ""
+            todo.completeDate === null
           );
         case "today": // 「今日やる」のデータ抽出
           return (
