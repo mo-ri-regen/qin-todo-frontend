@@ -4,7 +4,7 @@ import type { ListTodo, PostTodo, Target, TodosState } from "src/types";
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 
-import { getToday, getTommorow } from "./dateFunc";
+import { getToday, getTommorow, targetCheck } from "./dateFunc";
 
 const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}tasks`;
 
@@ -186,7 +186,7 @@ const useStore = create<TodosState>(
       toggleDone: async (editTodo: ListTodo) => {
         editTodo.isDone = !editTodo.isDone;
         if (editTodo.isDone) {
-          editTodo.completeDate = getToday().toString();
+          editTodo.completeDate = getToday();
         } else {
           editTodo.completeDate = null;
         }
@@ -230,22 +230,12 @@ const useStore = create<TodosState>(
           const todo = state.todos.find((todo) => {
             todo.id === id;
           });
-          let target: Target | null = state.activeId;
-          const dueDate = todo?.dueDate;
-          const today = String(getToday().toString);
-          const nextday = String(getTommorow().toString);
-
-          switch (dueDate) {
-            case today:
-              target = "today";
-              break;
-            case nextday:
-              target = "nextday";
-              break;
-            default:
-              target = "other";
-              break;
+          if (!todo) {
+            return { activeId: state.activeId };
           }
+          const dueDate = todo.dueDate;
+          const target: Target = targetCheck(dueDate);
+
           return { activeId: target };
         });
       },
@@ -268,31 +258,10 @@ const useStore = create<TodosState>(
             orveTarget = null;
           } else {
             const dueDate = todo?.dueDate;
-            const today = getToday();
-            const nextday = getTommorow();
-
-            switch (dueDate) {
-              case today:
-                if (isActive) {
-                  activeTarget = "today";
-                } else {
-                  orveTarget = "today";
-                }
-                break;
-              case nextday:
-                if (isActive) {
-                  activeTarget = "nextday";
-                } else {
-                  orveTarget = "nextday";
-                }
-                break;
-              default:
-                if (isActive) {
-                  activeTarget = "other";
-                } else {
-                  orveTarget = "other";
-                }
-                break;
+            if (isActive) {
+              activeTarget = targetCheck(dueDate);
+            } else {
+              orveTarget = targetCheck(dueDate);
             }
           }
           return { activeTarget: activeTarget, orveTarget: orveTarget };
