@@ -1,3 +1,5 @@
+import type { Target } from "src/types";
+
 // 当日
 export const getToday = () => {
   const date = new Date();
@@ -23,4 +25,23 @@ export const getStringFromDate = (date: Date) => {
   format_str = format_str.replace(/MM/g, month_str);
   format_str = format_str.replace(/DD/g, day_str);
   return format_str;
+};
+
+export const targetCheck = (dueDate: string | null) => {
+  const today = getToday();
+  const nextday = getTommorow();
+
+  let target: Target;
+  switch (dueDate) {
+    case today:
+      target = "today";
+      break;
+    case nextday:
+      target = "nextday";
+      break;
+    default:
+      target = "other";
+      break;
+  }
+  return target;
 };
