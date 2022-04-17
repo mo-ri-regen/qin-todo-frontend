@@ -12,8 +12,8 @@ export const initEditTodo: ListTodo = {
   id: "",
   task: "",
   sortKey: 0,
-  dueDate: "",
-  completeDate: "",
+  dueDate: null,
+  completeDate: null,
   isDone: false,
   userId: "",
   createAt: "",
@@ -29,13 +29,17 @@ export const selectTodos = (
     .filter((todo) => {
       switch (target) {
         case "other": // 「今度やる」のデータ抽出
-          return todo.dueDate == "";
+          return todo.dueDate === null;
         case "nextday": // 「明日やる」のデータ抽出
-          return todo.dueDate > strDate && todo.completeDate == "";
+          return (
+            todo.dueDate !== null &&
+            todo.dueDate > strDate &&
+            todo.completeDate == ""
+          );
         case "today": // 「今日やる」のデータ抽出
           return (
-            (todo.dueDate <= strDate && todo.dueDate != "") ||
-            todo.completeDate != ""
+            (todo.dueDate !== null && todo.dueDate <= strDate) ||
+            todo.completeDate !== null
           );
       }
     })
@@ -314,7 +318,7 @@ const useStore = create<TodosState>(
               newItem.dueDate = getTommorow();
               break;
             case "other":
-              newItem.dueDate = "";
+              newItem.dueDate = null;
               break;
             default:
               break;

@@ -100,7 +100,7 @@ export const FooterButtons: VFC = () => {
       const postTodo: PostTodo = {
         task: inputTodo,
         sortKey: editTodo.sortKey,
-        dueDate: "",
+        dueDate: null,
         completeDate: editTodo.completeDate,
         isDone: editTodo.isDone,
       };

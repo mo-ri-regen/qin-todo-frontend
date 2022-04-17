@@ -25,7 +25,7 @@ import { AddTaskButton } from "src/components/shared/Buttons/AddTaskButton";
 import { Layout } from "src/layout";
 import { FooterButtons } from "src/layout/Footer/FooterButtons";
 import { getToday } from "src/libs/dateFunc";
-import { useStore } from "src/libs/store";
+import { selectTodos, useStore } from "src/libs/store";
 import type { TodosState } from "src/types";
 
 const Home: NextPage = () => {
@@ -58,17 +58,9 @@ const Home: NextPage = () => {
   });
   const strDate = getToday();
 
-  const todayTodosLen = allTodos.filter((todo) => {
-    return (
-      (todo.dueDate <= strDate && todo.dueDate != "") || todo.completeDate != ""
-    );
-  }).length;
-  const nextdayTodosLen = allTodos.filter((todo) => {
-    return todo.dueDate > strDate && todo.completeDate == "";
-  }).length;
-  const otherTodosLen = allTodos.filter((todo) => {
-    return todo.dueDate == "";
-  }).length;
+  const todayTodosLen = selectTodos(allTodos, strDate, "today").length;
+  const nextdayTodosLen = selectTodos(allTodos, strDate, "nextday").length;
+  const otherTodosLen = selectTodos(allTodos, strDate, "other").length;
   // 削除処理などのクリックと、並び替え処理のドラッグアンドドロップの判断用に５ミリ秒
   // 以上つかんだらドラッグアンドドロップと判断する。（これがないと削除できない）
   const activationConstraint: PointerActivationConstraint = {
