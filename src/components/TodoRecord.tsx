@@ -2,7 +2,8 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { DocumentDuplicateIcon, TrashIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
-import { memo, useRef } from "react";
+import type { ChangeEvent, DOMAttributes } from "react";
+import { memo, useRef, useState } from "react";
 
 import { useStore } from "../libs/store";
 import type { ListTodo, Target, TodosState } from "../types";
@@ -13,6 +14,8 @@ type Props = {
 };
 
 export const TodoRecord = memo<Props>((props) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [taskPc, setTaskPc] = useState(props.todo.task);
   const toggleComplete = useStore((state: TodosState) => {
     return state.toggleDone;
   });
@@ -28,7 +31,23 @@ export const TodoRecord = memo<Props>((props) => {
   const setEditTodo = useStore((state) => {
     return state.setEditTodo;
   });
-  const handleEditTodo = () => {
+  const handleEditTodoPC = () => {
+    setIsEditing(true);
+    setEditTodo(props.todo);
+  };
+  const handleOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setTaskPc(e.target.value);
+  };
+  const updateTodo = useStore((state) => {
+    return state.updateTodo;
+  });
+  const handleOnBlur = () => {
+    const postTodo: ListTodo = props.todo;
+    postTodo.task = taskPc;
+    updateTodo(postTodo);
+    setIsEditing(false);
+  };
+  const handleEditTodoMobile = () => {
     setEditTodo(props.todo);
   };
   const copyTodo = useStore((state) => {
@@ -44,6 +63,10 @@ export const TodoRecord = memo<Props>((props) => {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+  };
+  const handleSubmit: DOMAttributes<HTMLFormElement>["onSubmit"] = (e) => {
+    e.preventDefault();
+    setEditTodo(props.todo);
   };
   return (
     <li ref={setNodeRef} style={style} {...attributes} {...listeners}>
@@ -62,19 +85,57 @@ export const TodoRecord = memo<Props>((props) => {
             checked={props.todo.isDone}
             onClick={handleToggleComplete}
           />
-          <button
-            ref={focusRef}
-            tabIndex={-1}
-            onClick={handleEditTodo}
-            className={clsx(
-              "px-6 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
-              {
-                "line-through": props.todo.isDone,
-              }
+          {/* pc tasks*/}
+          <div className="hidden lg:block">
+            {isEditing ? (
+              <form onSubmit={handleSubmit}>
+                <textarea
+                  name="textarea"
+                  ref={focusRef}
+                  tabIndex={-1}
+                  onChange={handleOnChange}
+                  className={clsx(
+                    "hidden lg:block px-6 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
+                    {
+                      "line-through": props.todo.isDone,
+                    }
+                  )}
+                  defaultValue={taskPc}
+                  onBlur={handleOnBlur}
+                />
+              </form>
+            ) : (
+              <button
+                ref={focusRef}
+                tabIndex={-1}
+                onClick={handleEditTodoPC}
+                className={clsx(
+                  "hidden lg:block px-6 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
+                  {
+                    "line-through": props.todo.isDone,
+                  }
+                )}
+              >
+                {props.todo.task}
+              </button>
             )}
-          >
-            {props.todo.task}
-          </button>
+          </div>
+          {/* mobile tasks */}
+          <div className="lg:hidden ">
+            <button
+              ref={focusRef}
+              tabIndex={-1}
+              onClick={handleEditTodoMobile}
+              className={clsx(
+                "px-6 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
+                {
+                  "line-through": props.todo.isDone,
+                }
+              )}
+            >
+              {props.todo.task}
+            </button>
+          </div>
         </div>
         <div className="hidden lg:flex lg:w-1/6 opacity-10 group-hover:opacity-100">
           <button className="p-1 ml-5" onClick={handleCopyTodo}>
