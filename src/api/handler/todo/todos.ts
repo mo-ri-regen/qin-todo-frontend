@@ -2,7 +2,7 @@ import { rest } from "msw";
 import { EXAMPLE_MY_TODO_LIST } from "src/models/todo";
 import type { ListTodo, PostTodo } from "src/types";
 
-const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}todo/`;
+const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}tasks`;
 
 export const TodosHandlers = [
   // 新しいTodoを作成する
