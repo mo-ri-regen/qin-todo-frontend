@@ -18,14 +18,6 @@ export type PostTodo = {
   isDone: boolean;
 };
 
-export type CopyTodo = {
-  task: string;
-  sortKey: number;
-  dueDate: string;
-  completeDate: string;
-  isDone: boolean;
-};
-
 export type TodosState = {
   todos: ListTodo[];
   isAddInput: boolean;
