@@ -5,7 +5,7 @@ import type { FirebaseStorage } from "firebase/storage";
 import { getStorage } from "firebase/storage";
 import { init } from "next-firebase-auth";
 
-const isProd = process.env.NEXT_PUBLIC_NODE_ENV === "production";
+const isProd = process.env.NODE_ENV === "production";
 /**
  * @package
  */
