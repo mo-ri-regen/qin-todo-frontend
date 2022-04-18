@@ -23,6 +23,7 @@ export const ListTodo = memo<Props>((props) => {
     return state.todos;
   });
   const strDate = getToday();
+  const todosLen = selectTodos(allTodos, strDate, props.target).length + 1;
 
   const todos = selectTodos(allTodos, strDate, props.target);
   const todoIds = todos.map((todoTask) => {
@@ -32,11 +33,12 @@ export const ListTodo = memo<Props>((props) => {
 
   const AddPcTaskButton = () => {
     const [inputTodo, setInputTodo] = useState<string>("");
+
     const handleOnClick = () => {
-      setIsInput(true);
+      setIsInput(true); // PC用
     };
     const handleOnBlur = () => {
-      setIsInput(false);
+      setIsInput(false); // PC用
     };
     const handleOnChange = (e: any) => {
       setInputTodo(e.target.value);
@@ -50,13 +52,13 @@ export const ListTodo = memo<Props>((props) => {
 
     const postTodo: PostTodo = {
       task: inputTodo,
-      sortKey: editTodo.sortKey,
+      sortKey: todosLen,
       dueDate:
         props.target === "today"
           ? getToday()
           : props.target === "nextday"
           ? getTommorow()
-          : "",
+          : null,
       completeDate: editTodo.completeDate,
       isDone: editTodo.isDone,
     };

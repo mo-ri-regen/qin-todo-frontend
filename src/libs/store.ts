@@ -4,16 +4,16 @@ import type { ListTodo, PostTodo, Target, TodosState } from "src/types";
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 
-import { getToday, getTommorow } from "./dateFunc";
+import { getToday, getTommorow, targetCheck } from "./dateFunc";
 
-const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}todo/`;
+const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URI}tasks`;
 
 export const initEditTodo: ListTodo = {
   id: "",
   task: "",
   sortKey: 0,
-  dueDate: "",
-  completeDate: "",
+  dueDate: null,
+  completeDate: null,
   isDone: false,
   userId: "",
   createAt: "",
@@ -29,13 +29,17 @@ export const selectTodos = (
     .filter((todo) => {
       switch (target) {
         case "other": // 「今度やる」のデータ抽出
-          return todo.dueDate == "";
+          return todo.dueDate === null && todo.completeDate === null;
         case "nextday": // 「明日やる」のデータ抽出
-          return todo.dueDate > strDate && todo.completeDate == "";
+          return (
+            todo.dueDate !== null &&
+            todo.dueDate > strDate &&
+            todo.completeDate === null
+          );
         case "today": // 「今日やる」のデータ抽出
           return (
-            (todo.dueDate <= strDate && todo.dueDate != "") ||
-            todo.completeDate != ""
+            (todo.dueDate !== null && todo.dueDate <= strDate) ||
+            todo.completeDate !== null
           );
       }
     })
@@ -121,7 +125,7 @@ const useStore = create<TodosState>(
         });
       },
       updateTodo: async (editTodo) => {
-        const postTodo = {
+        const putTodo = {
           task: editTodo.task,
           sortKey: editTodo.sortKey,
           dueDate: editTodo.dueDate,
@@ -129,8 +133,8 @@ const useStore = create<TodosState>(
           isDone: editTodo.isDone,
         };
         const response = await axios.put<ListTodo>(
-          `${apiUrl}${editTodo.id}`,
-          postTodo
+          `${apiUrl}/${editTodo.id}`,
+          putTodo
         );
         const {
           task,
@@ -162,7 +166,7 @@ const useStore = create<TodosState>(
         });
       },
       removeTodo: async (id: string) => {
-        await axios.delete(`${apiUrl}${id}`).then((res) => {
+        await axios.delete(`${apiUrl}/${id}`).then((res) => {
           return res;
         });
 
@@ -182,9 +186,9 @@ const useStore = create<TodosState>(
       toggleDone: async (editTodo: ListTodo) => {
         editTodo.isDone = !editTodo.isDone;
         if (editTodo.isDone) {
-          editTodo.completeDate = getToday().toString();
+          editTodo.completeDate = getToday();
         } else {
-          editTodo.completeDate = "";
+          editTodo.completeDate = null;
         }
 
         const putTodo: PostTodo = {
@@ -195,7 +199,7 @@ const useStore = create<TodosState>(
           isDone: editTodo.isDone,
         };
         const response = await axios.put<ListTodo>(
-          `${apiUrl}${editTodo.id}`,
+          `${apiUrl}/${editTodo.id}`,
           putTodo
         );
         if (response.status != 200) {
@@ -226,22 +230,12 @@ const useStore = create<TodosState>(
           const todo = state.todos.find((todo) => {
             todo.id === id;
           });
-          let target: Target | null = state.activeId;
-          const dueDate = todo?.dueDate;
-          const today = String(getToday().toString);
-          const nextday = String(getTommorow().toString);
-
-          switch (dueDate) {
-            case today:
-              target = "today";
-              break;
-            case nextday:
-              target = "nextday";
-              break;
-            default:
-              target = "other";
-              break;
+          if (!todo) {
+            return { activeId: state.activeId };
           }
+          const dueDate = todo.dueDate;
+          const target: Target = targetCheck(dueDate);
+
           return { activeId: target };
         });
       },
@@ -264,31 +258,10 @@ const useStore = create<TodosState>(
             orveTarget = null;
           } else {
             const dueDate = todo?.dueDate;
-            const today = getToday();
-            const nextday = getTommorow();
-
-            switch (dueDate) {
-              case today:
-                if (isActive) {
-                  activeTarget = "today";
-                } else {
-                  orveTarget = "today";
-                }
-                break;
-              case nextday:
-                if (isActive) {
-                  activeTarget = "nextday";
-                } else {
-                  orveTarget = "nextday";
-                }
-                break;
-              default:
-                if (isActive) {
-                  activeTarget = "other";
-                } else {
-                  orveTarget = "other";
-                }
-                break;
+            if (isActive) {
+              activeTarget = targetCheck(dueDate);
+            } else {
+              orveTarget = targetCheck(dueDate);
             }
           }
           return { activeTarget: activeTarget, orveTarget: orveTarget };
@@ -344,7 +317,7 @@ const useStore = create<TodosState>(
               newItem.dueDate = getTommorow();
               break;
             case "other":
-              newItem.dueDate = "";
+              newItem.dueDate = null;
               break;
             default:
               break;

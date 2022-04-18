@@ -83,7 +83,7 @@ export const TodoRecord = memo<Props>((props) => {
             )}
             type="checkbox"
             checked={props.todo.isDone}
-            onClick={handleToggleComplete}
+            onChange={handleToggleComplete}
           />
           {/* pc tasks*/}
           <div className="hidden lg:block">
