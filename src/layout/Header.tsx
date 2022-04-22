@@ -5,9 +5,9 @@ import { UserMenu } from "./UserMenu";
 export const Header = () => {
   return (
     <>
-      <div className="flex justify-center items-center h-14">
-        <div className="flex justify-between items-center w-full">
-          <button className="w-9 h-9" />
+      <div className="flex justify-center items-center py-2.5 h-14 lg:h-20">
+        <div className="flex justify-between items-center lg:px-6 w-full">
+          <button className="lg:hidden w-9 h-9" />
           <div className="text-3xl">
             <QinTodoIcon />
           </div>
