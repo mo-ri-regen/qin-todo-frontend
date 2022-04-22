@@ -70,11 +70,11 @@ export const TodoRecord = memo<Props>((props) => {
   };
   return (
     <li ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <div className="group flex justify-between items-center mr-5 mb-4">
-        <div className="flex items-center ">
+      <div className="group flex justify-between mr-5 mb-4">
+        <div className="flex">
           <input
             className={clsx(
-              "mr-4 w-6 h-6 rounded-full ring-0 focus:ring-gray-400",
+              "px-2 w-6 h-6 rounded-full ring-0 focus:ring-gray-400",
               {
                 "text-primary": props.target === "today",
                 "text-secondary": props.target === "nextday",
@@ -95,7 +95,7 @@ export const TodoRecord = memo<Props>((props) => {
                   tabIndex={-1}
                   onChange={handleOnChange}
                   className={clsx(
-                    "hidden lg:block px-6 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
+                    "hidden lg:block m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
                     {
                       "line-through": props.todo.isDone,
                     }
@@ -110,7 +110,7 @@ export const TodoRecord = memo<Props>((props) => {
                 tabIndex={-1}
                 onClick={handleEditTodoPC}
                 className={clsx(
-                  "hidden lg:block px-6 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
+                  "hidden lg:block px-2 m-0 my-auto w-full text-left dark:bg-gray-700 dark:focus:bg-transparent rounded-lg border-none focus:ring-blue-300 cursor-text line-clamp-4 lg:line-clamp-none",
                   {
                     "line-through": props.todo.isDone,
                   }
