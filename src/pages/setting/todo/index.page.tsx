@@ -16,8 +16,8 @@ export const SettingQinTodo: NextPage = () => {
   };
 
   return (
-    <main className="px-4 mx-auto w-full max-w-screen-sm">
-      <div className="flex items-center pb-6">
+    <main className="px-4 mx-auto w-full max-w-screen-sm lg:max-w-screen-md">
+      <div className="flex justify-between items-center pb-6">
         <button
           type="button"
           onClick={handleClickReturnHome}
@@ -30,7 +30,7 @@ export const SettingQinTodo: NextPage = () => {
         </div>
         <div className="w-5" />
       </div>
-      <ul className="space-y-8">
+      <ul className="lg:mx-16 space-y-8">
         <li>
           <div className="space-y-1">
             <div className="text-sm font-bold text-gray-400">設定</div>

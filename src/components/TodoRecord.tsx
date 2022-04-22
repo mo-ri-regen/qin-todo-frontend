@@ -74,7 +74,7 @@ export const TodoRecord = memo<Props>((props) => {
         <div className="flex">
           <input
             className={clsx(
-              "px-2 w-6 h-6 rounded-full ring-0 focus:ring-gray-400",
+              "px-2 mr-2 w-6 h-6 rounded-full ring-0 focus:ring-gray-400",
               {
                 "text-primary": props.target === "today",
                 "text-secondary": props.target === "nextday",
