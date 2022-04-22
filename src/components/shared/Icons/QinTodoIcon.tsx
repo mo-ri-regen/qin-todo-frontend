@@ -12,7 +12,7 @@ export const QinTodoIcon = () => {
         width="113"
         height="24"
         viewBox="0 0 113 24"
-        fill="none"
+        fill={fillColor}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
