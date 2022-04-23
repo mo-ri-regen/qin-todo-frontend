@@ -22,12 +22,12 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
   } = useProfile();
 
   return (
-    <form>
+    <form className="w-full">
       <ul className="space-y-8">
         <li>
           <div className="space-y-1">
             <div className="text-sm font-bold text-gray-400">アイコン</div>
-            <div className="flex justify-between">
+            <div className="flex items-center">
               <div className="flex justify-start items-center space-x-6">
                 {imageUrl ? (
                   <img
@@ -56,7 +56,7 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
               <div>
                 <Button
                   variant="solid-gray"
-                  className="py-2.5 px-5 mt-4"
+                  className="py-2.5 px-5 ml-4"
                   onClick={handleOpenFileDialog}
                 >
                   変更する
@@ -85,7 +85,7 @@ export const TodoProfileForm: VFC<ProfileFormProps> = () => {
           </div>
         </li>
         <li>
-          <div className="mt-12 space-y-4">
+          <div className="mt-9">
             <Button
               variant="solid-blue"
               onClick={handleOnClickFileUpLoad}
