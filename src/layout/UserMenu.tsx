@@ -23,9 +23,9 @@ export const UserMenu: VFC = () => {
               {AuthUser.photoURL ? (
                 <MyAvater size="small" />
               ) : (
-                <button className="w-9 h-9 bg-blue-500 rounded-full">
+                <div className="w-9 h-9 bg-blue-500 rounded-full">
                   {initial}
-                </button>
+                </div>
               )}
             </Popover.Button>
 

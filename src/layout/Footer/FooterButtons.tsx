@@ -33,6 +33,8 @@ export const FooterButtons: VFC = () => {
     return state.setIsAddInput;
   });
   const [inputTodo, setInputTodo] = useState<string>(editTodo.task);
+  const orgTarget: Target | null =
+    editTodo.id === "" ? null : targetCheck(editTodo.dueDate);
   const handleAddTodoToday = () => {
     if (inputTodo === "") {
       return;
@@ -48,18 +50,10 @@ export const FooterButtons: VFC = () => {
       };
       addTodo(postTodo);
     } else {
-      const orgTarget: Target = targetCheck(editTodo.dueDate);
-      const postTodo: ListTodo = {
-        id: editTodo.id,
-        task: inputTodo,
-        userId: editTodo.userId,
-        sortKey: orgTarget === "today" ? editTodo.sortKey : todosLen,
-        dueDate: getToday(),
-        completeDate: editTodo.completeDate,
-        isDone: editTodo.isDone,
-        createAt: editTodo.createAt,
-        updateAt: editTodo.updateAt,
-      };
+      const postTodo: ListTodo = editTodo;
+      postTodo.task = inputTodo;
+      postTodo.sortKey = orgTarget === "today" ? editTodo.sortKey : todosLen;
+      postTodo.dueDate = getToday();
       updateTodo(postTodo);
     }
     setInputTodo("");
@@ -82,18 +76,11 @@ export const FooterButtons: VFC = () => {
         };
         addTodo(postTodo);
       } else {
-        const orgTarget: Target = targetCheck(editTodo.dueDate);
-        const postTodo: ListTodo = {
-          id: editTodo.id,
-          task: inputTodo,
-          userId: editTodo.userId,
-          sortKey: orgTarget === "nextday" ? editTodo.sortKey : todosLen,
-          dueDate: getTommorow(),
-          completeDate: editTodo.completeDate,
-          isDone: editTodo.isDone,
-          createAt: editTodo.createAt,
-          updateAt: editTodo.updateAt,
-        };
+        const postTodo: ListTodo = editTodo;
+        postTodo.task = inputTodo;
+        postTodo.sortKey =
+          orgTarget === "nextday" ? editTodo.sortKey : todosLen;
+        postTodo.dueDate = getTommorow();
         updateTodo(postTodo);
       }
       setInputTodo("");
@@ -117,18 +104,10 @@ export const FooterButtons: VFC = () => {
         };
         addTodo(postTodo);
       } else {
-        const orgTarget: Target = targetCheck(editTodo.dueDate);
-        const postTodo: ListTodo = {
-          id: editTodo.id,
-          task: inputTodo,
-          userId: editTodo.userId,
-          sortKey: orgTarget === "other" ? editTodo.sortKey : todosLen,
-          dueDate: null,
-          completeDate: editTodo.completeDate,
-          isDone: editTodo.isDone,
-          createAt: editTodo.createAt,
-          updateAt: editTodo.updateAt,
-        };
+        const postTodo: ListTodo = editTodo;
+        postTodo.task = inputTodo;
+        postTodo.sortKey = orgTarget === "other" ? editTodo.sortKey : todosLen;
+        postTodo.dueDate = null;
         updateTodo(postTodo);
       }
       setInputTodo("");

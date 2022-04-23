@@ -7,7 +7,7 @@ export const Header = () => {
     <>
       <div className="flex justify-center items-center py-2.5 h-14 lg:h-20">
         <div className="flex justify-between items-center lg:px-6 w-full">
-          <button className="lg:hidden w-9 h-9" />
+          <div className="lg:hidden w-9 h-9" />
           <div className="text-3xl">
             <QinTodoIcon />
           </div>
