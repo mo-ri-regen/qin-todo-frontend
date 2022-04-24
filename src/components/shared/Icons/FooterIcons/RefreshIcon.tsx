@@ -3,7 +3,7 @@ import type { VFC } from "react";
 /**
  * @package
  */
-export const TodoTodayIcon: VFC<{ className?: string }> = (props) => {
+export const RefreshIcon: VFC<{ className?: string }> = (props) => {
   return (
     <svg
       className={props.className}

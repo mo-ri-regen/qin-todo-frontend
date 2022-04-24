@@ -1,15 +1,19 @@
 import { AppleIcon } from "./AppleIcon";
+import {
+  ChevronDoubleDownIcon,
+  ChevronDownIcon,
+} from "./FooterIcons/ChevronIcons";
+import { PlusIcon } from "./FooterIcons/PlusIcon";
+import { RefreshIcon } from "./FooterIcons/RefreshIcon";
 import { GoogleIcon } from "./GoogleIcon";
 import { QinTodoIcon } from "./QinTodoIcon";
-import { TodoOtherIcon } from "./TodoOther";
-import { TodoTodayIcon } from "./TodoToday";
-import { TodoTomorrowIcon } from "./TodoTomorrow";
 
 export {
   AppleIcon,
+  ChevronDoubleDownIcon,
+  ChevronDownIcon,
   GoogleIcon,
+  PlusIcon,
   QinTodoIcon,
-  TodoOtherIcon,
-  TodoTodayIcon,
-  TodoTomorrowIcon,
+  RefreshIcon,
 };
