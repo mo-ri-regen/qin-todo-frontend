@@ -1,12 +1,10 @@
-import type { VFC } from "react";
-
 /**
  * @package
  */
-export const ChevronUpIcon: VFC<{ className?: string }> = (props) => {
+export const ChevronUpIcon = () => {
   return (
     <svg
-      className={props.className}
+      className="w-5 h-5"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
@@ -20,10 +18,10 @@ export const ChevronUpIcon: VFC<{ className?: string }> = (props) => {
   );
 };
 
-export const ChevronDownIcon: VFC<{ className?: string }> = (props) => {
+export const ChevronDownIcon = () => {
   return (
     <svg
-      className={props.className}
+      className="w-5 h-5"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
@@ -37,10 +35,10 @@ export const ChevronDownIcon: VFC<{ className?: string }> = (props) => {
   );
 };
 
-export const ChevronDoubleUpIcon: VFC<{ className?: string }> = (props) => {
+export const ChevronDoubleUpIcon = () => {
   return (
     <svg
-      className={props.className}
+      className="w-5 h-5"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
@@ -54,10 +52,10 @@ export const ChevronDoubleUpIcon: VFC<{ className?: string }> = (props) => {
   );
 };
 
-export const ChevronDoubleDownIcon: VFC<{ className?: string }> = (props) => {
+export const ChevronDoubleDownIcon = () => {
   return (
     <svg
-      className={props.className}
+      className="w-5 h-5"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"

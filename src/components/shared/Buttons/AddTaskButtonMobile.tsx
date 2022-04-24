@@ -40,11 +40,7 @@ export const AddTaskButtonMobile: VFC<AddButtonProps> = (props) => {
     <div className="flex items-center mb-3">
       <button onClick={props.onClick} className={classes}>
         <div className="flex">
-          {isHover ? (
-            <RefreshIcon className="w-5 h-5" />
-          ) : (
-            <PlusIcon className="w-5 h-5" />
-          )}
+          {isHover ? <RefreshIcon /> : <PlusIcon />}
           <div className="text-gray-100" onBlur={handleOnBlur}>
             {props.children}
           </div>
