@@ -3,9 +3,11 @@ import type { DOMAttributes, VFC } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
-import { TodoOtherIcon } from "src/components/shared/Icons/TodoOther";
-import { TodoTodayIcon } from "src/components/shared/Icons/TodoToday";
-import { TodoTomorrowIcon } from "src/components/shared/Icons/TodoTomorrow";
+import {
+  TodoOtherIcon,
+  TodoTodayIcon,
+  TodoTomorrowIcon,
+} from "src/components/shared/Icons";
 import { getToday, getTommorow, targetCheck } from "src/libs/dateFunc";
 import { initEditTodo, selectTodos, useStore } from "src/libs/store";
 import type { ListTodo, PostTodo, Target, TodosState } from "src/types";
