@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { AuthAction, withAuthUser } from "next-firebase-auth";
 import { Button } from "src/components/shared/Buttons";
-import { SignoutButton } from "src/components/shared/Buttons/SignoutButton";
+import { SignoutButton } from "src/components/shared/Buttons";
 import { AppleIcon, GoogleIcon } from "src/components/shared/Icons";
 
 const Account: NextPage = () => {
