@@ -3,6 +3,9 @@ import type { DOMAttributes, VFC } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
+import { TodoOtherIcon } from "src/components/shared/Icons/TodoOther";
+import { TodoTodayIcon } from "src/components/shared/Icons/TodoToday";
+import { TodoTomorrowIcon } from "src/components/shared/Icons/TodoTomorrow";
 import { getToday, getTommorow, targetCheck } from "src/libs/dateFunc";
 import { initEditTodo, selectTodos, useStore } from "src/libs/store";
 import type { ListTodo, PostTodo, Target, TodosState } from "src/types";
@@ -151,19 +154,25 @@ export const FooterButtons: VFC = () => {
               className="px-4 h-9 text-sm whitespace-nowrap bg-primary rounded-full"
               onClick={handleAddTodoToday}
             >
-              + 今日する
+              <div className="flex justify-between items-center">
+                <TodoTodayIcon className="w-5 h-5" /> 今日する
+              </div>
             </button>
             <button
               className="px-4 h-9 text-sm whitespace-nowrap bg-secondary rounded-full"
               onClick={handleAddTodoTommorow}
             >
-              + 明日する
+              <div className="flex justify-between items-center">
+                <TodoTomorrowIcon className="pt-1 w-5 h-5" /> 明日する
+              </div>
             </button>
             <button
               className="px-4 h-9 text-sm whitespace-nowrap bg-tertiary rounded-full"
               onClick={handleAddTodo}
             >
-              + 今度する
+              <div className="flex justify-between items-center">
+                <TodoOtherIcon className="w-5 h-5" /> 今度する
+              </div>
             </button>
           </div>
         </div>
