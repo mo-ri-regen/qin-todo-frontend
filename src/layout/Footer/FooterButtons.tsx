@@ -3,11 +3,7 @@ import type { DOMAttributes, VFC } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
-import { AddTaskButtonMobile } from "src/components/shared/Buttons/AddTaskButtonMobile";
-// import {
-//   ChevronDoubleDownIcon,
-//   ChevronDownIcon,
-// } from "src/components/shared/Icons";
+import { AddTaskButtonMobile } from "src/components/shared/Buttons";
 import { getToday, getTommorow, targetCheck } from "src/libs/dateFunc";
 import { initEditTodo, selectTodos, useStore } from "src/libs/store";
 import type { ListTodo, PostTodo, Target, TodosState } from "src/types";
