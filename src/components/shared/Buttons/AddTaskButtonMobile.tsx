@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import type { DOMAttributes, VFC } from "react";
+import type { DOMAttributes, FocusEventHandler, VFC } from "react";
 import { useState } from "react";
 import { useMemo } from "react";
 
@@ -8,7 +8,9 @@ import type { ButtonVariant, Common } from "./types";
 
 type AddButtonProps = Common & {
   onClick?: DOMAttributes<HTMLButtonElement>["onClick"];
-  onBlur?: DOMAttributes<HTMLDivElement>["onBlur"];
+  onMouseLeave?: DOMAttributes<HTMLDivElement>["onMouseLeave"];
+  onMouseOver?: DOMAttributes<HTMLDivElement>["onMouseOver"];
+  onFocus?: FocusEventHandler<HTMLDivElement>;
 };
 
 const useButtonClass = (className?: string, variant?: ButtonVariant) => {
@@ -32,18 +34,27 @@ const useButtonClass = (className?: string, variant?: ButtonVariant) => {
  */
 export const AddTaskButtonMobile: VFC<AddButtonProps> = (props) => {
   const [isHover, setIsHover] = useState<boolean>(false);
-  const handleOnBlur = () => {
+  const handleOnMouseOver = () => {
     setIsHover(true);
+  };
+  const handleOnMouseLeave = () => {
+    setIsHover(false);
+  };
+  const handleOnFocus = () => {
+    return void 0;
   };
   const classes = useButtonClass(props.className, props.variant);
   return (
     <div className="flex items-center mb-3">
       <button onClick={props.onClick} className={classes}>
-        <div className="flex">
+        <div
+          onFocus={handleOnFocus}
+          className="flex"
+          onMouseOver={handleOnMouseOver}
+          onMouseLeave={handleOnMouseLeave}
+        >
           {isHover ? <RefreshIcon /> : <PlusIcon />}
-          <div className="text-gray-100" onBlur={handleOnBlur}>
-            {props.children}
-          </div>
+          <div className="text-gray-100">{props.children}</div>
         </div>
       </button>
     </div>
