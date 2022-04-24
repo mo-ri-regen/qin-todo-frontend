@@ -1,12 +1,17 @@
 import clsx from "clsx";
 import type { DOMAttributes, FocusEventHandler, VFC } from "react";
-import { useState } from "react";
+// import { useState } from "react";
 import { useMemo } from "react";
+import { useStore } from "src/libs/store";
+import type { Target } from "src/types";
 
 import { PlusIcon, RefreshIcon } from "../Icons";
 import type { ButtonVariant, Common } from "./types";
 
 type AddButtonProps = Common & {
+  position: "today" | "nextday" | "other";
+  target: Target | null;
+
   onClick?: DOMAttributes<HTMLButtonElement>["onClick"];
   onMouseLeave?: DOMAttributes<HTMLDivElement>["onMouseLeave"];
   onMouseOver?: DOMAttributes<HTMLDivElement>["onMouseOver"];
@@ -33,13 +38,16 @@ const useButtonClass = (className?: string, variant?: ButtonVariant) => {
  * @package
  */
 export const AddTaskButtonMobile: VFC<AddButtonProps> = (props) => {
-  const [isHover, setIsHover] = useState<boolean>(false);
-  const handleOnMouseOver = () => {
-    setIsHover(true);
-  };
-  const handleOnMouseLeave = () => {
-    setIsHover(false);
-  };
+  const isAddInput = useStore((state) => {
+    return state.isAddInput;
+  });
+  // const [isHover, setIsHover] = useState<boolean>(false);
+  // const handleOnMouseOver = () => {
+  //   setIsHover(true);
+  // };
+  // const handleOnMouseLeave = () => {
+  //   setIsHover(false);
+  // };
   const handleOnFocus = () => {
     return void 0;
   };
@@ -50,10 +58,17 @@ export const AddTaskButtonMobile: VFC<AddButtonProps> = (props) => {
         <div
           onFocus={handleOnFocus}
           className="flex"
-          onMouseOver={handleOnMouseOver}
-          onMouseLeave={handleOnMouseLeave}
+          // onMouseOver={handleOnMouseOver}
+          // onMouseLeave={handleOnMouseLeave}
         >
-          {isHover ? <RefreshIcon /> : <PlusIcon />}
+          {isAddInput && <PlusIcon />}
+          {!isAddInput && props.target === props.position && <RefreshIcon />}
+          {!isAddInput &&
+            props.target === "today" &&
+            props.position === "nextday" && <span>↓1</span>}
+          {!isAddInput &&
+            props.target === "today" &&
+            props.position === "other" && <span>↓2</span>}
           <div className="text-gray-100">{props.children}</div>
         </div>
       </button>

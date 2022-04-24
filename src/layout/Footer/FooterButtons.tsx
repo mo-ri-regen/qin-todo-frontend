@@ -150,18 +150,27 @@ export const FooterButtons: VFC = () => {
             </div>
             <div className="flex justify-between items-center mb-2 w-full text-white">
               <AddTaskButtonMobile
+                position="today"
+                target={orgTarget}
                 variant="primary"
                 onClick={handleAddTodoToday}
               >
                 今日する
               </AddTaskButtonMobile>
               <AddTaskButtonMobile
+                position="nextday"
+                target={orgTarget}
                 variant="secondary"
                 onClick={handleAddTodoTommorow}
               >
                 明日する
               </AddTaskButtonMobile>
-              <AddTaskButtonMobile variant="ternary" onClick={handleAddTodo}>
+              <AddTaskButtonMobile
+                position="other"
+                target={orgTarget}
+                variant="ternary"
+                onClick={handleAddTodo}
+              >
                 今度する
               </AddTaskButtonMobile>
             </div>
