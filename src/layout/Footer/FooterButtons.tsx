@@ -137,29 +137,34 @@ export const FooterButtons: VFC = () => {
     <Dialog open={isOpen} onClose={handleCloseModal} initialFocus={textareaRef}>
       <div className="text-center">
         <Dialog.Overlay className="fixed inset-0 z-20 bg-opacity-40 backdrop-filter" />
-        <div className="lg:hidden fixed right-0 bottom-0 left-0 z-50 sm:p-6 py-4 px-6 mx-auto w-screen max-w-sm bg-white dark:bg-gray-900">
-          <div className="items-center text-center">
-            <textarea
-              ref={textareaRef}
-              className="mb-3 w-full h-8 leading-4 dark:text-gray-700 bg-[#F1F5F9] rounded-3xl border-none focus:ring-2 focus:ring-primary outline-none"
-              onChange={handleOnChange}
-              value={inputTodo}
-              maxLength={200}
-            />
-          </div>
-          <div className="flex justify-between items-center mb-2 w-full text-white">
-            <AddTaskButtonMobile variant="primary" onClick={handleAddTodoToday}>
-              今日する
-            </AddTaskButtonMobile>
-            <AddTaskButtonMobile
-              variant="secondary"
-              onClick={handleAddTodoTommorow}
-            >
-              明日する
-            </AddTaskButtonMobile>
-            <AddTaskButtonMobile variant="ternary" onClick={handleAddTodo}>
-              今度する
-            </AddTaskButtonMobile>
+        <div className="lg:hidden fixed right-0 bottom-0 left-0 z-50 sm:p-6 py-4 px-6 mx-auto w-screen bg-white dark:bg-gray-900">
+          <div className="mx-auto max-w-sm">
+            <div className="items-center text-center">
+              <textarea
+                ref={textareaRef}
+                className="mb-3 w-full h-8 leading-4 dark:text-gray-700 bg-[#F1F5F9] rounded-3xl border-none focus:ring-2 focus:ring-primary outline-none"
+                onChange={handleOnChange}
+                value={inputTodo}
+                maxLength={200}
+              />
+            </div>
+            <div className="flex justify-between items-center mb-2 w-full text-white">
+              <AddTaskButtonMobile
+                variant="primary"
+                onClick={handleAddTodoToday}
+              >
+                今日する
+              </AddTaskButtonMobile>
+              <AddTaskButtonMobile
+                variant="secondary"
+                onClick={handleAddTodoTommorow}
+              >
+                明日する
+              </AddTaskButtonMobile>
+              <AddTaskButtonMobile variant="ternary" onClick={handleAddTodo}>
+                今度する
+              </AddTaskButtonMobile>
+            </div>
           </div>
         </div>
       </div>
