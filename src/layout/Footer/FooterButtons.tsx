@@ -3,11 +3,11 @@ import type { DOMAttributes, VFC } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
-import {
-  TodoOtherIcon,
-  TodoTodayIcon,
-  TodoTomorrowIcon,
-} from "src/components/shared/Icons";
+import { AddTaskButtonMobile } from "src/components/shared/Buttons/AddTaskButtonMobile";
+// import {
+//   ChevronDoubleDownIcon,
+//   ChevronDownIcon,
+// } from "src/components/shared/Icons";
 import { getToday, getTommorow, targetCheck } from "src/libs/dateFunc";
 import { initEditTodo, selectTodos, useStore } from "src/libs/store";
 import type { ListTodo, PostTodo, Target, TodosState } from "src/types";
@@ -152,30 +152,18 @@ export const FooterButtons: VFC = () => {
             />
           </div>
           <div className="flex justify-between items-center mb-2 w-full text-white">
-            <button
-              className="px-4 h-9 text-sm whitespace-nowrap bg-primary rounded-full"
-              onClick={handleAddTodoToday}
-            >
-              <div className="flex justify-between items-center">
-                <TodoTodayIcon className="w-5 h-5" /> 今日する
-              </div>
-            </button>
-            <button
-              className="px-4 h-9 text-sm whitespace-nowrap bg-secondary rounded-full"
+            <AddTaskButtonMobile variant="primary" onClick={handleAddTodoToday}>
+              今日する
+            </AddTaskButtonMobile>
+            <AddTaskButtonMobile
+              variant="secondary"
               onClick={handleAddTodoTommorow}
             >
-              <div className="flex justify-between items-center">
-                <TodoTomorrowIcon className="pt-1 w-5 h-5" /> 明日する
-              </div>
-            </button>
-            <button
-              className="px-4 h-9 text-sm whitespace-nowrap bg-tertiary rounded-full"
-              onClick={handleAddTodo}
-            >
-              <div className="flex justify-between items-center">
-                <TodoOtherIcon className="w-5 h-5" /> 今度する
-              </div>
-            </button>
+              明日する
+            </AddTaskButtonMobile>
+            <AddTaskButtonMobile variant="ternary" onClick={handleAddTodo}>
+              今度する
+            </AddTaskButtonMobile>
           </div>
         </div>
       </div>
