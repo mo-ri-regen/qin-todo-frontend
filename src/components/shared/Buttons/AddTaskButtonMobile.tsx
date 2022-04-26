@@ -6,14 +6,12 @@ import type { Target } from "src/types";
 
 import {
   ChevronDoubleDownIcon,
+  ChevronDoubleUpIcon,
   ChevronDownIcon,
+  ChevronUpIcon,
   PlusIcon,
   RefreshIcon,
 } from "../Icons";
-import {
-  ChevronDoubleUpIcon,
-  ChevronUpIcon,
-} from "../Icons/FooterIcons/ChevronIcons";
 import type { ButtonVariant, Common } from "./types";
 
 type AddButtonProps = Common & {
