@@ -18,7 +18,7 @@ const Account: NextPage = () => {
     return router.back();
   };
   return (
-    <div className="mx-auto max-w-xl">
+    <div className="mx-6 sm:mx-auto max-w-xl">
       <div className="flex items-center">
         <button
           type="button"

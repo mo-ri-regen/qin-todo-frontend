@@ -9,7 +9,7 @@ const SettingTerms: NextPage = () => {
   };
 
   return (
-    <div className="flex flex-1 items-center px-2">
+    <div className="flex flex-1 items-center mx-auto">
       <div className="flex flex-col mx-auto max-w-xl">
         <div className="flex justify-between items-center pb-6">
           <button
