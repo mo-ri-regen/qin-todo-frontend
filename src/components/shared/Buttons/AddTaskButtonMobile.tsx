@@ -4,7 +4,12 @@ import { useMemo } from "react";
 import { useStore } from "src/libs/store";
 import type { Target } from "src/types";
 
-import { PlusIcon, RefreshIcon } from "../Icons";
+import {
+  ChevronDoubleDownIcon,
+  ChevronDownIcon,
+  PlusIcon,
+  RefreshIcon,
+} from "../Icons";
 import type { ButtonVariant, Common } from "./types";
 
 type AddButtonProps = Common & {
@@ -46,10 +51,10 @@ export const AddTaskButtonMobile: VFC<AddButtonProps> = (props) => {
           {!isAddInput && props.target === props.position && <RefreshIcon />}
           {!isAddInput &&
             props.target === "today" &&
-            props.position === "nextday" && <span>↓1</span>}
+            props.position === "nextday" && <ChevronDownIcon />}
           {!isAddInput &&
             props.target === "today" &&
-            props.position === "other" && <span>↓2</span>}
+            props.position === "other" && <ChevronDoubleDownIcon />}
           <div className="text-gray-100">{props.children}</div>
         </div>
       </button>
