@@ -39,4 +39,4 @@ export type TodosState = {
   taskDropEnd: (id: string, overId: string, strDate: string) => void;
 };
 
-export type Target = "today" | "nextday" | "other";
+export type Target = "today" | "nextday" | "otherday";

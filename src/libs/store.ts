@@ -28,7 +28,7 @@ export const selectTodos = (
   const todos = allTodos
     .filter((todo) => {
       switch (target) {
-        case "other": // 「今度やる」のデータ抽出
+        case "otherday": // 「今度やる」のデータ抽出
           return todo.dueDate === null && todo.completeDate === null;
         case "nextday": // 「明日やる」のデータ抽出
           return (
@@ -316,7 +316,7 @@ const useStore = create<TodosState>(
             case "nextday":
               newItem.dueDate = getTommorow();
               break;
-            case "other":
+            case "otherday":
               newItem.dueDate = null;
               break;
             default:

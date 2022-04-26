@@ -92,7 +92,7 @@ export const FooterButtons: VFC = () => {
     if (inputTodo === "") {
       return;
     }
-    const todosLen = selectTodos(allTodos, strDate, "other").length + 1;
+    const todosLen = selectTodos(allTodos, strDate, "otherday").length + 1;
     if (isAddInput) {
       if (inputTodo) {
         // TODO:並びは「今日やる」⇒「明日やる」に変更した場合に対応が必要（別ISSUEにて対応）
@@ -107,7 +107,8 @@ export const FooterButtons: VFC = () => {
       } else {
         const postTodo: ListTodo = editTodo;
         postTodo.task = inputTodo;
-        postTodo.sortKey = orgTarget === "other" ? editTodo.sortKey : todosLen;
+        postTodo.sortKey =
+          orgTarget === "otherday" ? editTodo.sortKey : todosLen;
         postTodo.dueDate = null;
         updateTodo(postTodo);
       }
@@ -166,7 +167,7 @@ export const FooterButtons: VFC = () => {
                 明日する
               </AddTaskButtonMobile>
               <AddTaskButtonMobile
-                position="other"
+                position="otherday"
                 target={orgTarget}
                 variant="ternary"
                 onClick={handleAddTodo}

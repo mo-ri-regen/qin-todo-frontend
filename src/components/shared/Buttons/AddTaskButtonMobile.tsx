@@ -17,7 +17,7 @@ import {
 import type { ButtonVariant, Common } from "./types";
 
 type AddButtonProps = Common & {
-  position: "today" | "nextday" | "other";
+  position: "today" | "nextday" | "otherday";
   target: Target | null;
 
   onClick?: DOMAttributes<HTMLButtonElement>["onClick"];
@@ -58,18 +58,18 @@ export const AddTaskButtonMobile: VFC<AddButtonProps> = (props) => {
             props.position === "nextday" && <ChevronDownIcon />}
           {!isAddInput &&
             props.target === "today" &&
-            props.position === "other" && <ChevronDoubleDownIcon />}
+            props.position === "otherday" && <ChevronDoubleDownIcon />}
           {!isAddInput &&
             props.target === "nextday" &&
             props.position === "today" && <ChevronUpIcon />}
           {!isAddInput &&
             props.target === "nextday" &&
-            props.position === "other" && <ChevronDownIcon />}
+            props.position === "otherday" && <ChevronDownIcon />}
           {!isAddInput &&
-            props.target === "other" &&
+            props.target === "otherday" &&
             props.position === "today" && <ChevronDoubleUpIcon />}
           {!isAddInput &&
-            props.target === "other" &&
+            props.target === "otherday" &&
             props.position === "nextday" && <ChevronUpIcon />}
           <div className="text-gray-100">{props.children}</div>
         </div>
