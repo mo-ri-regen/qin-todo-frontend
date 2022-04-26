@@ -10,6 +10,10 @@ import {
   PlusIcon,
   RefreshIcon,
 } from "../Icons";
+import {
+  ChevronDoubleUpIcon,
+  ChevronUpIcon,
+} from "../Icons/FooterIcons/ChevronIcons";
 import type { ButtonVariant, Common } from "./types";
 
 type AddButtonProps = Common & {
@@ -55,6 +59,18 @@ export const AddTaskButtonMobile: VFC<AddButtonProps> = (props) => {
           {!isAddInput &&
             props.target === "today" &&
             props.position === "other" && <ChevronDoubleDownIcon />}
+          {!isAddInput &&
+            props.target === "nextday" &&
+            props.position === "today" && <ChevronUpIcon />}
+          {!isAddInput &&
+            props.target === "nextday" &&
+            props.position === "other" && <ChevronDownIcon />}
+          {!isAddInput &&
+            props.target === "other" &&
+            props.position === "today" && <ChevronDoubleUpIcon />}
+          {!isAddInput &&
+            props.target === "other" &&
+            props.position === "nextday" && <ChevronUpIcon />}
           <div className="text-gray-100">{props.children}</div>
         </div>
       </button>
