@@ -1,9 +1,6 @@
 import clsx from "clsx";
 import type { DOMAttributes, VFC } from "react";
 import { useMemo } from "react";
-import { useStore } from "src/libs/store";
-import type { Target } from "src/types";
-
 import {
   ChevronDoubleDownIcon,
   ChevronDoubleUpIcon,
@@ -11,7 +8,10 @@ import {
   ChevronUpIcon,
   PlusIcon,
   RefreshIcon,
-} from "../Icons";
+} from "src/components/shared/Icons";
+import { useStore } from "src/libs/store";
+import type { Target } from "src/types";
+
 import type { ButtonVariant, Common } from "./types";
 
 type AddButtonProps = Common & {
