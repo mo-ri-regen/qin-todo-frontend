@@ -27,7 +27,7 @@ export const TodosHandlers = [
 
   // 特定のTodoの情報を更新する
   rest.put<PostTodo, { todoId: string }, ListTodo>(
-    `${apiUrl}:todoId`,
+    `${apiUrl}/:todoId`,
     (req, res, ctx) => {
       const { todoId } = req.params;
       const { task, sortKey, dueDate, completeDate, isDone } = req.body;
@@ -56,7 +56,7 @@ export const TodosHandlers = [
 
   // 特定のTodoを削除する
   rest.delete<never, { todoId: string }, Pick<ListTodo, "id">>(
-    `${apiUrl}:todoId`,
+    `${apiUrl}/:todoId`,
     (req, res, ctx) => {
       const { todoId } = req.params;
       return res(ctx.delay(10), ctx.status(200), ctx.json({ id: todoId }));
