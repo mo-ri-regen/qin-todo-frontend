@@ -60,7 +60,7 @@ const Home: NextPage = () => {
 
   const todayTodosLen = selectTodos(allTodos, strDate, "today").length;
   const nextdayTodosLen = selectTodos(allTodos, strDate, "nextday").length;
-  const otherTodosLen = selectTodos(allTodos, strDate, "other").length;
+  const otherTodosLen = selectTodos(allTodos, strDate, "otherday").length;
   // 削除処理などのクリックと、並び替え処理のドラッグアンドドロップの判断用に５ミリ秒
   // 以上つかんだらドラッグアンドドロップと判断する。（これがないと削除できない）
   const activationConstraint: PointerActivationConstraint = {
@@ -164,7 +164,7 @@ const Home: NextPage = () => {
             </div>
             <div className="flex flex-col">
               {otherTodosLen === 0 && <AddMobileTaskButton />}
-              <ListTodo title="今度する" target="other" />
+              <ListTodo title="今度する" target="otherday" />
             </div>
           </div>
           <FooterButtons />

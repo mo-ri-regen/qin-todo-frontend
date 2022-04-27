@@ -9,7 +9,7 @@ const SettingTerms: NextPage = () => {
   };
 
   return (
-    <div className="flex flex-1 items-center px-2">
+    <div className="flex flex-1 items-center mx-auto">
       <div className="flex flex-col mx-auto max-w-xl">
         <div className="flex justify-between items-center pb-6">
           <button
@@ -24,13 +24,13 @@ const SettingTerms: NextPage = () => {
           </div>
           <div className="w-5" />
         </div>
-        <div className="mx-auto prose prose-blue dark:prose-invert">
+        <div className="mx-auto dark:text-gray-300 prose prose-blue">
           <p>
             本規約は、合同会社Qin（以下「弊社」とします）が提供するブログサービス『Qin
             Todo』（以下「本サービス」とします）について、その利用者との間に適用されるものです。
           </p>
 
-          <h4>第１条 利用登録等</h4>
+          <h4 className="dark:text-gray-300">第１条 利用登録等</h4>
           <ol>
             <li>
               本サービスは、本サービスを利用する各ユーザーを識別するための文字列を設定することがあります。
@@ -58,7 +58,7 @@ const SettingTerms: NextPage = () => {
             </li>
           </ol>
 
-          <h4>第２条 登録情報</h4>
+          <h4 className="dark:text-gray-300">第２条 登録情報</h4>
           <ol>
             <li>
               ユーザーは、登録情報について、自己の責任の下、登録及び管理するものとします。
@@ -83,12 +83,12 @@ const SettingTerms: NextPage = () => {
             </li>
           </ol>
 
-          <h4>第３条 本サービスの修正等</h4>
+          <h4 className="dark:text-gray-300">第３条 本サービスの修正等</h4>
           <p>
             本サービスは、本サービスの都合により、ユーザーに通知することなく、いつでも任意の理由で本サービスについて修正、追加、変更、中断、終了、運営を第三者に委託、又は本サービスを第三者に譲渡することができます。この場合、ユーザーに発生した損害について、本サービスは一切の責任を負わないものとします。
           </p>
 
-          <h4>第４条 個人情報について</h4>
+          <h4 className="dark:text-gray-300">第４条 個人情報について</h4>
           <ol>
             <li>
               本サービスは、ユーザーから取得した個人情報の保護に最大限の注意を払います。
@@ -169,7 +169,7 @@ const SettingTerms: NextPage = () => {
             </li>
           </ol>
 
-          <h4>第５条 同意事項</h4>
+          <h4 className="dark:text-gray-300">第５条 同意事項</h4>
           <ol>
             <li>
               本サービスは、本サービスに本サービス又は第三者の広告を掲載することができるものとし、ユーザーはこれに同意するものとします。
@@ -188,7 +188,7 @@ const SettingTerms: NextPage = () => {
             </li>
           </ol>
 
-          <h4>第６条 禁止行為</h4>
+          <h4 className="dark:text-gray-300">第６条 禁止行為</h4>
           <ol>
             <li>
               ユーザーは、以下の行為又はそのおそれがある行為を行ってはならないものとします。
@@ -263,7 +263,7 @@ const SettingTerms: NextPage = () => {
             </li>
           </ol>
 
-          <h4>第７条 免責事項</h4>
+          <h4 className="dark:text-gray-300">第７条 免責事項</h4>
           <ol>
             <li>
               ユーザーは、自己責任において本サービスを利用するものとします。本サービスは、本サービスを利用してなされた一切の行為及びその結果について一切の責任を負わないものとします。
@@ -288,19 +288,19 @@ const SettingTerms: NextPage = () => {
             </li>
           </ol>
 
-          <h4>第８条 ユーザー間等のトラブル</h4>
+          <h4 className="dark:text-gray-300">第８条 ユーザー間等のトラブル</h4>
           <p>
             ユーザー間又はユーザーと主催者等の第三者との間で生じたトラブルについては、ユーザーは自己の責任で解決しなければならず、本サービスはこれらのトラブルに関して、一切の責任を負いません。
           </p>
 
-          <h4>第９条 知的財産権の帰属</h4>
+          <h4 className="dark:text-gray-300">第９条 知的財産権の帰属</h4>
           <p>
             本サービスに関する特許権、実用新案権、意匠権、著作権等（著作権法第
             27 条及び第 28
             条に規定する権利を含む。以下本条において総称して「知的財産権」といいます）は、本サービス又は正当な権利を有する第三者に帰属します。
           </p>
 
-          <h4>第１０条 ユーザーへの通知</h4>
+          <h4 className="dark:text-gray-300">第１０条 ユーザーへの通知</h4>
           <ol>
             <li>
               本サービスからの通知を、本サービス上に表示することにより行う場合は、本サービスが本サービス上に通知を表示したときに、ユーザーに通知が到達したものとみなします。
@@ -313,12 +313,12 @@ const SettingTerms: NextPage = () => {
             </li>
           </ol>
 
-          <h4>第１１条 権利義務の譲渡の禁止</h4>
+          <h4 className="dark:text-gray-300">第１１条 権利義務の譲渡の禁止</h4>
           <p>
             ユーザーは、本サービスに関するユーザー資格、ユーザー資格に基づく権利義務の一切を、第三者に譲渡し又は担保に供してはならないものとします。
           </p>
 
-          <h4>第１２条 利用停止等</h4>
+          <h4 className="dark:text-gray-300">第１２条 利用停止等</h4>
           <ol>
             <li>
               本サービスは、以下の各号に掲げる場合は、ユーザーに事前に通知又は催告することなく、本サービスの利用制限、又は利用停止させることができるものとします。
@@ -346,7 +346,7 @@ const SettingTerms: NextPage = () => {
             </li>
           </ol>
 
-          <h4>第１３条 利用終了</h4>
+          <h4 className="dark:text-gray-300">第１３条 利用終了</h4>
           <ol>
             <li>
               本サービスは、ユーザーが利用を終了した場合、そのユーザーの利用履歴、投稿情報、登録情報、個人情報、賞金等獲得情報等のデータ等を引き続き保有する義務はないものとします。
@@ -356,12 +356,12 @@ const SettingTerms: NextPage = () => {
             </li>
           </ol>
 
-          <h4>第１４条 規約の改定について</h4>
+          <h4 className="dark:text-gray-300">第１４条 規約の改定について</h4>
           <p>
             本サービスは、ユーザーの了解を得ることなく本規約を変更できるものとします。この場合、本サービスが別途定める場合を除き、変更後の規約は本サービス上に表示した時点より効力を生じるものとします。
           </p>
 
-          <h4>第１５条 本規約の有効性</h4>
+          <h4 className="dark:text-gray-300">第１５条 本規約の有効性</h4>
           <ol>
             <li>
               本規約が消費者契約法に定める消費者契約に該当する場合には、本規約のうち、本サービスの損害賠償責任を完全に免責する規定は適用されないものとします。
@@ -377,7 +377,7 @@ const SettingTerms: NextPage = () => {
             </li>
           </ol>
 
-          <h4>第１６条 準拠法・裁判管轄</h4>
+          <h4 className="dark:text-gray-300">第１６条 準拠法・裁判管轄</h4>
           <ol>
             <li>本規約は、日本法に従って解釈されます。</li>
             <li>

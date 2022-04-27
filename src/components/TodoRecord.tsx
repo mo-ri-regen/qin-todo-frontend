@@ -78,7 +78,7 @@ export const TodoRecord = memo<Props>((props) => {
               {
                 "text-primary": props.target === "today",
                 "text-secondary": props.target === "nextday",
-                "text-tertiary": props.target === "other",
+                "text-tertiary": props.target === "otherday",
               }
             )}
             type="checkbox"

@@ -5,7 +5,7 @@ import { useAuthUser } from "next-firebase-auth";
 import type { VFC } from "react";
 import { Fragment } from "react";
 import { MyAvater } from "src/components/Avatar";
-import { SignoutButton } from "src/components/shared/Buttons/SignoutButton";
+import { SignoutButton } from "src/components/shared/Buttons";
 
 /**
  * @package

@@ -1,7 +1,7 @@
 import type { LinkProps } from "next/link";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-type Common = {
+export type Common = {
   children: ReactNode;
   className?: string;
   variant?: ButtonVariant;
@@ -14,7 +14,10 @@ type ButtonVariant =
   | "solid-red"
   | "solid-gray"
   | "solid-white"
-  | "solid-black";
+  | "solid-black"
+  | "primary"
+  | "secondary"
+  | "ternary";
 
 type ButtonType = ButtonHTMLAttributes<HTMLButtonElement> & Common;
 

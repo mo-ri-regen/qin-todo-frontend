@@ -14,7 +14,7 @@ const SettingTodoTheme: NextPage = () => {
   };
 
   return (
-    <div className="p-3 mx-auto w-1/2 whitespace-nowrap">
+    <div className="mx-6 sm:mx-auto max-w-xl">
       <div className="flex items-center pb-6">
         <button
           type="button"

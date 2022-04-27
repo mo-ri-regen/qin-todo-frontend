@@ -3,6 +3,7 @@ import type { DOMAttributes, VFC } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
+import { AddTaskButtonMobile } from "src/components/shared/Buttons";
 import { getToday, getTommorow, targetCheck } from "src/libs/dateFunc";
 import { initEditTodo, selectTodos, useStore } from "src/libs/store";
 import type { ListTodo, PostTodo, Target, TodosState } from "src/types";
@@ -91,7 +92,7 @@ export const FooterButtons: VFC = () => {
     if (inputTodo === "") {
       return;
     }
-    const todosLen = selectTodos(allTodos, strDate, "other").length + 1;
+    const todosLen = selectTodos(allTodos, strDate, "otherday").length + 1;
     if (isAddInput) {
       if (inputTodo) {
         // TODO:並びは「今日やる」⇒「明日やる」に変更した場合に対応が必要（別ISSUEにて対応）
@@ -106,7 +107,8 @@ export const FooterButtons: VFC = () => {
       } else {
         const postTodo: ListTodo = editTodo;
         postTodo.task = inputTodo;
-        postTodo.sortKey = orgTarget === "other" ? editTodo.sortKey : todosLen;
+        postTodo.sortKey =
+          orgTarget === "otherday" ? editTodo.sortKey : todosLen;
         postTodo.dueDate = null;
         updateTodo(postTodo);
       }
@@ -136,35 +138,43 @@ export const FooterButtons: VFC = () => {
     <Dialog open={isOpen} onClose={handleCloseModal} initialFocus={textareaRef}>
       <div className="text-center">
         <Dialog.Overlay className="fixed inset-0 z-20 bg-opacity-40 backdrop-filter" />
-        <div className="lg:hidden fixed right-0 bottom-0 left-0 z-50 p-4 sm:p-6 mx-auto w-10/12 max-w-sm bg-white dark:bg-gray-900">
-          <div className="text-center">
-            <textarea
-              ref={textareaRef}
-              className="mb-3 w-full h-8 dark:text-gray-700 bg-[#F1F5F9] rounded-lg border-none focus:ring-2 focus:ring-primary outline-none"
-              onChange={handleOnChange}
-              value={inputTodo}
-              maxLength={200}
-            />
-          </div>
-          <div className="flex justify-between items-center mb-2 w-full text-white">
-            <button
-              className="px-4 mr-2 h-9 text-sm whitespace-nowrap bg-primary rounded-full"
-              onClick={handleAddTodoToday}
-            >
-              + 今日する
-            </button>
-            <button
-              className="px-4 mr-2 h-9 text-sm whitespace-nowrap bg-secondary rounded-full"
-              onClick={handleAddTodoTommorow}
-            >
-              + 明日する
-            </button>
-            <button
-              className="px-4 h-9 text-sm whitespace-nowrap bg-tertiary rounded-full"
-              onClick={handleAddTodo}
-            >
-              + 今度する
-            </button>
+        <div className="lg:hidden fixed right-0 bottom-0 left-0 z-50 sm:p-6 py-4 px-6 mx-auto w-screen bg-white dark:bg-gray-900">
+          <div className="mx-auto max-w-sm">
+            <div className="items-center text-center">
+              <textarea
+                ref={textareaRef}
+                className="mb-3 w-full h-8 leading-4 dark:text-gray-700 bg-[#F1F5F9] rounded-3xl border-none focus:ring-2 focus:ring-primary outline-none"
+                onChange={handleOnChange}
+                value={inputTodo}
+                maxLength={200}
+              />
+            </div>
+            <div className="flex justify-between items-center mb-2 w-full text-white">
+              <AddTaskButtonMobile
+                position="today"
+                target={orgTarget}
+                variant="primary"
+                onClick={handleAddTodoToday}
+              >
+                今日する
+              </AddTaskButtonMobile>
+              <AddTaskButtonMobile
+                position="nextday"
+                target={orgTarget}
+                variant="secondary"
+                onClick={handleAddTodoTommorow}
+              >
+                明日する
+              </AddTaskButtonMobile>
+              <AddTaskButtonMobile
+                position="otherday"
+                target={orgTarget}
+                variant="ternary"
+                onClick={handleAddTodo}
+              >
+                今度する
+              </AddTaskButtonMobile>
+            </div>
           </div>
         </div>
       </div>

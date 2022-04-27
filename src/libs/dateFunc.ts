@@ -40,7 +40,7 @@ export const targetCheck = (dueDate: string | null) => {
       target = "nextday";
       break;
     default:
-      target = "other";
+      target = "otherday";
       break;
   }
   return target;
