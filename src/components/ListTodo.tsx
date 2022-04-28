@@ -11,6 +11,7 @@ import type { PostTodo, Target, TodosState } from "src/types";
 
 import { AddTaskButton } from "./shared/Buttons/AddTaskButton";
 import { TodoRecord } from "./TodoRecord";
+import { TodoRecordMobile } from "./TodoRecordMobile";
 
 type Props = {
   title?: string;
@@ -104,7 +105,7 @@ export const ListTodo = memo<Props>((props) => {
 
   return (
     <div className="pt-3 w-full">
-      <ol>
+      <ol className="hidden lg:block">
         <div
           ref={setNodeRef}
           style={
@@ -121,6 +122,33 @@ export const ListTodo = memo<Props>((props) => {
             {todos.map((todo) => {
               return (
                 <TodoRecord
+                  todo={todo}
+                  key={`todo-${todo.task}-${todo.id}`}
+                  target={props.target}
+                />
+              );
+            })}
+            <AddPcTaskButton />
+          </SortableContext>
+        </div>
+      </ol>
+      <ol className="lg:hidden">
+        <div
+          ref={setNodeRef}
+          style={
+            {
+              "--columns": 1,
+            } as CSSProperties
+          }
+        >
+          <SortableContext
+            id={props.target}
+            items={todoIds}
+            strategy={verticalListSortingStrategy}
+          >
+            {todos.map((todo) => {
+              return (
+                <TodoRecordMobile
                   todo={todo}
                   key={`todo-${todo.task}-${todo.id}`}
                   target={props.target}
