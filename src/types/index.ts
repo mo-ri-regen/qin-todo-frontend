@@ -1,3 +1,5 @@
+import type { AuthUserContext } from "next-firebase-auth";
+
 export type ListTodo = {
   id: string;
   task: string;
@@ -26,12 +28,12 @@ export type TodosState = {
   orveTarget: Target | null;
   editTodo: ListTodo;
   getTodos: () => void;
-  addTodo: (postTodo: PostTodo) => void;
-  copyTodo: (postTodo: PostTodo) => void;
-  updateTodo: (editTodo: ListTodo) => void;
-  removeTodo: (id: string) => void;
+  addTodo: (postTodo: PostTodo, authUser: AuthUserContext) => void;
+  copyTodo: (postTodo: PostTodo, authUser: AuthUserContext) => void;
+  updateTodo: (editTodo: ListTodo, authUser: AuthUserContext) => void;
+  removeTodo: (id: string, authUser: AuthUserContext) => void;
   setIsAddInput: (isAddInput: boolean) => void;
-  toggleDone: (todo: ListTodo) => void;
+  toggleDone: (todo: ListTodo, authUser: AuthUserContext) => void;
   setEditTodo: (editTodo: ListTodo) => void;
   setActiveId: (id: string) => void;
   findTarget: (id: string, isActive: boolean) => void;
