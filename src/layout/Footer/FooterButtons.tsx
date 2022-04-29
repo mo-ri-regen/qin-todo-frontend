@@ -1,4 +1,5 @@
 import { Dialog } from "@headlessui/react";
+import { useAuthUser } from "next-firebase-auth";
 import type { DOMAttributes, VFC } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
@@ -33,6 +34,7 @@ export const FooterButtons: VFC = () => {
   const setIsAddInput = useStore((state) => {
     return state.setIsAddInput;
   });
+  const authUser = useAuthUser();
   const [inputTodo, setInputTodo] = useState<string>(editTodo.task);
   const orgTarget: Target | null =
     editTodo.id === "" ? null : targetCheck(editTodo.dueDate);
@@ -49,13 +51,13 @@ export const FooterButtons: VFC = () => {
         completeDate: null,
         isDone: false,
       };
-      addTodo(postTodo);
+      addTodo(postTodo, authUser);
     } else {
       const postTodo: ListTodo = editTodo;
       postTodo.task = inputTodo;
       postTodo.sortKey = orgTarget === "today" ? editTodo.sortKey : todosLen;
       postTodo.dueDate = getToday();
-      updateTodo(postTodo);
+      updateTodo(postTodo, authUser);
     }
     setInputTodo("");
     setEditTodo(initEditTodo);
@@ -75,14 +77,14 @@ export const FooterButtons: VFC = () => {
           completeDate: null,
           isDone: false,
         };
-        addTodo(postTodo);
+        addTodo(postTodo, authUser);
       } else {
         const postTodo: ListTodo = editTodo;
         postTodo.task = inputTodo;
         postTodo.sortKey =
           orgTarget === "nextday" ? editTodo.sortKey : todosLen;
         postTodo.dueDate = getTommorow();
-        updateTodo(postTodo);
+        updateTodo(postTodo, authUser);
       }
       setInputTodo("");
       setEditTodo(initEditTodo);
@@ -103,14 +105,14 @@ export const FooterButtons: VFC = () => {
           completeDate: null,
           isDone: false,
         };
-        addTodo(postTodo);
+        addTodo(postTodo, authUser);
       } else {
         const postTodo: ListTodo = editTodo;
         postTodo.task = inputTodo;
         postTodo.sortKey =
           orgTarget === "otherday" ? editTodo.sortKey : todosLen;
         postTodo.dueDate = null;
-        updateTodo(postTodo);
+        updateTodo(postTodo, authUser);
       }
       setInputTodo("");
       setEditTodo(initEditTodo);

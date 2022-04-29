@@ -2,6 +2,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { DocumentDuplicateIcon, TrashIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
+import { useAuthUser } from "next-firebase-auth";
 import type { ChangeEvent, DOMAttributes } from "react";
 import { memo, useRef, useState } from "react";
 
@@ -19,14 +20,15 @@ export const TodoRecord = memo<Props>((props) => {
   const toggleComplete = useStore((state: TodosState) => {
     return state.toggleDone;
   });
+  const authUser = useAuthUser();
   const handleToggleComplete = () => {
-    toggleComplete(props.todo);
+    toggleComplete(props.todo, authUser);
   };
   const removeTodo = useStore((state: TodosState) => {
     return state.removeTodo;
   });
   const handleRemoveTodo = () => {
-    return removeTodo(props.todo.id);
+    return removeTodo(props.todo.id, authUser);
   };
   const setEditTodo = useStore((state) => {
     return state.setEditTodo;
@@ -44,14 +46,14 @@ export const TodoRecord = memo<Props>((props) => {
   const handleOnBlur = () => {
     const postTodo: ListTodo = props.todo;
     postTodo.task = taskPc;
-    updateTodo(postTodo);
+    updateTodo(postTodo, authUser);
     setIsEditing(false);
   };
   const copyTodo = useStore((state) => {
     return state.copyTodo;
   });
   const handleCopyTodo = () => {
-    copyTodo(props.todo);
+    copyTodo(props.todo, authUser);
   };
   const focusRef = useRef(null);
 

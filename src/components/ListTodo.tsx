@@ -3,6 +3,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { useAuthUser } from "next-firebase-auth";
 import type { CSSProperties, DOMAttributes } from "react";
 import { memo, useState } from "react";
 import { getToday, getTommorow } from "src/libs/dateFunc";
@@ -50,7 +51,7 @@ export const ListTodo = memo<Props>((props) => {
     const editTodo = useStore((state) => {
       return state.editTodo;
     });
-
+    const authUser = useAuthUser();
     const postTodo: PostTodo = {
       task: inputTodo,
       sortKey: todosLen,
@@ -69,7 +70,7 @@ export const ListTodo = memo<Props>((props) => {
       if (inputTodo === "") {
         return;
       } else {
-        addTodo(postTodo);
+        addTodo(postTodo, authUser);
         setInputTodo("");
       }
     };
