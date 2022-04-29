@@ -64,8 +64,16 @@ const useStore = create<TodosState>(
         const response = await axios.get<ListTodo[]>(apiUrl);
         set({ todos: response.data });
       },
-      addTodo: async (postTodo) => {
-        const response = await axios.post<ListTodo>(apiUrl, postTodo);
+      addTodo: async (postTodo, authUser) => {
+        const idToken = await authUser.getIdToken();
+        const response = await axios.post<ListTodo>(apiUrl, postTodo, {
+          headers: {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            "Content-Type": "application/json",
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            Authorization: `Bearer ${idToken}`,
+          },
+        });
         const {
           id,
           task,
@@ -94,8 +102,16 @@ const useStore = create<TodosState>(
           };
         });
       },
-      copyTodo: async (copyTodo) => {
-        const response = await axios.post<ListTodo>(apiUrl, copyTodo);
+      copyTodo: async (copyTodo, authUser) => {
+        const idToken = await authUser.getIdToken();
+        const response = await axios.post<ListTodo>(apiUrl, copyTodo, {
+          headers: {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            "Content-Type": "application/json",
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            Authorization: `Bearer ${idToken}`,
+          },
+        });
         const {
           id,
           task,
@@ -124,7 +140,8 @@ const useStore = create<TodosState>(
           };
         });
       },
-      updateTodo: async (editTodo) => {
+      updateTodo: async (editTodo, authUser) => {
+        const idToken = await authUser.getIdToken();
         const putTodo = {
           task: editTodo.task,
           sortKey: editTodo.sortKey,
@@ -134,7 +151,15 @@ const useStore = create<TodosState>(
         };
         const response = await axios.put<ListTodo>(
           `${apiUrl}/${editTodo.id}`,
-          putTodo
+          putTodo,
+          {
+            headers: {
+              // eslint-disable-next-line @typescript-eslint/naming-convention
+              "Content-Type": "application/json",
+              // eslint-disable-next-line @typescript-eslint/naming-convention
+              Authorization: `Bearer ${idToken}`,
+            },
+          }
         );
         const {
           task,
@@ -165,10 +190,20 @@ const useStore = create<TodosState>(
           };
         });
       },
-      removeTodo: async (id: string) => {
-        await axios.delete(`${apiUrl}/${id}`).then((res) => {
-          return res;
-        });
+      removeTodo: async (id: string, authUser) => {
+        const idToken = await authUser.getIdToken();
+        await axios
+          .delete(`${apiUrl}/${id}`, {
+            headers: {
+              // eslint-disable-next-line @typescript-eslint/naming-convention
+              "Content-Type": "application/json",
+              // eslint-disable-next-line @typescript-eslint/naming-convention
+              Authorization: `Bearer ${idToken}`,
+            },
+          })
+          .then((res) => {
+            return res;
+          });
 
         return set((state) => {
           return {
@@ -183,7 +218,8 @@ const useStore = create<TodosState>(
           return { isAddInput: isAddInput };
         });
       },
-      toggleDone: async (editTodo: ListTodo) => {
+      toggleDone: async (editTodo: ListTodo, authUser) => {
+        const idToken = await authUser.getIdToken();
         editTodo.isDone = !editTodo.isDone;
         if (editTodo.isDone) {
           editTodo.completeDate = getToday();
@@ -200,7 +236,15 @@ const useStore = create<TodosState>(
         };
         const response = await axios.put<ListTodo>(
           `${apiUrl}/${editTodo.id}`,
-          putTodo
+          putTodo,
+          {
+            headers: {
+              // eslint-disable-next-line @typescript-eslint/naming-convention
+              "Content-Type": "application/json",
+              // eslint-disable-next-line @typescript-eslint/naming-convention
+              Authorization: `Bearer ${idToken}`,
+            },
+          }
         );
         if (response.status != 200) {
           // エラー時の処理を記述する想定
