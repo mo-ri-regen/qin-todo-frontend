@@ -1,8 +1,6 @@
 import type { VFC } from "react";
 import { initEditTodo, useStore } from "src/libs/store";
 
-import { FooterButtons } from "./FooterButtons";
-
 export const Footer: VFC = () => {
   const isAddInput = useStore((state) => {
     return state.isAddInput;
@@ -29,7 +27,6 @@ export const Footer: VFC = () => {
           </div>
         </div>
       )}
-      <FooterButtons />
     </div>
   );
 };
