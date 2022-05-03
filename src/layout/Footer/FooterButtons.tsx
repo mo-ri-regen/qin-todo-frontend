@@ -68,27 +68,24 @@ export const FooterButtons: VFC = () => {
     }
     const todosLen = selectTodos(allTodos, strDate, "nextday").length + 1;
     if (isAddInput) {
-      if (inputTodo) {
-        // TODO:並びは「今日やる」⇒「明日やる」に変更した場合に対応が必要（別ISSUEにて対応）
-        const postTodo: PostTodo = {
-          task: inputTodo,
-          sortKey: editTodo.sortKey,
-          dueDate: getTommorow(),
-          completeDate: null,
-          isDone: false,
-        };
-        addTodo(postTodo, authUser);
-      } else {
-        const postTodo: ListTodo = editTodo;
-        postTodo.task = inputTodo;
-        postTodo.sortKey =
-          orgTarget === "nextday" ? editTodo.sortKey : todosLen;
-        postTodo.dueDate = getTommorow();
-        updateTodo(postTodo, authUser);
-      }
-      setInputTodo("");
-      setEditTodo(initEditTodo);
+      // TODO:並びは「今日やる」⇒「明日やる」に変更した場合に対応が必要（別ISSUEにて対応）
+      const postTodo: PostTodo = {
+        task: inputTodo,
+        sortKey: editTodo.sortKey,
+        dueDate: getTommorow(),
+        completeDate: null,
+        isDone: false,
+      };
+      addTodo(postTodo, authUser);
+    } else {
+      const postTodo: ListTodo = editTodo;
+      postTodo.task = inputTodo;
+      postTodo.sortKey = orgTarget === "nextday" ? editTodo.sortKey : todosLen;
+      postTodo.dueDate = getTommorow();
+      updateTodo(postTodo, authUser);
     }
+    setInputTodo("");
+    setEditTodo(initEditTodo);
   };
   const handleAddTodo = () => {
     if (inputTodo === "") {
@@ -96,27 +93,24 @@ export const FooterButtons: VFC = () => {
     }
     const todosLen = selectTodos(allTodos, strDate, "otherday").length + 1;
     if (isAddInput) {
-      if (inputTodo) {
-        // TODO:並びは「今日やる」⇒「明日やる」に変更した場合に対応が必要（別ISSUEにて対応）
-        const postTodo: PostTodo = {
-          task: inputTodo,
-          sortKey: editTodo.sortKey,
-          dueDate: null,
-          completeDate: null,
-          isDone: false,
-        };
-        addTodo(postTodo, authUser);
-      } else {
-        const postTodo: ListTodo = editTodo;
-        postTodo.task = inputTodo;
-        postTodo.sortKey =
-          orgTarget === "otherday" ? editTodo.sortKey : todosLen;
-        postTodo.dueDate = null;
-        updateTodo(postTodo, authUser);
-      }
-      setInputTodo("");
-      setEditTodo(initEditTodo);
+      // TODO:並びは「今日やる」⇒「明日やる」に変更した場合に対応が必要（別ISSUEにて対応）
+      const postTodo: PostTodo = {
+        task: inputTodo,
+        sortKey: editTodo.sortKey,
+        dueDate: null,
+        completeDate: null,
+        isDone: false,
+      };
+      addTodo(postTodo, authUser);
+    } else {
+      const postTodo: ListTodo = editTodo;
+      postTodo.task = inputTodo;
+      postTodo.sortKey = orgTarget === "otherday" ? editTodo.sortKey : todosLen;
+      postTodo.dueDate = null;
+      updateTodo(postTodo, authUser);
     }
+    setInputTodo("");
+    setEditTodo(initEditTodo);
   };
 
   const handleCloseModal = () => {
