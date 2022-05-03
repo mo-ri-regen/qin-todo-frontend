@@ -71,7 +71,7 @@ export const FooterButtons: VFC = () => {
       // TODO:並びは「今日やる」⇒「明日やる」に変更した場合に対応が必要（別ISSUEにて対応）
       const postTodo: PostTodo = {
         task: inputTodo,
-        sortKey: editTodo.sortKey,
+        sortKey: todosLen,
         dueDate: getTommorow(),
         completeDate: null,
         isDone: false,
@@ -96,7 +96,7 @@ export const FooterButtons: VFC = () => {
       // TODO:並びは「今日やる」⇒「明日やる」に変更した場合に対応が必要（別ISSUEにて対応）
       const postTodo: PostTodo = {
         task: inputTodo,
-        sortKey: editTodo.sortKey,
+        sortKey: todosLen,
         dueDate: null,
         completeDate: null,
         isDone: false,
