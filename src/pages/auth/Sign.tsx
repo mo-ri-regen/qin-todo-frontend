@@ -1,13 +1,15 @@
 import {
   getAuth,
+  GithubAuthProvider,
   GoogleAuthProvider,
-  OAuthProvider,
+  // OAuthProvider,
   signInWithRedirect,
 } from "firebase/auth";
 import type { VFC } from "react";
 import { Button } from "src/components/shared/Buttons";
 import {
-  AppleIcon,
+  // AppleIcon,
+  GithubIcon,
   GoogleIcon,
   QinTodoIcon,
 } from "src/components/shared/Icons";
@@ -20,8 +22,13 @@ const handleGoogleAuth = () => {
   signInWithRedirect(auth, googleProvider);
 };
 
-const handleAppleAuth = () => {
-  const provider = new OAuthProvider("apple.com");
+// const handleAppleAuth = () => {
+//   const provider = new OAuthProvider("apple.com");
+//   const auth = getAuth();
+//   signInWithRedirect(auth, provider);
+// };
+const handleGitHubAuth = () => {
+  const provider = new GithubAuthProvider();
   const auth = getAuth();
   signInWithRedirect(auth, provider);
 };
@@ -51,14 +58,15 @@ export const Sign: VFC<SignProps> = (props) => {
           <Button
             variant="solid-black"
             className="py-4 w-72 sm:w-80"
-            onClick={handleAppleAuth}
+            // onClick={handleAppleAuth}
+            onClick={handleGitHubAuth}
           >
             <div className="flex">
-              <AppleIcon className="mr-3 w-6 h-6" />
+              <GithubIcon className="mr-3 w-6 h-6" />
               <span>
                 {props.page === "signin"
-                  ? "Appleでログイン"
-                  : "Appleでアカウント作成"}
+                  ? "GitHubでログイン"
+                  : "GitHubでアカウント作成"}
               </span>
             </div>
           </Button>

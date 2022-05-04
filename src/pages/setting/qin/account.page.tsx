@@ -4,7 +4,11 @@ import { useRouter } from "next/router";
 import { AuthAction, withAuthUser } from "next-firebase-auth";
 import { Button } from "src/components/shared/Buttons";
 import { SignoutButton } from "src/components/shared/Buttons";
-import { AppleIcon, GoogleIcon } from "src/components/shared/Icons";
+import {
+  // AppleIcon,
+  GithubIcon,
+  GoogleIcon,
+} from "src/components/shared/Icons";
 
 const Account: NextPage = () => {
   const handleGoogle = () => {
@@ -52,7 +56,7 @@ const Account: NextPage = () => {
         </div>
         <div className="flex flex-row justify-between mt-4 w-full">
           <div className="flex items-center">
-            <AppleIcon className="w-6 h-6" />
+            <GithubIcon className="w-6 h-6" />
             <div className="flex-1 ml-3 font-bold">Apple</div>
           </div>
           <div>
