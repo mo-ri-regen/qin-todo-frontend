@@ -18,7 +18,7 @@ export const getStringFromDate = (date: Date) => {
   const year_str: string = date.getFullYear().toString();
   //月だけ+1すること
   const month_str: string = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day_str: string = date.getDate().toString();
+  const day_str: string = date.getDate().toString().padStart(2, "0");
 
   let format_str = "YYYY-MM-DD";
   format_str = format_str.replace(/YYYY/g, year_str);
