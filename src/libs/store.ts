@@ -190,7 +190,7 @@ const useStore = create<TodosState>(
           };
         });
       },
-      removeTodo: async (id: string, authUser) => {
+      removeTodo: async (id, authUser) => {
         const idToken = await authUser.getIdToken();
         await axios
           .delete(`${apiUrl}/${id}`, {
@@ -213,12 +213,12 @@ const useStore = create<TodosState>(
           };
         });
       },
-      setIsAddInput: (isAddInput: boolean) => {
+      setIsAddInput: (isAddInput) => {
         return set(() => {
           return { isAddInput: isAddInput };
         });
       },
-      toggleDone: async (editTodo: ListTodo, authUser) => {
+      toggleDone: async (editTodo, authUser) => {
         const idToken = await authUser.getIdToken();
         editTodo.isDone = !editTodo.isDone;
         if (editTodo.isDone) {
@@ -262,14 +262,14 @@ const useStore = create<TodosState>(
           };
         });
       },
-      setEditTodo: (editTodo: ListTodo) => {
+      setEditTodo: (editTodo) => {
         return set(() => {
           return {
             editTodo: editTodo,
           };
         });
       },
-      setActiveId: (id: string) => {
+      setActiveId: (id) => {
         return set((state) => {
           const todo = state.todos.find((todo) => {
             todo.id === id;
@@ -283,7 +283,7 @@ const useStore = create<TodosState>(
           return { activeId: target };
         });
       },
-      findTarget: (id: string, isActive: boolean) => {
+      findTarget: (id, isActive) => {
         return set((state) => {
           const todo = state.todos.find((todo) => {
             return todo.id === id;
@@ -311,12 +311,12 @@ const useStore = create<TodosState>(
           return { activeTarget: activeTarget, orveTarget: orveTarget };
         });
       },
-      taskDropOver: (id: string, overId: string, strDate: string) => {
+      taskDropOver: (id, overId, strDate) => {
         return set((state) => {
-          const updateTodos: ListTodo[] = state.todos;
+          const putTodos: ListTodo[] = state.todos;
           // 移動先が無い場合は、何もせずに終了する
           if (!overId || overId === "void") {
-            return { todos: updateTodos, activeId: null };
+            return { todos: putTodos, activeId: null };
           }
           // 移動元、移動先のコンテナが変わっていない場合は、何もせずに終了する
           if (
@@ -324,7 +324,7 @@ const useStore = create<TodosState>(
             !state.orveTarget ||
             state.activeTarget === state.orveTarget
           ) {
-            return { todos: updateTodos, activeId: null };
+            return { todos: putTodos, activeId: null };
           }
 
           const activeTarget: Target = state.activeTarget;
@@ -351,7 +351,7 @@ const useStore = create<TodosState>(
             return item.id === id;
           });
           if (!newItem) {
-            return { todos: updateTodos, activeId: null };
+            return { todos: putTodos, activeId: null };
           }
           switch (orveTarget) {
             case "today":
@@ -392,30 +392,30 @@ const useStore = create<TodosState>(
           }
           // 移動元の並びを全体のstateに反映する
           activeContainer.map((todo) => {
-            updateTodos.find((upTodo) => {
-              return upTodo.id === todo.id;
+            putTodos.find((putTodo) => {
+              return putTodo.id === todo.id;
             })
               ? todo
-              : updateTodos;
+              : putTodos;
           });
           // 移動先の並びを全体のstateに反映する
           overContainer.map((todo) => {
-            updateTodos.find((upTodo) => {
-              return upTodo.id === todo.id;
+            putTodos.find((putTodo) => {
+              return putTodo.id === todo.id;
             })
               ? todo
-              : updateTodos;
+              : putTodos;
           });
 
-          return { todos: updateTodos, activeId: null };
+          return { todos: putTodos, activeId: null };
         });
       },
-      taskDropEnd: (id: string, overId: string, strDate: string) => {
+      taskDropEnd: (id, overId, strDate) => {
         return set((state) => {
-          const updateTodos: ListTodo[] = state.todos;
+          const putTodos: ListTodo[] = state.todos;
 
           if (!state.activeTarget) {
-            return { todos: updateTodos, activeId: null };
+            return { todos: putTodos, activeId: null };
           }
 
           const activeTarget: Target = state.activeTarget;
@@ -454,14 +454,14 @@ const useStore = create<TodosState>(
           }
           // 移動後の並びを全体のstateに反映する
           activeContainer.map((todo) => {
-            updateTodos.find((upTodo) => {
-              return upTodo.id === todo.id;
+            putTodos.find((putTodo) => {
+              return putTodo.id === todo.id;
             })
               ? todo
-              : updateTodos;
+              : putTodos;
           });
 
-          return { todos: updateTodos, activeId: null };
+          return { todos: putTodos, activeId: null };
         });
       },
     };
