@@ -311,7 +311,7 @@ const useStore = create<TodosState>(
           return { activeTarget: activeTarget, orveTarget: orveTarget };
         });
       },
-      taskDropOver: (id, overId, strDate) => {
+      taskDropOver: (id, overId, strDate, authUser) => {
         return set((state) => {
           const putTodos: ListTodo[] = state.todos;
           // 移動先が無い場合は、何もせずに終了する
@@ -376,17 +376,29 @@ const useStore = create<TodosState>(
             index < activeContainer.length;
             index += 1
           ) {
+            const sortKeyBak = activeContainer[index].sortKey;
             activeContainer[index].sortKey = activeIndex + 1;
+            // putリクエスト発行
+            if (sortKeyBak !== activeContainer[index].sortKey) {
+              state.updateTodo(activeContainer[index], authUser);
+            }
             activeIndex += 1;
           }
 
           // 移動先コンテナに、移動対象を追加する
           const overContainer = overItems.slice(0, newIndex);
           overContainer.push(newItem);
+          // putリクエスト発行
+          state.updateTodo(newItem, authUser);
 
           const overContainerBk = overItems.slice(newIndex, overItems.length);
           for (let index = 0; index < overContainerBk.length; index += 1) {
+            const sortKeyBak = overContainerBk[index].sortKey;
             overContainerBk[index].sortKey = overIndex + 1;
+            // putリクエスト発行
+            if (sortKeyBak !== overContainerBk[index].sortKey) {
+              state.updateTodo(overContainerBk[index], authUser);
+            }
             overContainer.push(overContainerBk[index]);
             overIndex += 1;
           }
@@ -410,7 +422,7 @@ const useStore = create<TodosState>(
           return { todos: putTodos, activeId: null };
         });
       },
-      taskDropEnd: (id, overId, strDate) => {
+      taskDropEnd: (id, overId, strDate, authUser) => {
         return set((state) => {
           const putTodos: ListTodo[] = state.todos;
 
@@ -446,7 +458,12 @@ const useStore = create<TodosState>(
               index < activeContainer.length;
               index += 1
             ) {
+              const sortKeyBak = activeContainer[index].sortKey;
               activeContainer[index].sortKey = sortIndex + 1;
+              // putリクエスト発行
+              if (sortKeyBak !== activeContainer[index].sortKey) {
+                state.updateTodo(activeContainer[index], authUser);
+              }
               sortIndex += 1;
             }
           } else {

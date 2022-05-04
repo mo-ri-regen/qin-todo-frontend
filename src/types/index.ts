@@ -37,8 +37,18 @@ export type TodosState = {
   setEditTodo: (editTodo: ListTodo) => void;
   setActiveId: (id: string) => void;
   findTarget: (id: string, isActive: boolean) => void;
-  taskDropOver: (id: string, overId: string, strDate: string) => void;
-  taskDropEnd: (id: string, overId: string, strDate: string) => void;
+  taskDropOver: (
+    id: string,
+    overId: string,
+    strDate: string,
+    authUser: AuthUserContext
+  ) => void;
+  taskDropEnd: (
+    id: string,
+    overId: string,
+    strDate: string,
+    authUser: AuthUserContext
+  ) => void;
 };
 
 export type Target = "today" | "nextday" | "otherday";

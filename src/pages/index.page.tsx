@@ -17,7 +17,7 @@ import {
 } from "@dnd-kit/core";
 import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import type { NextPage } from "next";
-import { AuthAction, withAuthUser } from "next-firebase-auth";
+import { AuthAction, useAuthUser, withAuthUser } from "next-firebase-auth";
 import type { DOMAttributes } from "react";
 import { useEffect } from "react";
 import { ListTodo } from "src/components/ListTodo";
@@ -57,6 +57,7 @@ const Home: NextPage = () => {
     return state.setIsAddInput;
   });
   const strDate = getToday();
+  const authUser = useAuthUser();
 
   const todayTodosLen = selectTodos(allTodos, strDate, "today").length;
   const nextdayTodosLen = selectTodos(allTodos, strDate, "nextday").length;
@@ -94,7 +95,7 @@ const Home: NextPage = () => {
     findTarget(id, true);
     findTarget(overId, false);
 
-    taskDropOver(id, overId, strDate);
+    taskDropOver(id, overId, strDate, authUser);
   };
 
   //要素を離したとき
@@ -110,7 +111,7 @@ const Home: NextPage = () => {
       return;
     }
 
-    taskDropEnd(id, overId, strDate);
+    taskDropEnd(id, overId, strDate, authUser);
   };
 
   useEffect(() => {
