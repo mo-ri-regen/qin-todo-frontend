@@ -1,17 +1,71 @@
 import { ChevronLeftIcon } from "@heroicons/react/outline";
+import {
+  getAuth,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  linkWithPopup,
+  // OAuthProvider,
+  unlink,
+} from "firebase/auth";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { AuthAction, withAuthUser } from "next-firebase-auth";
 import { Button } from "src/components/shared/Buttons";
 import { SignoutButton } from "src/components/shared/Buttons";
-import { AppleIcon, GoogleIcon } from "src/components/shared/Icons";
+import {
+  // AppleIcon,
+  GithubIcon,
+  GoogleIcon,
+} from "src/components/shared/Icons";
 
 const Account: NextPage = () => {
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+  // const microsoftProvider = new OAuthProvider("microsoft.com");
+  const auth = getAuth();
+  const userProvider = auth.currentUser?.providerData
+    .map((provider) => {
+      return provider.providerId;
+    })
+    .filter(Boolean);
+  // Googleで連携中であること
+  const isGoogleAuth = userProvider?.find((id) => {
+    return id === "google.com";
+  })
+    ? true
+    : false;
+  // GitHubで連携中であること
+  const isGithubAuth = userProvider?.find((id) => {
+    return id === "github.com";
+  })
+    ? true
+    : false;
+
   const handleGoogle = () => {
-    alert("Google");
+    if (auth.currentUser) {
+      if (isGoogleAuth) {
+        // 連携解除
+        unlink(auth.currentUser, "google.com");
+      } else {
+        // 連携開始
+        linkWithPopup(auth.currentUser, googleProvider);
+      }
+    }
   };
-  const handleApple = () => {
-    alert("Apple");
+  // const handleApple = () => {
+  //   alert("Apple");
+  // };
+  const handleGithub = () => {
+    if (auth.currentUser) {
+      if (isGithubAuth) {
+        // 連携解除
+        unlink(auth.currentUser, "github.com");
+      } else {
+        // 連携開始
+        linkWithPopup(auth.currentUser, githubProvider);
+        // linkWithPopup(auth.currentUser, microsoftProvider);
+      }
+    }
   };
   const router = useRouter();
   const handleClickReturn = () => {
@@ -42,26 +96,30 @@ const Account: NextPage = () => {
           </div>
           <div>
             <Button
-              variant="solid-gray"
+              variant={isGoogleAuth ? "solid-gray" : "solid-blue"}
+              disabled={isGoogleAuth && !isGithubAuth}
               className="py-2 w-24"
               onClick={handleGoogle}
             >
-              解除する
+              {isGoogleAuth ? "解除する" : "連携する"}
             </Button>
           </div>
         </div>
         <div className="flex flex-row justify-between mt-4 w-full">
           <div className="flex items-center">
-            <AppleIcon className="w-6 h-6" />
-            <div className="flex-1 ml-3 font-bold">Apple</div>
+            <GithubIcon className="w-6 h-6" />
+            {/* <div className="flex-1 ml-3 font-bold">Apple</div> */}
+            <div className="flex-1 ml-3 font-bold">GitHub</div>
           </div>
           <div>
             <Button
               className="py-2 w-24"
-              variant="solid-blue"
-              onClick={handleApple}
+              variant={isGithubAuth ? "solid-gray" : "solid-blue"}
+              disabled={isGithubAuth && !isGoogleAuth}
+              // onClick={handleApple}
+              onClick={handleGithub}
             >
-              連携する
+              {isGithubAuth ? "解除する" : "連携する"}
             </Button>
           </div>
         </div>
