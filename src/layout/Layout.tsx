@@ -1,5 +1,6 @@
 import type { ReactNode, VFC } from "react";
 
+import { Footer } from "./Footer";
 import { Header } from "./Header";
 
 type Props = {
@@ -7,9 +8,10 @@ type Props = {
 };
 export const Layout: VFC<Props> = (props) => {
   return (
-    <div className="flex flex-col mx-6 min-h-screen">
+    <div className="grid px-6 mx-auto min-h-screen grid-rows-[auto, 1fr]">
       <Header />
-      <main className="flex-1">{props.children}</main>
+      <main className="h-[90vh]">{props.children}</main>
+      <Footer />
     </div>
   );
 };

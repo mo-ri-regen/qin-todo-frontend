@@ -1,0 +1,1 @@
+export { MyAvater } from "./MyAvater";
