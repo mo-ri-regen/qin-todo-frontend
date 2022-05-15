@@ -6,15 +6,14 @@ import {
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useTheme } from "src/contexts/useTheme";
+import { SwitchThemeTitle } from "src/contexts/useTheme";
 
 export const SettingQinTodo: NextPage = () => {
-  const { themes } = useTheme();
   const router = useRouter();
   const handleClickReturnHome = () => {
     return router.push("/");
   };
-
+  const themeTitle = SwitchThemeTitle();
   return (
     <main className="px-4 mx-auto w-full max-w-screen-sm lg:max-w-screen-md">
       <div className="flex justify-between items-center pb-6">
@@ -59,7 +58,7 @@ export const SettingQinTodo: NextPage = () => {
                 <li>
                   <Link href="/setting/qin/theme">
                     <a className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none">
-                      テーマ<div className="font-normal">{themes[0].label}</div>
+                      テーマ<div className="font-normal">{themeTitle}</div>
                       <div className="w-5 h-5">
                         <ChevronRightIcon />
                       </div>
