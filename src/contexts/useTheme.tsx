@@ -32,3 +32,21 @@ export const useGetIconFillColor = () => {
 
   return { fillColor };
 };
+
+export const SwitchThemeTitle = () => {
+  const { themes, currentTheme } = useTheme();
+  const selectedThemeTitle = useMemo(() => {
+    switch (currentTheme) {
+      case "light":
+        return themes[1].label;
+        break;
+      case "dark":
+        return themes[2].label;
+        break;
+      default:
+        return themes[0].label;
+    }
+  }, [currentTheme]);
+
+  return selectedThemeTitle;
+};
