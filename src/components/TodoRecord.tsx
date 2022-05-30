@@ -7,7 +7,7 @@ import type { ChangeEvent, DOMAttributes } from "react";
 import { memo, useRef, useState } from "react";
 
 import { useStore } from "../libs/store";
-import type { ListTodo, Target, TodosState } from "../types";
+import type { ListTodo, PostTodo, Target, TodosState } from "../types";
 
 type Props = {
   todo: ListTodo;
@@ -56,7 +56,14 @@ export const TodoRecord = memo<Props>((props) => {
     return state.copyTodo;
   });
   const handleCopyTodo = () => {
-    copyTodo(props.todo, authUser);
+    const editTodo: PostTodo = {
+      task: props.todo.task,
+      sortKey: props.todo.sortKey + 1,
+      dueDate: props.todo.dueDate,
+      completeDate: props.todo.completeDate,
+      isDone: props.todo.isDone,
+    };
+    copyTodo(editTodo, props.target, authUser);
   };
   const focusRef = useRef(null);
 

@@ -29,7 +29,11 @@ export type TodosState = {
   editTodo: ListTodo;
   getTodos: () => void;
   addTodo: (postTodo: PostTodo, authUser: AuthUserContext) => void;
-  copyTodo: (postTodo: PostTodo, authUser: AuthUserContext) => void;
+  copyTodo: (
+    postTodo: PostTodo,
+    target: Target,
+    authUser: AuthUserContext
+  ) => void;
   updateTodo: (editTodo: ListTodo, authUser: AuthUserContext) => void;
   removeTodo: (id: string, authUser: AuthUserContext) => void;
   setIsAddInput: (isAddInput: boolean) => void;

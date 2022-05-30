@@ -102,42 +102,25 @@ const useStore = create<TodosState>(
           };
         });
       },
-      copyTodo: async (copyTodo, authUser) => {
-        const idToken = await authUser.getIdToken();
-        const response = await axios.post<ListTodo>(apiUrl, copyTodo, {
-          headers: {
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            "Content-Type": "application/json",
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            Authorization: `Bearer ${idToken}`,
-          },
-        });
-        const {
-          id,
-          task,
-          userId,
-          sortKey,
-          dueDate,
-          completeDate,
-          isDone,
-          createAt,
-          updateAt,
-        } = response.data;
+      copyTodo: async (editTodo, target, authUser) => {
         return set((state) => {
-          const listTodo: ListTodo = {
-            id,
-            task,
-            userId,
-            sortKey,
-            dueDate,
-            completeDate,
-            isDone,
-            createAt,
-            updateAt,
-          };
-          return {
-            todos: [...state.todos, listTodo],
-          };
+          // 追加処理
+          state.addTodo(editTodo, authUser);
+
+          const strDate = getToday();
+          const backTodos: ListTodo[] = selectTodos(
+            state.todos,
+            strDate,
+            target
+          );
+          const editTodos = backTodos.filter((todo) => {
+            return todo.sortKey >= editTodo.sortKey;
+          });
+          for (let index = 0; index < editTodos.length; index += 1) {
+            editTodos[index].sortKey = editTodos[index].sortKey + 1;
+            // putリクエスト発行
+            state.updateTodo(editTodos[index], authUser);
+          }
         });
       },
       updateTodo: async (editTodo, authUser) => {
